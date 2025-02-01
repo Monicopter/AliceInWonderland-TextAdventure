@@ -1,0 +1,132 @@
+#Location1
+id: RiverBank
+name: "River Bank"
+description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
+items: null
+characters: sister
+pathNorth: null
+pathSouth: null
+pathEast: RabbitHole
+pathWest: null
+northDesc: null
+southDesc: null
+eastDescription: The rabbit ran this way! I can see the hedges in the distance. If I'm quick, maybe I can catch him!
+westDesc:
+
+#Location2
+id: RabbitHole
+name: "Rabbit Hole"
+description: Part of the perimeter hedges for your family's estate. The hedges are well groomed by the groundskeeper. Though there seems to be a rather large rabbit hole hidden underneath this section of hedging. That peculiar White Rabbit went this way!
+items: null
+characters: null
+pathNorth: null
+pathSouth: null
+pathEast: LandingHall
+pathWest: null
+northDesc: null
+southDesc: null
+eastDesc: It's a rather large rabbit hole. Looks like it travels rather deep as I can't see the bottom.
+westDesc: null
+
+#Location3
+id: LandingHall
+name: "Landing Hall"
+firstVisit: This rabbit hole is rather deep, I must be halfway through the earth's core by now.
+description: A long low hallway absent of chandaliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
+items: null
+pathNorth: null
+pathSouth: DoorwayHall
+pathEast: null
+pathWest: null
+northDesc:
+southDesc: There's a bend in the hallway. Looks like it's the only path forward!
+eastDesc:
+westDesc:
+
+#Location4
+id: DoorwayHall
+name: "Doorway Hall"
+description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. Theres a small three legged glass table in the middle of the hall.
+characters: whiteRabbit
+char_unlock_req: cry_event = 1
+items: glass_table, small_gold_key, small_box, small_cake, mystery_bottle
+pathNorth: LandingHall
+pathSouth: RoyalGardens *LOCKED*
+pathEast: MarchHareHome *LOCKED*
+pathWest: null
+south_description: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
+east_description: This is a rather cozy looking craftsman door the wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. Feels like it's locked from the other side with a latch.
+south_unlock_req: use_gold_key = true
+east_unlock_req: tears_event = true
+
+#Location5
+id: BeachBank
+name: "Beach Bank"
+description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
+
+Connection Zones: Doorway Hall (During Tear Pool event ONLY) cannot travel between Beach Bank and Doorway Hall any other time
+		  White Rabbit's Home
+
+[White Rabbit's Home]
+Description: A picturesque two story Victorian era home. Vines are growing up the side of the house. Theres a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
+
+Connection Zones: Beach Bank
+		  Dense Woods
+
+
+[Dense Woods]
+Description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.
+
+Connection Zones: 'White Rabbit's Home' 
+		  Mushrooms
+		  Duchess' Home Exterior
+		  March Hare's Home
+
+
+[Mushrooms]
+Description: Due to being shrunk this patch of woodland mushrooms seem so large. There's a particularly large mushroom in the center of the patch with a blue Caterpillar sitting atop, smoking a hookah.
+
+Connection Zones: Dense Woods
+		  Duchess' Home Exterior
+
+[Duchess's Home Exterior]
+Description: A small home only about 4 feet high located in the middle of a grassland field opening. 
+
+Connection Zones: Dense Woods
+		  Mushrooms
+		  Duchess' Home Interior
+
+
+[Duchess's Home Interior]
+First visit Description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stiring and adding ingredients to a large cauldron. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hiduous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
+ 
+Connection Zones: Duchess' Home Exterior
+
+
+[March Hare's Home]
+Description: An extremely abnormal and large house. The chimneys were shaped like ears and the roof was thatched with fur. There is a table set out in front of the house under a tree. It looks as though it's set out for a tea party.
+
+Connection Zones: Dense Woods
+		  Doorway Hall
+
+[Royal Gardens] 
+Description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
+
+Connection Zones: Doorway Hall
+		  Croquet Field
+		  Throne Room
+
+[Croquet Field]
+Description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
+
+Connection Zones: Royal Gardens
+
+[Royal Palace Beachside]
+Description: There was a pathway leading down to the shore from the garden grounds. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiuar looking animal that looks to be a mix between a pig and and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
+
+Connection Zones: Royal Garden
+
+[Throne Room/Courtroom]
+Description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
+
+Connection Zones: Royal Gardens
