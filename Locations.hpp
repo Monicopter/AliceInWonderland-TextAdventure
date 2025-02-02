@@ -1,8 +1,8 @@
+#pragma once
+
 #include <string>
-#include <typeinfo>
 
-class Locations {
-
+class Location {
 private:
     std::string id;
     std::string name;
@@ -27,7 +27,6 @@ private:
     std::string westKey;
 
 public:
-
     // Getters
     std::string getId() const;
     std::string getName() const;
@@ -51,7 +50,6 @@ public:
     std::string getEastKey() const;
     std::string getWestKey() const;
 
-
     // Setters
     void setId(const std::string& id);
     void setName(const std::string& name);
@@ -66,15 +64,12 @@ public:
     void setSouthDesc(const std::string& southDesc);
     void setEastDesc(const std::string& eastDesc);
     void setWestDesc(const std::string& westDesc);
-    void setNorthIsLocked(const bool& northIsLocked);
-    void setSouthIsLocked(const bool& southIsLocked);
-    void setEastIsLocked(const bool& eastIsLocked);
-    void setWestIsLocked(const bool& westIsLocked);
+    void setNorthIsLocked(bool northIsLocked);
+    void setSouthIsLocked(bool southIsLocked);
+    void setEastIsLocked(bool eastIsLocked);
+    void setWestIsLocked(bool westIsLocked);
     void setNorthKey(const std::string& northKey);
     void setSouthKey(const std::string& southKey);
     void setEastKey(const std::string& eastKey);
     void setWestKey(const std::string& westKey);
-    
-
-
 };

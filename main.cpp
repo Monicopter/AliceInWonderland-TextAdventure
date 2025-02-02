@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Game.hpp"
+#include "Locations.hpp"
+
 
 
 
@@ -10,5 +12,5 @@ int main()
     game.startGame();
 
 
-return 0;
+    return 0;
 }
