@@ -7,7 +7,7 @@ private:
     std::string Name;
     int id;
     std::string type;
-    std:string description;
+    std::string description;
 
 public:
 

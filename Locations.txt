@@ -2,131 +2,356 @@
 id: RiverBank
 name: "River Bank"
 description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
-items: null
+items: NULL
 characters: sister
-pathNorth: null
-pathSouth: null
+pathNorth: NULL
+pathSouth: NULL
 pathEast: RabbitHole
-pathWest: null
-northDesc: null
-southDesc: null
+pathWest: NULL
+northDesc: NULL
+southDesc: NULL
 eastDescription: The rabbit ran this way! I can see the hedges in the distance. If I'm quick, maybe I can catch him!
-westDesc:
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
 #Location2
 id: RabbitHole
 name: "Rabbit Hole"
 description: Part of the perimeter hedges for your family's estate. The hedges are well groomed by the groundskeeper. Though there seems to be a rather large rabbit hole hidden underneath this section of hedging. That peculiar White Rabbit went this way!
-items: null
-characters: null
-pathNorth: null
-pathSouth: null
+items: NULL
+characters: NULL
+pathNorth: NULL
+pathSouth: NULL
 pathEast: LandingHall
-pathWest: null
-northDesc: null
-southDesc: null
+pathWest: NULL
+northDesc: NULL
+southDesc: NULL
 eastDesc: It's a rather large rabbit hole. Looks like it travels rather deep as I can't see the bottom.
-westDesc: null
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
 #Location3
 id: LandingHall
 name: "Landing Hall"
-firstVisit: This rabbit hole is rather deep, I must be halfway through the earth's core by now.
 description: A long low hallway absent of chandaliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
-items: null
-pathNorth: null
+items: NULL
+pathNorth: NULL
 pathSouth: DoorwayHall
-pathEast: null
-pathWest: null
-northDesc:
+pathEast: NULL
+pathWest: NULL
+northDesc: NULL
 southDesc: There's a bend in the hallway. Looks like it's the only path forward!
-eastDesc:
-westDesc:
+eastDesc: NULL
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
 #Location4
 id: DoorwayHall
 name: "Doorway Hall"
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. Theres a small three legged glass table in the middle of the hall.
 characters: whiteRabbit
-char_unlock_req: cry_event = 1
-items: glass_table, small_gold_key, small_box, small_cake, mystery_bottle
+items: GLASS_TABLE, TINY_GOLD_KEY, SMALL_BOX, CAKE, TONIC
 pathNorth: LandingHall
-pathSouth: RoyalGardens *LOCKED*
-pathEast: MarchHareHome *LOCKED*
-pathWest: null
-south_description: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
-east_description: This is a rather cozy looking craftsman door the wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. Feels like it's locked from the other side with a latch.
-south_unlock_req: use_gold_key = true
-east_unlock_req: tears_event = true
+pathSouth: RoyalGardens
+pathEast: MarchHareHome
+pathWest: NULL
+northDesc: NULL
+southDesc: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
+eastDesc: This is a rather cozy looking craftsman door. The wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. Feels like it's locked from the other side with a latch.
+westDesc: NULL
+northIsLocked: false
+southIsLocked: true
+eastIsLocked: true
+westIsLocked: false
+northKey: NULL
+southKey: small_gold_key
+eastKey: tears_event
+westKey: NULL
 
 #Location5
 id: BeachBank
 name: "Beach Bank"
 description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
-
-Connection Zones: Doorway Hall (During Tear Pool event ONLY) cannot travel between Beach Bank and Doorway Hall any other time
-		  White Rabbit's Home
-
-[White Rabbit's Home]
-Description: A picturesque two story Victorian era home. Vines are growing up the side of the house. Theres a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
-
-Connection Zones: Beach Bank
-		  Dense Woods
-
-
-[Dense Woods]
-Description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.
-
-Connection Zones: 'White Rabbit's Home' 
-		  Mushrooms
-		  Duchess' Home Exterior
-		  March Hare's Home
-
-
-[Mushrooms]
-Description: Due to being shrunk this patch of woodland mushrooms seem so large. There's a particularly large mushroom in the center of the patch with a blue Caterpillar sitting atop, smoking a hookah.
-
-Connection Zones: Dense Woods
-		  Duchess' Home Exterior
-
-[Duchess's Home Exterior]
-Description: A small home only about 4 feet high located in the middle of a grassland field opening. 
-
-Connection Zones: Dense Woods
-		  Mushrooms
-		  Duchess' Home Interior
+items: NULL
+characters: mouse, dodo, lory
+pathNorth: NULL
+pathSouth: NULL
+pathEast: whiteRabbitHome
+pathWest: NULL
+northDesc: NULL
+southDesc: NULL
+eastDesc: After climbing the hill you notice a lovely home in the distant fields.
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
 
-[Duchess's Home Interior]
-First visit Description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stiring and adding ingredients to a large cauldron. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hiduous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
- 
-Connection Zones: Duchess' Home Exterior
+#Location6
+id: whiteRabbitHome
+name: "White Rabbit's Home"
+description: A picturesque two story Victorian era home. Vines are growing up the side of the house. Theres a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
+items: CAKE
+characters: whiteRabbit, billLizard, groundskeeperPat
+pathNorth: denseWoods
+pathSouth: NULL
+pathEast: NULL
+pathWest: beachBank
+northDesc: There looks to be a dense forest in the distance.
+southDesc: NULL
+eastDesc: NULL
+westDesc: That way will lead back to the beach bank that I came from.
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
 
-[March Hare's Home]
-Description: An extremely abnormal and large house. The chimneys were shaped like ears and the roof was thatched with fur. There is a table set out in front of the house under a tree. It looks as though it's set out for a tea party.
 
-Connection Zones: Dense Woods
-		  Doorway Hall
+#Location7
+id: denseWoods
+name: "Dense Woods"
+description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.
+items: STICK
+characters: dog
+pathNorth: duchessHomeExt
+pathSouth: whiteRabbitHome
+pathEast: mushroomPatch
+pathWest: marchHareHome
+northDesc: There's a small opening in the woods with a tiny home sitting in the middle of the opening. I can see two people talking at the entrance.
+southDesc: This way goes back to the White Rabbit's home.
+eastDesc: There's a rather large mushroom patch over this way.
+westDesc: I can't make out what is over this direction due to the dense trees but I can see smoke in the distance through the canopy. Must be smoke from a chimney.
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
-[Royal Gardens] 
-Description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
 
-Connection Zones: Doorway Hall
-		  Croquet Field
-		  Throne Room
+#Location8
+id: mushroomPatch
+name: "Mushroom Patch"
+description: These mushrooms seem so large while I'm shrunk down. There's a particularly large mushroom infront of me. I can't quite see above it, maybe if I inspect it...
+items: SHRINK_MUSHROOM, ENLARGE_MUSHROOM
+characters: caterpillar, pigeon
+pathNorth: duchessHomeExt
+pathSouth: NULL
+pathEast: NULL
+pathWest: denseWoods
+northDesc: There's a small opening in the woods with a tiny home sitting in the middle of the opening. I can see two people talking at the entrance.
+southDesc: NULL
+eastDesc: NULL
+westDesc: This path goes back to the dense woods.
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
-[Croquet Field]
-Description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
 
-Connection Zones: Royal Gardens
 
-[Royal Palace Beachside]
-Description: There was a pathway leading down to the shore from the garden grounds. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiuar looking animal that looks to be a mix between a pig and and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
+#Location9
+id: duchessHomeExt
+name: "Duchess' Home"
+description: A small home only about 4 feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
+items: NULL
+characters: frogFootman, cheshireCat
+pathNorth: NULL
+pathSouth: denseWoods
+pathEast: mushroomPatch
+pathWest: duchessHomeInt
+northDesc: NULL
+southDesc: This path leads up the hill back into the dense woods.
+eastDesc: This path leads to the mushroom patch.
+westDesc: This path goes back to the dense woods.
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
 
-Connection Zones: Royal Garden
 
-[Throne Room/Courtroom]
-Description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
 
-Connection Zones: Royal Gardens
+#Location10
+id: duchessHomeInt
+name: "Duchess' Home Interior"
+description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stiring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hiduous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
+items: UGLY_BABY, PEPPER
+characters: cook, duchess, uglyBaby, cheshireCat
+pathNorth: NULL
+pathSouth: NULL
+pathEast: duchessHomeExt
+pathWest: NULL
+northDesc: NULL
+southDesc: NULL
+eastDesc: It's the front entrance to the house, this will lead me back outside.
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
+
+
+#Location11
+id: marchHareHome
+name: "March Hare's Home"
+description: An extremely abnormal and large house. The chimneys are shaped like ears and the roof was thatched with fur. There is a table set out in front of the house under a tree. It looks as though it's set out for a tea party.
+items: TEA
+characters: dormouse, marchHare, madHatter
+pathNorth: NULL
+pathSouth: NULL
+pathEast: denseWoods
+pathWest: doorwayHall
+northDesc: NULL
+southDesc: NULL
+eastDesc: This leads back to the dense forest.
+westDesc: There is a strange old wooden door in the distance. It's attached to an ancient oak tree and has vines covering it. I wonder where it leads to?
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
+
+
+
+#Location12
+id: royalGardens
+name: "Royal Gardens"
+description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
+items: NULL
+characters: queen, king, twoFiveSeven, whiteRabbit
+pathNorth: doorwayHall
+pathSouth: throne
+pathEast: royalBeach
+pathWest: croquetField
+northDesc: This leads back to the doorway hall. No reason to go back.
+southDesc: This path leads to the interior of the royal palace. I bet there's huge vaulted ceilings and a gaudy throne.
+eastDesc: There's an open archway in the palace perimeter wall. I see the ocean in the distance. Must be a beach down there. 
+westDesc: There looks to be a large open field over in this direction. Strangely though there's a bunch of flamingos and hedgehogs grazing the field...
+northIsLocked: false
+southIsLocked: true
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
+
+
+#Location13
+id: croquetField
+name: "Croquet Field"
+description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
+items: FLAMINGO
+characters: queen, king, whiteRabbit, cheshireCat, duchess
+pathNorth: NULL
+pathSouth: NULL
+pathEast: royalGardens
+pathWest: NULL
+northDesc: NULL
+southDesc: NULL
+eastDesc: This direction leads back to the royal gardens.
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
+
+
+#Location14
+id: royalBeach
+name: "Palace Grounds Beach"
+description: This beach stretches along the entire perimeter of the palace. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiuar looking animal that looks to be a mix between a pig and and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
+items: NULL
+characters: gryphon, mockTurtle
+pathNorth: NULL
+pathSouth: NULL
+pathEast: NULL
+pathWest: royalGardens
+northDesc: NULL
+southDesc: NULL
+eastDesc: This direction leads back to the royal gardens.
+westDesc: NULL
+northIsLocked: false
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL
+
+
+#Location14
+id: throne
+name: "Throne Room"
+description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
+items: TART
+characters: queen, king, madHatter, marchHare, dormouse, knave, cook, billLizard, gryphon
+pathNorth: royalGardens
+pathSouth: NULL
+pathEast: NULL
+pathWest: NULL
+northDesc: This direction leads back to the royal gardens, but I can't leave as the throne room doors are locked.
+southDesc: NULL
+eastDesc: NULL
+westDesc: NULL
+northIsLocked: true
+southIsLocked: false
+eastIsLocked: false
+westIsLocked: false
+northKey: NULL
+southKey: NULL
+eastKey: NULL
+westKey: NULL

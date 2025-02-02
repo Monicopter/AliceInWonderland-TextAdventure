@@ -17,6 +17,14 @@ private:
     std::string southDesc;
     std::string eastDesc;
     std::string westDesc;
+    bool northIsLocked;
+    bool southIsLocked;
+    bool eastIsLocked;
+    bool westIsLocked;
+    std::string northKey;
+    std::string southKey;
+    std::string eastKey;
+    std::string westKey;
 
 public:
 
@@ -34,6 +42,15 @@ public:
     std::string getSouthDesc() const;
     std::string getEastDesc() const;
     std::string getWestDesc() const;
+    bool getNorthIsLocked() const;
+    bool getSouthIsLocked() const;
+    bool getEastIsLocked() const;
+    bool getWestIsLocked() const;
+    std::string getNorthKey() const;
+    std::string getSouthKey() const;
+    std::string getEastKey() const;
+    std::string getWestKey() const;
+
 
     // Setters
     void setId(const std::string& id);
@@ -49,6 +66,15 @@ public:
     void setSouthDesc(const std::string& southDesc);
     void setEastDesc(const std::string& eastDesc);
     void setWestDesc(const std::string& westDesc);
+    void setNorthIsLocked(const bool& northIsLocked);
+    void setSouthIsLocked(const bool& southIsLocked);
+    void setEastIsLocked(const bool& eastIsLocked);
+    void setWestIsLocked(const bool& westIsLocked);
+    void setNorthKey(const std::string& northKey);
+    void setSouthKey(const std::string& southKey);
+    void setEastKey(const std::string& eastKey);
+    void setWestKey(const std::string& westKey);
+    
 
 
 };
