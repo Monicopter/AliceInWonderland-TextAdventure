@@ -21,18 +21,21 @@ Game::~Game()
 void Game::startGame()
 {
     std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
-    std::cout << "In this game, you will play as Alice; a curious and adventurous young girl." << std::endl;
+    std::cout << "In this game, you will play as Alice; a curious and imaginative young girl." << std::endl;
     loadGameData();
 
     if (!locations.empty()) {
         currentLocation = &locations[0];
         std::cout << "Current Location: " << currentLocation->getName() << std::endl;
         std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+
+
     } else {
         std::cerr << "No locations loaded." << std::endl;
     }
 
 }
+
 
 void Game::loadGameData()
 {
@@ -105,16 +108,16 @@ void Game::loadLocations()
             location.setWestDesc(line.substr(10));
         } 
         if (line.find("northIsLocked: ") == 0) {
-            location.setNorthIsLocked(line.substr(15) == "false");
+            location.setNorthIsLocked(line.substr(15) == "true");   //boolean check for true. If txt file is true for locked then it will be true - 1. If false in txt file then value is false - 0
         }
         if (line.find("southIsLocked: ") == 0) {
-            location.setSouthIsLocked(line.substr(15) == "false");
+            location.setSouthIsLocked(line.substr(15) == "true");
         }
         if (line.find("eastIsLocked: ") == 0) {
-            location.setEastIsLocked(line.substr(14) == "false");
+            location.setEastIsLocked(line.substr(14) == "true");
         }
         if (line.find("westIsLocked: ") == 0) {
-            location.setWestIsLocked(line.substr(14) == "false");
+            location.setWestIsLocked(line.substr(14) == "true");
         }
         if (line.find("northKey: ") == 0) {
             location.setNorthKey(line.substr(10));
@@ -136,6 +139,60 @@ void Game::loadLocations()
     }
 
     file.close();
+}
+
+void Game::move(Direction direction)
+{
+    if (currentLocation == nullptr) {
+        std::cerr << "Current location is null." << std::endl;
+        return;
+    }
+
+    std::string nextLocationId;
+    switch (direction) {
+        case Direction::NORTH:
+            nextLocationId = currentLocation->getPathNorth();
+            break;
+        case Direction::SOUTH:
+            nextLocationId = currentLocation->getPathSouth();
+            break;
+        case Direction::EAST:
+            nextLocationId = currentLocation->getPathEast();
+            break;
+        case Direction::WEST:
+            nextLocationId = currentLocation->getPathWest();
+            break;
+        default:
+            std::cerr << "Invalid direction." << std::endl;
+            return;
+    }
+
+    for(auto& location : locations) {
+        if (location.getId() == nextLocationId) {
+            currentLocation = &location;
+            std::cout << "Moved to: " << currentLocation->getName() << std::endl;
+            std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+            return;
+        }
+    }
+
+    std::cerr << "Cannot move in that direction." << std::endl;
+
+}
+
+void Game::playerInput(const std::string &input)
+{
+    if (input == "move north") {
+        move(Direction::NORTH);
+    } else if (input == "move south") {
+        move(Direction::SOUTH);
+    } else if (input == "move east") {
+        move(Direction::EAST);
+    } else if (input == "move west") {
+        move(Direction::WEST);
+    } else {
+        std::cerr << "Invalid input." << std::endl;
+    }
 }
 
 

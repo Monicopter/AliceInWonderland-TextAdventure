@@ -11,6 +11,15 @@ int main()
 
     game.startGame();
 
+    std::string input;
+    while (true) {
+        std::cout << "> ";
+        std::getline(std::cin, input);
+        if (input == "quit") {
+            break;
+        }
+        game.playerInput(input);
+    }
 
     return 0;
 }

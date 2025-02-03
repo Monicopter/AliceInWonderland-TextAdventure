@@ -8,7 +8,7 @@
 // #include "Items.hpp"
 // #include "Characters.hpp"
 // #include "Inventory.hpp"
-// #include "Actions.hpp"
+#include "Actions.hpp"
 
 class Location;
 // class Item;
@@ -24,10 +24,13 @@ private:
     //Inventory inventory;    //player's current inventory
     //Action action; //manages player input
     std::vector<Location> locations; //all in game location cells
+    void loadLocationsFromFile();
+    void move(Direction direction); //moves player to a new location - dependent on player direction input
+
     //std::vector<Item> items; //all ingame items
     //std::vector<Character> characters; //Game characters (incl. player char Alice)
 
-    void loadLocationsFromFile();
+
     //void loadItemsFromFile();
    // void loadCharactersFromFile();
 
@@ -47,6 +50,6 @@ public:
     //void loadActions(); //Loads actions from txt file
     //void handleAction(const std::string& action); //handles various ingame actions
     //const std::vector<Location>& getLocations() const; //for getting locations, etc.
-    // void playerInput(const std::string& input);     //handles player input
+    void playerInput(const std::string &input);     //handles player input
 
 };

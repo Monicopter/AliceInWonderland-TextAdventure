@@ -1,6 +1,6 @@
-#Location1
+#Location0
 id: RiverBank
-name: "River Bank"
+name: River Bank
 description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
 items: NULL
 characters: sister
@@ -10,7 +10,7 @@ pathEast: RabbitHole
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
-eastDescription: The rabbit ran this way! I can see the hedges in the distance. If I'm quick, maybe I can catch him!
+eastDesc: The rabbit ran this way! I can see the hedges in the distance. If I'm quick, maybe I can catch him!
 westDesc: NULL
 northIsLocked: false
 southIsLocked: false
@@ -21,9 +21,9 @@ southKey: NULL
 eastKey: NULL
 westKey: NULL
 
-#Location2
+#Location1
 id: RabbitHole
-name: "Rabbit Hole"
+name: Rabbit Hole
 description: Part of the perimeter hedges for your family's estate. The hedges are well groomed by the groundskeeper. Though there seems to be a rather large rabbit hole hidden underneath this section of hedging. That peculiar White Rabbit went this way!
 items: NULL
 characters: NULL
@@ -44,10 +44,10 @@ southKey: NULL
 eastKey: NULL
 westKey: NULL
 
-#Location3
+#Location2
 id: LandingHall
-name: "Landing Hall"
-description: A long low hallway absent of chandaliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
+name: Landing Hall
+description: A long low hallway absent of chandeliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
 items: NULL
 pathNorth: NULL
 pathSouth: DoorwayHall
@@ -66,10 +66,10 @@ southKey: NULL
 eastKey: NULL
 westKey: NULL
 
-#Location4
+#Location3
 id: DoorwayHall
-name: "Doorway Hall"
-description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. Theres a small three legged glass table in the middle of the hall.
+name: Doorway Hall
+description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall.
 characters: whiteRabbit
 items: GLASS_TABLE, TINY_GOLD_KEY, SMALL_BOX, CAKE, TONIC
 pathNorth: LandingHall
@@ -89,9 +89,9 @@ southKey: small_gold_key
 eastKey: tears_event
 westKey: NULL
 
-#Location5
+#Location4
 id: BeachBank
-name: "Beach Bank"
+name: Beach Bank
 description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
 items: NULL
 characters: mouse, dodo, lory
@@ -113,10 +113,10 @@ eastKey: NULL
 westKey: NULL
 
 
-#Location6
+#Location5
 id: whiteRabbitHome
-name: "White Rabbit's Home"
-description: A picturesque two story Victorian era home. Vines are growing up the side of the house. Theres a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
+name: White Rabbit's Home
+description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
 items: CAKE
 characters: whiteRabbit, billLizard, groundskeeperPat
 pathNorth: denseWoods
@@ -138,9 +138,9 @@ westKey: NULL
 
 
 
-#Location7
+#Location6
 id: denseWoods
-name: "Dense Woods"
+name: Dense Woods
 description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.
 items: STICK
 characters: dog
@@ -162,9 +162,9 @@ eastKey: NULL
 westKey: NULL
 
 
-#Location8
+#Location7
 id: mushroomPatch
-name: "Mushroom Patch"
+name: Mushroom Patch
 description: These mushrooms seem so large while I'm shrunk down. There's a particularly large mushroom infront of me. I can't quite see above it, maybe if I inspect it...
 items: SHRINK_MUSHROOM, ENLARGE_MUSHROOM
 characters: caterpillar, pigeon
@@ -187,9 +187,9 @@ westKey: NULL
 
 
 
-#Location9
+#Location8
 id: duchessHomeExt
-name: "Duchess' Home"
+name: Duchess' Home
 description: A small home only about 4 feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
 items: NULL
 characters: frogFootman, cheshireCat
@@ -212,10 +212,10 @@ westKey: NULL
 
 
 
-#Location10
+#Location9
 id: duchessHomeInt
-name: "Duchess' Home Interior"
-description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stiring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hiduous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
+name: Duchess' Home Interior
+description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stirring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hideous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
 items: UGLY_BABY, PEPPER
 characters: cook, duchess, uglyBaby, cheshireCat
 pathNorth: NULL
@@ -236,9 +236,9 @@ eastKey: NULL
 westKey: NULL
 
 
-#Location11
+#Location10
 id: marchHareHome
-name: "March Hare's Home"
+name: March Hare's Home
 description: An extremely abnormal and large house. The chimneys are shaped like ears and the roof was thatched with fur. There is a table set out in front of the house under a tree. It looks as though it's set out for a tea party.
 items: TEA
 characters: dormouse, marchHare, madHatter
@@ -261,9 +261,9 @@ westKey: NULL
 
 
 
-#Location12
+#Location11
 id: royalGardens
-name: "Royal Gardens"
+name: Royal Gardens
 description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
 items: NULL
 characters: queen, king, twoFiveSeven, whiteRabbit
@@ -285,9 +285,9 @@ eastKey: NULL
 westKey: NULL
 
 
-#Location13
+#Location12
 id: croquetField
-name: "Croquet Field"
+name: Croquet Field
 description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
 items: FLAMINGO
 characters: queen, king, whiteRabbit, cheshireCat, duchess
@@ -309,10 +309,10 @@ eastKey: NULL
 westKey: NULL
 
 
-#Location14
+#Location13
 id: royalBeach
-name: "Palace Grounds Beach"
-description: This beach stretches along the entire perimeter of the palace. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiuar looking animal that looks to be a mix between a pig and and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
+name: Palace Grounds Beach
+description: This beach stretches along the entire perimeter of the palace. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiar looking animal that looks to be a mix between a pig and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
 items: NULL
 characters: gryphon, mockTurtle
 pathNorth: NULL
@@ -335,7 +335,7 @@ westKey: NULL
 
 #Location14
 id: throne
-name: "Throne Room"
+name: Throne Room
 description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
 items: TART
 characters: queen, king, madHatter, marchHare, dormouse, knave, cook, billLizard, gryphon
