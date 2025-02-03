@@ -14,7 +14,7 @@ class Location;
 // class Item;
 // class Character;
 //class Inventory;
-//class Action;
+//class Action; //Not needed as the action class in Action.hpp/cpp is an enum. Apparently enum class do not work the same way as normal classes and do not need to be forward declared.
 
 class Game
 {
@@ -24,7 +24,7 @@ private:
     //Inventory inventory;    //player's current inventory
     //Action action; //manages player input
     std::vector<Location> locations; //all in game location cells
-    void loadLocationsFromFile();
+    void loadLocationsFromFile(); //loads locations from txt file
     void move(Direction direction); //moves player to a new location - dependent on player direction input
 
     //std::vector<Item> items; //all ingame items

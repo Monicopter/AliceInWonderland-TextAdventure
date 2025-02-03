@@ -7,16 +7,21 @@
 #include "Game.hpp"
 #include "Locations.hpp"
 
+/*---------------------------------------------------------------------------*/
 
 Game::Game()
 {
     currentLocation = nullptr;
 }
 
+/*---------------------------------------------------------------------------*/
+
 Game::~Game()
 {
 
 }
+
+/*---------------------------------------------------------------------------*/
 
 void Game::startGame()
 {
@@ -36,6 +41,7 @@ void Game::startGame()
 
 }
 
+/*---------------------------------------------------------------------------*/
 
 void Game::loadGameData()
 {
@@ -48,6 +54,8 @@ void Game::loadGameData()
 // {
 
 // }
+
+/*---------------------------------------------------------------------------*/
 
 void Game::loadLocations()
 {
@@ -141,6 +149,8 @@ void Game::loadLocations()
     file.close();
 }
 
+/*---------------------------------------------------------------------------*/
+
 void Game::move(Direction direction)
 {
     if (currentLocation == nullptr) {
@@ -167,6 +177,7 @@ void Game::move(Direction direction)
             return;
     }
 
+
     for(auto& location : locations) {
         if (location.getId() == nextLocationId) {
             currentLocation = &location;
@@ -179,6 +190,8 @@ void Game::move(Direction direction)
     std::cerr << "Cannot move in that direction." << std::endl;
 
 }
+
+/*---------------------------------------------------------------------------*/
 
 void Game::playerInput(const std::string &input)
 {
@@ -195,25 +208,32 @@ void Game::playerInput(const std::string &input)
     }
 }
 
+/*---------------------------------------------------------------------------*/
 
 // void Game::loadItems()
 // {
 
 // }
 
+/*---------------------------------------------------------------------------*/
 
 // void Game::playerInput(const std::string &input)
 // {
 // }
 
+/*---------------------------------------------------------------------------*/
+
 // void Game::update()
 // {
 // }
+
+/*---------------------------------------------------------------------------*/
 
 // void Game::display()
 // {
 // }
 
+/*---------------------------------------------------------------------------*/
 
 // void Game::handleAction(const std::string &action)
 // {
