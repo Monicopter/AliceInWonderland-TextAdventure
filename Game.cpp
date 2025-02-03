@@ -3,9 +3,10 @@
 
 #include <string>
 #include <vector>
-
+#include <map>
 #include "Game.hpp"
 #include "Locations.hpp"
+#include "Actions.hpp"
 
 /*---------------------------------------------------------------------------*/
 
@@ -27,6 +28,7 @@ void Game::startGame()
 {
     std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
     std::cout << "In this game, you will play as Alice; a curious and imaginative young girl." << std::endl;
+
     loadGameData();
 
     if (!locations.empty()) {
@@ -50,6 +52,8 @@ void Game::loadGameData()
     // loadItems();
 }
 
+/*---------------------------------------------------------------------------*/
+
 // void Game::loadCharacters()
 // {
 
@@ -70,16 +74,23 @@ void Game::loadLocations()
     while (std::getline(file, line)) {
         if (line.empty()) continue;
 
+        // Check if the 'line' in the txt file starts with the '#' character
         if (line[0] == '#') {
+            // Check if the current location object has a non-empty id
             if (!location.getId().empty()) {
+                // Add the current location object to the locations vector
                 locations.push_back(location);
+                // Reset the location object for the next set of data
                 location = Location();
             }
         } 
-        if (line.find("id: ") == 0) {
-            location.setId(line.substr(4));
+        
+        // Check if the line starts with a specific keyword and set the appropriate value in the location object
+
+        if (line.find("id: ") == 0) {       // If the line starts with "id: ", extract the rest of the line
+            location.setId(line.substr(4)); // Set the id of the location object to the rest of the line starting at the 4th character index
         } 
-        if (line.find("name: ") == 0) {
+        if (line.find("name: ") == 0) {     // Same as above just with different keywords
             location.setName(line.substr(6));
         } 
         if (line.find("description: ") == 0) {
@@ -115,8 +126,10 @@ void Game::loadLocations()
         if (line.find("westDesc: ") == 0) {
             location.setWestDesc(line.substr(10));
         } 
+        // boolean checks for true. If txt file is true for locked then it will be true - 1. 
+        // If false in txt file then value is false - 0
         if (line.find("northIsLocked: ") == 0) {
-            location.setNorthIsLocked(line.substr(15) == "true");   //boolean check for true. If txt file is true for locked then it will be true - 1. If false in txt file then value is false - 0
+            location.setNorthIsLocked(line.substr(15) == "true"); 
         }
         if (line.find("southIsLocked: ") == 0) {
             location.setSouthIsLocked(line.substr(15) == "true");
@@ -141,7 +154,7 @@ void Game::loadLocations()
         }
         
     }
-
+    // Add the last location object to the locations vector if it has a non-empty id
     if (!location.getId().empty()) {
         locations.push_back(location);
     }
@@ -151,6 +164,7 @@ void Game::loadLocations()
 
 /*---------------------------------------------------------------------------*/
 
+//Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
 {
     if (currentLocation == nullptr) {
@@ -193,15 +207,87 @@ void Game::move(Direction direction)
 
 /*---------------------------------------------------------------------------*/
 
-void Game::playerInput(const std::string &input)
+void Game::userInput(const std::string &input)
+// user command input prompt
+std::string userInput;
+
+// map of user commands
+std::map<std::string, Action> actionMap = {
+    {"help", Action::HELP},
+    {"inspect", Action::INSPECT},
+    {"talk", Action::TALK},
+    {"take", Action::TAKE},
+    {"use", Action::USE},
+    {"move", Action::MOVE},
+    {"inventory", Action::INVENTORY},
+    {"consume", Action::CONSUME},
+    {"quit", Action::QUIT}
+};
+
+
+
+while (true) {
+    std::cout << "> ";
+    std::getline(std::cin, userInput);
+
+    //for loop that iterates through user input and converts it to lower case
+    for (int n = 0; n < userInput.length(); n++)
+    {
+    userInput[n] = tolower(userInput[n]);
+    }
+
+    //switch statement that diverts user input to appropriate action function
+    switch (action) {
+        case Action::HELP:
+            std::cout << "Help" << std::endl;
+            break;
+        case Action::INSPECT:
+            std::cout << "Inspect" << std::endl;
+            break;
+        case Action::TALK:
+            std::cout << "Talk" << std::endl;
+            break;
+        case Action::TAKE:
+            std::cout << "Take" << std::endl;
+            break;
+        case Action::USE:
+            std::cout << "Use" << std::endl;
+            break;
+        case Action::MOVE:
+            playerDirectionalInput(userInput);
+            break;
+        case Action::INVENTORY:
+            std::cout << "Inventory" << std::endl;
+            break;
+        case Action::CONSUME:
+            std::cout << "Consume" << std::endl;
+            break;
+        case Action::QUIT:
+            std::cout << "Exiting game, Goodbye..." << std::endl;
+            break;
+        default:
+            std::cerr << "Invalid action." << std::endl;
+            break;
+    }
+
+}
+
+/*----------------------------------------------------------------------------*/
+
+void Game::playerDirectionalInput(const std::string &input)
 {
-    if (input == "move north") {
+
+
+    if (input == "move" || input == "m") {
+        std::cout << "What direction would you like to move? North, South, East, or West." << std::endl;
+        continue;
+    } else if (input == "move north" || input == "move n") {
         move(Direction::NORTH);
-    } else if (input == "move south") {
+    } else if (input == "move south" || input == "move s") {
         move(Direction::SOUTH);
-    } else if (input == "move east") {
+    } else if (input == "move east" || input == "move e") {
         move(Direction::EAST);
-    } else if (input == "move west") {
+    } else if (input == "move west" || input == "move w") {
         move(Direction::WEST);
     } else {
         std::cerr << "Invalid input." << std::endl;
@@ -217,12 +303,6 @@ void Game::playerInput(const std::string &input)
 
 /*---------------------------------------------------------------------------*/
 
-// void Game::playerInput(const std::string &input)
-// {
-// }
-
-/*---------------------------------------------------------------------------*/
-
 // void Game::update()
 // {
 // }
@@ -233,8 +313,3 @@ void Game::playerInput(const std::string &input)
 // {
 // }
 
-/*---------------------------------------------------------------------------*/
-
-// void Game::handleAction(const std::string &action)
-// {
-// }

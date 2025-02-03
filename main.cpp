@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.hpp"
 #include "Locations.hpp"
+#include "Actions.hpp"
 
 
 
@@ -11,15 +12,7 @@ int main()
 
     game.startGame();
 
-    std::string input;
-    while (true) {
-        std::cout << "> ";
-        std::getline(std::cin, input);
-        if (input == "quit") {
-            break;
-        }
-        game.playerInput(input);
-    }
+    game.userInput();
 
     return 0;
 }
