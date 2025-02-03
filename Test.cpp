@@ -1,37 +1,59 @@
 
-void Game::startGame()
-{
-    std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
-    std::cout << "In this game, you will play as Alice; a curious and adventurous young girl." << std::endl;
-    loadGameData();
-
-    if (!locations.empty()) {
-        currentLocation = &locations[0];
-        std::cout << "Current Location: " << currentLocation->getName() << std::endl;
-        std::cout << "Description: " << currentLocation->getDescription() << std::endl;
-        std::cout << "Items: " << currentLocation->getItems() << std::endl;
-        std::cout << "Characters: " << currentLocation->getCharacters() << std::endl;
-        std::cout << "Paths: " << std::endl;
-        std::cout << "North: " << currentLocation->getPathNorth() << std::endl;
-        std::cout << "South: " << currentLocation->getPathSouth() << std::endl;
-        std::cout << "East: " << currentLocation->getPathEast() << std::endl;
-        std::cout << "West: " << currentLocation->getPathWest() << std::endl;
-        std::cout << "North Description: " << currentLocation->getNorthDesc() << std::endl;
-        std::cout << "South Description: " << currentLocation->getSouthDesc() << std::endl;
-        std::cout << "East Description: " << currentLocation->getEastDesc() << std::endl;
-        std::cout << "West Description: " << currentLocation->getWestDesc() << std::endl;
-        std::cout << "North is Locked: " << currentLocation->getNorthIsLocked() << std::endl;
-        std::cout << "South is Locked: " << currentLocation->getSouthIsLocked() << std::endl;
-        std::cout << "East is Locked: " << currentLocation->getEastIsLocked() << std::endl;
-        std::cout << "West is Locked: " << currentLocation->getWestIsLocked() << std::endl;
-        std::cout << "North Key: " << currentLocation->getNorthKey() << std::endl;
-        std::cout << "South Key: " << currentLocation->getSouthKey() << std::endl;
-        std::cout << "East Key: " << currentLocation->getEastKey() << std::endl;
-        std::cout << "West Key: " << currentLocation->getWestKey() << std::endl;
 
 
+//Testing of Getters and Setters
+currentLocation->setName("Test Name");
+std::cout << "Current Location: " << currentLocation->getName() << std::endl;
+currentLocation->setDescription("Test Description");
+std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+currentLocation->setItems("Test Items");
+std::cout << "Items: " << currentLocation->getItems() << std::endl;
+currentLocation->setCharacters("Test Characters");
+std::cout << "Characters: " << currentLocation->getCharacters() << std::endl;
 
 
-    } else {
-        std::cerr << "No locations loaded." << std::endl;
-    }
+std::cout << "Paths: " << std::endl;
+currentLocation->setPathNorth("Test Path North");
+std::cout << "North: " << currentLocation->getPathNorth() << std::endl;
+currentLocation->setPathSouth("Test Path South");
+std::cout << "South: " << currentLocation->getPathSouth() << std::endl;
+currentLocation->setPathEast("Test Path East");
+std::cout << "East: " << currentLocation->getPathEast() << std::endl;
+currentLocation->setPathWest("Test Path West");
+std::cout << "West: " << currentLocation->getPathWest() << std::endl;
+
+currentLocation->setNorthDesc("Test North Description");
+std::cout << "North Description: " << currentLocation->getNorthDesc() << std::endl;
+currentLocation->setSouthDesc("Test South Description");
+std::cout << "South Description: " << currentLocation->getSouthDesc() << std::endl;
+currentLocation->setEastDesc("Test East Description");
+std::cout << "East Description: " << currentLocation->getEastDesc() << std::endl;
+currentLocation->setWestDesc("Test West Description");
+std::cout << "West Description: " << currentLocation->getWestDesc() << std::endl;
+
+currentLocation->setNorthIsLocked(true);
+std::cout << "North is Locked: " << currentLocation->getNorthIsLocked() << std::endl;
+currentLocation->setNorthIsLocked(false);
+std::cout << "North is Locked: " << currentLocation->getNorthIsLocked() << std::endl;
+currentLocation->setSouthIsLocked(true);
+std::cout << "South is Locked: " << currentLocation->getSouthIsLocked() << std::endl;
+currentLocation->setSouthIsLocked(false);
+std::cout << "South is Locked: " << currentLocation->getSouthIsLocked() << std::endl;
+currentLocation->setEastIsLocked(true);
+std::cout << "East is Locked: " << currentLocation->getEastIsLocked() << std::endl;
+currentLocation->setEastIsLocked(false);
+std::cout << "East is Locked: " << currentLocation->getEastIsLocked() << std::endl;
+currentLocation->setWestIsLocked(true);
+std::cout << "West is Locked: " << currentLocation->getWestIsLocked() << std::endl;
+currentLocation->setWestIsLocked(false);
+std::cout << "West is Locked: " << currentLocation->getWestIsLocked() << std::endl;
+
+currentLocation->setNorthKey("Test North Key");
+std::cout << "North Key: " << currentLocation->getNorthKey() << std::endl;
+currentLocation->setSouthKey("Test South Key");
+std::cout << "South Key: " << currentLocation->getSouthKey() << std::endl;
+currentLocation->setEastKey("Test East Key");
+std::cout << "East Key: " << currentLocation->getEastKey() << std::endl;
+currentLocation->setWestKey("Test West Key");
+std::cout << "West Key: " << currentLocation->getWestKey() << std::endl;
+

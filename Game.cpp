@@ -8,21 +8,21 @@
 #include "Locations.hpp"
 #include "Actions.hpp"
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 Game::Game()
 {
     currentLocation = nullptr;
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 Game::~Game()
 {
 
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 void Game::startGame()
 {
@@ -43,7 +43,7 @@ void Game::startGame()
 
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 void Game::loadGameData()
 {
@@ -52,14 +52,14 @@ void Game::loadGameData()
     // loadItems();
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 // void Game::loadCharacters()
 // {
 
 // }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 void Game::loadLocations()
 {
@@ -162,7 +162,7 @@ void Game::loadLocations()
     file.close();
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 //Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
@@ -172,7 +172,9 @@ void Game::move(Direction direction)
         return;
     }
 
+    //nextLocationId is a string that will be used to store the id of the next location since getPathDirection returns the id of the queried direction's location
     std::string nextLocationId;
+
     switch (direction) {
         case Direction::NORTH:
             nextLocationId = currentLocation->getPathNorth();
@@ -192,9 +194,11 @@ void Game::move(Direction direction)
     }
 
 
-    for(auto& location : locations) {
-        if (location.getId() == nextLocationId) {
-            currentLocation = &location;
+    //iterates over each element in the locations vector uses & to reference each element to avoid copying the element for efficiency
+    for(auto& location : locations) {               //compares the id of the current location to the id of the next location from the switch statement
+                                                   
+        if (location.getId() == nextLocationId) {             
+            currentLocation = &location;            //sets the current location to the location element in the locations vector - if it matches location.getId()
             std::cout << "Moved to: " << currentLocation->getName() << std::endl;
             std::cout << "Description: " << currentLocation->getDescription() << std::endl;
             return;
@@ -205,7 +209,7 @@ void Game::move(Direction direction)
 
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 void Game::userInput(const std::string &input)
 // user command input prompt
@@ -294,20 +298,20 @@ void Game::playerDirectionalInput(const std::string &input)
     }
 }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 // void Game::loadItems()
 // {
 
 // }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 // void Game::update()
 // {
 // }
 
-/*---------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
 
 // void Game::display()
 // {

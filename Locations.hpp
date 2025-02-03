@@ -21,10 +21,14 @@ private:
     bool southIsLocked;
     bool eastIsLocked;
     bool westIsLocked;
+
+    // Assign keys to an item class object after completing item class
     std::string northKey;
     std::string southKey;
     std::string eastKey;
     std::string westKey;
+
+    //add an int counter or boolean for first visit to an area?
 
 public:
     // Getters
@@ -68,8 +72,12 @@ public:
     void setSouthIsLocked(bool southIsLocked);
     void setEastIsLocked(bool eastIsLocked);
     void setWestIsLocked(bool westIsLocked);
+
+    // Assign keys to an item class object after completing item class
     void setNorthKey(const std::string& northKey);
     void setSouthKey(const std::string& southKey);
     void setEastKey(const std::string& eastKey);
     void setWestKey(const std::string& westKey);
+
+     //add an int counter or boolean for first visit to an area?
 };
