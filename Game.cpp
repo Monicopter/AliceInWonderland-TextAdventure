@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 #include <string>
 #include <vector>
@@ -239,9 +240,19 @@ void Game::move(Direction direction)
 /*----------------------------------------------------------------------------*/
 
 void Game::userInput(const std::string &input)
-{
-    // user command input prompt
+{   
     std::string inputString = input;
+
+    // for loop that iterates through user input and converts it to lower case
+    for (int n = 0; n < inputString.length(); n++)
+    {
+        inputString[n] = tolower(inputString[n]);
+    }
+    
+    //creating a string vector to store the individual command words from the user input
+    std::istringstream stream(inputString);
+    std::string command;
+    std::vector<std::string> commands;
 
     // map of user commands
     std::map<std::string, Action> actionMap = {
@@ -255,26 +266,29 @@ void Game::userInput(const std::string &input)
         {"consume", Action::CONSUME},
         {"quit", Action::QUIT}};
 
-    std::cout << "Type 'help' for a list of commands." << std::endl;
-
-
-    // std::cout << "> ";
-    // std::getline(std::cin, inputString);
-
-    // for loop that iterates through user input and converts it to lower case
-    for (int n = 0; n < inputString.length(); n++)
+    // Extract words from userInput separated by whitespace
+    while (stream >> command) {
+        commands.push_back(command);
+    }
+       // Ensure there is at least one command
+    if (commands.empty())
     {
-        inputString[n] = tolower(inputString[n]);
+        std::cerr << "No command entered." << std::endl;
+        return;
     }
 
-    // switch statement that diverts user input to appropriate action function
-    auto it = actionMap.find(inputString);
+
+    // looping the first command (commands[0]) through the actionMap to find a matching keyword
+    auto it = actionMap.find(commands[0]);
+    //if the commands[0] is NOT equal to the end of the actionMap - that means it DID find a matching keyword
     if (it != actionMap.end())
     {
+        // switch statement (it->second) pulls the value of the keyword from the actionMap which would be ACTION::HELP, ACTION::INSPECT, etc.
         switch (it->second)
         {
         case Action::INSPECT:
             std::cout << "Inspect" << std::endl;
+            std::cout << "Current Location: " << currentLocation->getName() << std::endl;
             break;
         case Action::TALK:
             std::cout << "Talk" << std::endl;
@@ -286,7 +300,14 @@ void Game::userInput(const std::string &input)
             std::cout << "Use" << std::endl;
             break;
         case Action::MOVE:
-            playerDirectionalInput(inputString);
+            if (commands.size() > 1)
+            {
+                playerDirectionalInput(commands[1]);
+            }
+            else
+            {
+                std::cerr << "Move where? Options are North, South, East, or West." << std::endl;
+            }
             break;
         case Action::INVENTORY:
             std::cout << "Inventory" << std::endl;
@@ -296,49 +317,43 @@ void Game::userInput(const std::string &input)
             break;
         case Action::QUIT:
             std::cout << "Exiting game, Goodbye..." << std::endl;
-            return;
+            exit(0);
         default:
             std::cerr << "Invalid action." << std::endl;
+            std::cout << "Type 'help' for a list of commands." << std::endl;
             break;
         }
-        
-    } else {
-        std::cerr << "Invalid action." << std::endl;
     }
-
-        
-    
+    else
+    {
+        std::cerr << "Invalid action." << std::endl;
+        std::cout << "Type 'help' for a list of commands." << std::endl;
+    }
 }
 
 /*----------------------------------------------------------------------------*/
 
-void Game::playerDirectionalInput(const std::string &input)
-{
+void Game::playerDirectionalInput(const std::string &input) {
 
-    // if (input == "move" || input == "m")
-    // {
-    //     std::cout << "What direction would you like to move? North, South, East, or West." << std::endl;
-    //     continue;
-    // }
-    if (input == "move north" || input == "move n")
+    if (input == "north" || input == "n")
     {
         move(Direction::NORTH);
     }
-    else if (input == "move south" || input == "move s")
+    else if (input == "south" || input == "s")
     {
         move(Direction::SOUTH);
     }
-    else if (input == "move east" || input == "move e")
+    else if (input == "east" || input == "e")
     {
         move(Direction::EAST);
     }
-    else if (input == "move west" || input == "move w")
+    else if (input == "west" || input == "w")
     {
         move(Direction::WEST);
     }
     else
     {
-        std::cerr << "Invalid input." << std::endl;
+        std::cerr << "Invalid direction. Use north, south, east, or west." << std::endl;
     }
 }
 

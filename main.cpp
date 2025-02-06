@@ -12,24 +12,14 @@ int main()
 
     game.startGame();
 
-
-
-
-    std::string userInput;
+    std::string userCommand;
     while (true) {
         std::cout << "> ";
-        std::getline(std::cin, userInput);
-        
-        // Pass input to game class for processing
-        game.userInput(userInput);
-        
-        // Check for quit condition
-        if (userInput == "quit") {
-            break;
-        }
-    }
+        std::getline(std::cin, userCommand);
+        // Pass input to game class object userInput method
+        game.userInput(userCommand);
 
-    
+    }
 
     return 0;
 }
