@@ -1,71 +1,110 @@
 #Item0
 id: TONIC
-name: "Tonic potion"
-description: "A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How ominous..."
+name: Tonic potion
+description: A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How ominous...
 canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: ENLARGE
 useEffect: NULL
 
+
 #Item1
 id: CAKE
-name: "Small Cake"
-description: "A tiny cake that smells of lemon. Seems very tempting..."
+name: Small Cake
+description: A tiny cake that smells of lemon. Seems very tempting...
 canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: SHRINK
 useEffect: NULL
 
 #Item2
 id: TINY_GOLD_KEY
-name: "Tiny Gold Key"
-description: "This key must open that tiny door in the hallway!"
+name: Tiny Gold Key
+description: This key must open that tiny door in the hallway!
 canTake: true
+isConsumable: false
+isUsable: true
+isKey: true
+keyLocationId: royalGardens
 consumeEffect: NULL
 useEffect: unlock_royalGardens
 
 #Item3
 id: SMALL_BOX
-name: "Small Box"
-description: "A small box. It has ornate metal work on the surface, is it a jewelry box? What's inside?"
+name: Small Box
+description: A small box. It has ornate metal work on the surface, is it a jewelry box? What's inside?
 canTake: false
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
+useEffect: OPEN
 
 #Item4
 id: WHITE_GLOVES
-name: "Small White Gloves"
-description: "A pair of white gloves, seemingly child sized. They might fit me!"
+name: Small White Gloves
+description: A pair of white gloves, seemingly child sized. They might fit me!
 canTake: true
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
+useEffect: WEAR
 
 #Item5
 id: FAN
-name: "Hand Fan"
-description: "A hand fan. Perfect timing! All this worrying has made be rather warm."
+name: Hand Fan
+description: A hand fan. Perfect timing! All this crying has made me rather warm.
 canTake: true
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
 useEffect: SHRINK
 
 #Item6
 id: STICK
-name: "Stick"
-description: "A stick. Maybe this will distract the dog?"
+name: Stick
+description: A stick. Maybe this will distract the dog?
 canTake: true
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
-useEffect: "I throw the stick away from myself. It catches the dog's attention and he quickly chases after it. Now's my chance to escape!"
+useEffect: I throw the stick away from myself. It catches the dog's attention and he quickly chases after it. Now's my chance to escape!
 
 #Item7
 id: SHRINK_MUSHROOM
-name: "Shrinking Mushroom"
-description: "A piece of the large mushroom the caterpillar told me to eat. I think this piece will shrink me."
+name: Shrinking Mushroom
+description: A piece of the large mushroom the caterpillar told me to eat. I think this piece will shrink me.
 canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: SHRINK
 useEffect: NULL
 
 
 #Item8
 id: ENLARGE_MUSHROOM
-name: "Enlarging Mushroom"
-description: "A piece of the large mushroom the caterpillar told me to eat. I think this piece will grow me."
+name: Enlarging Mushroom
+description: A piece of the large mushroom the caterpillar told me to eat. I think this piece will grow me."
 canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: ENLARGE
 useEffect: NULL
 
@@ -75,7 +114,11 @@ id: TEA
 name: "Tea"
 description: "A cup of tea I took from the tea party. I wonder what type of tea it is?"
 canTake: true
-consumeEffect: NULL
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: WARM
 useEffect: NULL
 
 
@@ -84,6 +127,10 @@ id: MARMALADE
 name: "Marmalade Jar"
 description: "A jar of marmalade! Too bad it's empty..."
 canTake: true
+isConsumable: false
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
 useEffect: NULL
 
@@ -92,15 +139,11 @@ id: TART
 name: "Tart"
 description: "A delicious plate of tarts. Looks like it was made for royalty."
 canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
 consumeEffect: SATIATED
-useEffect: NULL
-
-#Item12
-id: GLASS_TABLE
-name: "Glass Table"
-description: "A small glass table."
-canTake: false
-consumeEffect: NULL
 useEffect: NULL
 
 #Item13
@@ -108,7 +151,11 @@ id: UGLY_BABY
 name: "Ugly Baby"
 description: "A rather ugly baby with pig like features. The more I look at it, the closer it resembles one. Not to mention it snorts like one too!"
 canTake: true
-consumeEffect: SATIATED
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
+consumeEffect: NULL
 useEffect: "The baby has completely turned into a piglet! It would be rather silly if I kept holding it like a baby now wouldn't it?"
 
 #Item14
@@ -116,14 +163,22 @@ id: RED_PAINT
 name: "Bucket of Red Paint"
 description: "The bucket of red paint that Two, Five, and Seven were using to paint the roses."
 canTake: false
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
-useEffect: I paint one of the white roses to red. The Queen will never know the difference!
+useEffect: I paint one of the white roses red. The Queen will never know the difference!
 
 #Item15
 id: FLAMINGO
 name: "Flamingo"
-description: "A rather sassy flamingo, it definitely does not like me handling it and using it as a croquet club."
+description: "A rather sassy flamingo, it definitely does not like me handling it like a croquet club."
 canTake: true
+isConsumable: false
+isUsable: true
+isKey: false
+keyLocationId: NULL
 consumeEffect: NULL
 useEffect: "I try to use the flamingo as a croquet club and hit the hedgehogs towards the score pylons. The hedgehogs keep running away though!
 

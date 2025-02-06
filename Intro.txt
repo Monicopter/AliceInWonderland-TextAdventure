@@ -1,0 +1,4 @@
+Welcome to the Alice in Wonderland Text Adventure Game!
+In this game, you will play as Alice; a curious and imaginative young girl.
+
+You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed into her novel.

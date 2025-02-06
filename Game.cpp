@@ -1,13 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include <string>
 #include <vector>
 #include <map>
+
 #include "Game.hpp"
-#include "Locations.hpp"
-#include "Actions.hpp"
 
 /*----------------------------------------------------------------------------*/
 
@@ -26,9 +24,12 @@ Game::~Game()
 
 void Game::startGame()
 {
-    std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
-    std::cout << "In this game, you will play as Alice; a curious and imaginative young girl." << std::endl;
+    // std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
+    // std::cout << "In this game, you will play as Alice; a curious and imaginative young girl.\n" << std::endl;
+    // std::cout << "You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed into her novel." << std::endl;
+    // std::cout << "where you see a White Rabbit with a pocket watch.\n" << std::endl;
 
+    // printTextFile("Intro.txt");
     loadGameData();
 
     if (!locations.empty())
@@ -47,17 +48,12 @@ void Game::startGame()
 
 void Game::loadGameData()
 {
-    // loadCharacters();
     loadLocations();
-    // loadItems();
+    // loadActions();
+    loadItems();
+    // loadCharacters();
+    // loadInventory();
 }
-
-/*----------------------------------------------------------------------------*/
-
-// void Game::loadCharacters()
-// {
-
-// }
 
 /*----------------------------------------------------------------------------*/
 
@@ -190,6 +186,106 @@ void Game::loadLocations()
 
 /*----------------------------------------------------------------------------*/
 
+// void Game::loadActions()
+// {
+
+// }
+
+/*----------------------------------------------------------------------------*/
+
+void Game::loadItems()
+{
+    // See loadLocations for comments on how this function works - it follows the same format
+
+    std::ifstream file("Items.txt");
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open Items.txt" << std::endl;
+        return;
+    }
+
+    std::string line;
+    Item item;
+    while (std::getline(file, line))
+    {
+        if (line.empty())
+            continue;
+
+        if (line[0] == '#')
+        {
+
+            if (!item.getId().empty())
+            {
+                items.push_back(item);
+
+                item = Item();
+            }
+        }
+    }
+
+    // follows the same format as the loadLocations function but with different keywords
+    if (line.find("id: ") == 0)
+    {
+        item.setId(line.substr(4));
+    }
+    if (line.find("name: ") == 0)
+    {
+        item.setName(line.substr(6));
+    }
+    if (line.find("description: ") == 0)
+    {
+        item.setDescription(line.substr(13));
+    }
+    if (line.find("canTake: ") == 0)
+    {
+        item.setCanTake(line.substr(9) == "true");
+    }
+    if (line.find("isConsumable: ") == 0)
+    {
+        item.setIsConsumable(line.substr(14) == "true");
+    }
+    if (line.find("isUsable: ") == 0)
+    {
+        item.setIsUsable(line.substr(10) == "true");
+    }
+    if (line.find("isKey: ") == 0)
+    {
+        item.setIsKey(line.substr(8) == "true");
+    }
+    if (line.find("keyLocationId: ") == 0)
+    {
+        item.setKeyLocationId(line.substr(15));
+    }
+    if (line.find("consumeEffect: ") == 0)
+    {
+        item.setConsumeEffect(line.substr(15));
+    }
+    if (line.find("useEffect: ") == 0)
+    {
+        item.setUseEffect(line.substr(11));
+    }
+    if (line.find("takeEffect: ") == 0)
+    {
+        item.setTakeEffect(std::stoi(line.substr(12)));
+    }
+}
+
+/*----------------------------------------------------------------------------*/
+
+// void Game::loadCharacters()
+// {
+
+// }
+
+/*----------------------------------------------------------------------------*/
+
+// void Game::loadInventory()
+// {
+
+// }
+
+/*----------------------------------------------------------------------------*/
+
 // Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
 {
@@ -199,7 +295,10 @@ void Game::move(Direction direction)
         return;
     }
 
-    // nextLocationId is a string that will be used to store the id of the next location since getPathDirection returns the id of the queried direction's location
+    /*
+    nextLocationId is a string that will be used to store the id of the next location
+    since getPathDirection returns the id of the queried direction's location
+    */
     std::string nextLocationId;
 
     switch (direction)
@@ -221,10 +320,11 @@ void Game::move(Direction direction)
         return;
     }
 
-    // iterates over each element in the locations vector uses & to reference each element to avoid copying the element for efficiency
+    // iterates over each object in the locations vector uses & to reference each object to avoid copying the object for efficiency
     for (auto &location : locations)
-    { // compares the id of the current location to the id of the next location from the switch statement
+    {
 
+        // compares the id of the current location to the id of the next location from the switch statement
         if (location.getId() == nextLocationId)
         {
             currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
@@ -233,14 +333,13 @@ void Game::move(Direction direction)
             return;
         }
     }
-
     std::cerr << "Cannot move in that direction." << std::endl;
 }
 
 /*----------------------------------------------------------------------------*/
 
 void Game::userInput(const std::string &input)
-{   
+{
     std::string inputString = input;
 
     // for loop that iterates through user input and converts it to lower case
@@ -248,8 +347,8 @@ void Game::userInput(const std::string &input)
     {
         inputString[n] = tolower(inputString[n]);
     }
-    
-    //creating a string vector to store the individual command words from the user input
+
+    // creating a string vector to store the individual command words from the user input
     std::istringstream stream(inputString);
     std::string command;
     std::vector<std::string> commands;
@@ -267,25 +366,28 @@ void Game::userInput(const std::string &input)
         {"quit", Action::QUIT}};
 
     // Extract words from userInput separated by whitespace
-    while (stream >> command) {
+    while (stream >> command)
+    {
         commands.push_back(command);
     }
-       // Ensure there is at least one command
+    // Ensure there is at least one command
     if (commands.empty())
     {
         std::cerr << "No command entered." << std::endl;
         return;
     }
 
-
     // looping the first command (commands[0]) through the actionMap to find a matching keyword
     auto it = actionMap.find(commands[0]);
-    //if the commands[0] is NOT equal to the end of the actionMap - that means it DID find a matching keyword
+    // if the commands[0] is NOT equal to the end of the actionMap - that means it DID find a matching keyword
     if (it != actionMap.end())
     {
         // switch statement (it->second) pulls the value of the keyword from the actionMap which would be ACTION::HELP, ACTION::INSPECT, etc.
         switch (it->second)
         {
+        case Action::HELP:
+            printHelp();
+            break;
         case Action::INSPECT:
             std::cout << "Inspect" << std::endl;
             std::cout << "Current Location: " << currentLocation->getName() << std::endl;
@@ -319,21 +421,19 @@ void Game::userInput(const std::string &input)
             std::cout << "Exiting game, Goodbye..." << std::endl;
             exit(0);
         default:
-            std::cerr << "Invalid action." << std::endl;
-            std::cout << "Type 'help' for a list of commands." << std::endl;
             break;
         }
     }
     else
     {
-        std::cerr << "Invalid action." << std::endl;
-        std::cout << "Type 'help' for a list of commands." << std::endl;
+        std::cerr << "Invalid action! Type 'help' for a list of commands!" << std::endl;
     }
 }
 
 /*----------------------------------------------------------------------------*/
 
-void Game::playerDirectionalInput(const std::string &input) {
+void Game::playerDirectionalInput(const std::string &input)
+{
 
     if (input == "north" || input == "n")
     {
@@ -359,10 +459,20 @@ void Game::playerDirectionalInput(const std::string &input) {
 
 /*----------------------------------------------------------------------------*/
 
-// void Game::loadItems()
-// {
+void Game::printHelp() const
+{
 
-// }
+    std::cout << "Available commands:" << std::endl;
+    std::cout << "HELP - Display this help message." << std::endl;
+    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;
+    std::cout << "TALK <character> - Talk to a character." << std::endl;
+    std::cout << "TAKE <item> - Take an item." << std::endl;
+    std::cout << "USE <item> - Use an item." << std::endl;
+    std::cout << "MOVE <direction> - Move in a direction (north, south, east, or west)." << std::endl;
+    std::cout << "INVENTORY - Show your inventory." << std::endl;
+    std::cout << "CONSUME <item> - Consume an item." << std::endl;
+    std::cout << "QUIT - Quit the game." << std::endl;
+}
 
 /*----------------------------------------------------------------------------*/
 
@@ -375,3 +485,24 @@ void Game::playerDirectionalInput(const std::string &input) {
 // void Game::display()
 // {
 // }
+
+/*----------------------------------------------------------------------------*/
+
+
+void Game::printTextFile(const std::string& filename) const {
+
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open " << filename << std::endl;
+        return;
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+        std::cout << "Press Enter";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    file.close();
+}

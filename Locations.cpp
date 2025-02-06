@@ -1,5 +1,5 @@
 #include "Locations.hpp"
-#include "Game.hpp"
+
 
 // Getters
 std::string Location::getId() const { return id; }
