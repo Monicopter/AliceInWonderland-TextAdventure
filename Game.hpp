@@ -47,7 +47,7 @@ public:
     void loadLocations();                   //loads locations from txt file
     void move(Direction direction);         //moves player to a new location
     void userInput(const std::string &input);               //handles player input
-    void playerDirectionalInput(const std::string &input)   //handles player directional input
+    void playerDirectionalInput(const std::string &input);   //handles player directional input
     //void loadItems();                     //Loads items from txt file
     //void loadActions();                   //Loads actions from txt file
     //void loadInventory();                 //Loads inventory from txt file

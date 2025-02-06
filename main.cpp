@@ -12,7 +12,24 @@ int main()
 
     game.startGame();
 
-    game.userInput();
+
+
+
+    std::string userInput;
+    while (true) {
+        std::cout << "> ";
+        std::getline(std::cin, userInput);
+        
+        // Pass input to game class for processing
+        game.userInput(userInput);
+        
+        // Check for quit condition
+        if (userInput == "quit") {
+            break;
+        }
+    }
+
+    
 
     return 0;
 }
