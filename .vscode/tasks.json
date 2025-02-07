@@ -10,6 +10,7 @@
                 "main.cpp",
                 "Game.cpp",
                 "Locations.cpp",
+                "Items.cpp",
                 "-o",
                 "game"
             ],

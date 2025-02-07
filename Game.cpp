@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <limits>
 
 #include "Game.hpp"
 
@@ -29,7 +30,7 @@ void Game::startGame()
     // std::cout << "You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed into her novel." << std::endl;
     // std::cout << "where you see a White Rabbit with a pocket watch.\n" << std::endl;
 
-    // printTextFile("Intro.txt");
+    printTextFile("Intro.txt");
     loadGameData();
 
     if (!locations.empty())
@@ -490,19 +491,19 @@ void Game::printHelp() const
 
 
 void Game::printTextFile(const std::string& filename) const {
-
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cerr << "Failed to open " << filename << std::endl;
         return;
     }
-
+    
     std::string line;
     while (std::getline(file, line)) {
         std::cout << line << std::endl;
-        std::cout << "Press Enter";
+        std::cout << "...";
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+
 
     file.close();
 }
