@@ -20,6 +20,9 @@ bool Location::getSouthIsLocked() const { return southIsLocked; }
 bool Location::getEastIsLocked() const { return eastIsLocked; }
 bool Location::getWestIsLocked() const { return westIsLocked; }
 
+bool Location::getFirstVisit() const { return firstVisit; }
+std::string Location::getEvents() const { return events; }
+
 // Assign keys to an item class object after completing item class
 std::string Location::getNorthKey() const { return northKey; }
 std::string Location::getSouthKey() const { return southKey; }
@@ -27,7 +30,7 @@ std::string Location::getEastKey() const { return eastKey; }
 std::string Location::getWestKey() const { return westKey; }
 
 
-//add an int counter or boolean for first visit to an area?
+
 
 /*---------------------------------------------------------------------------*/
 
@@ -50,10 +53,11 @@ void Location::setSouthIsLocked(bool southIsLocked) { this->southIsLocked = sout
 void Location::setEastIsLocked(bool eastIsLocked) { this->eastIsLocked = eastIsLocked; }
 void Location::setWestIsLocked(bool westIsLocked) { this->westIsLocked = westIsLocked; }
 
+void Location::setFirstVisit(bool firstVisit) { this->firstVisit = firstVisit; }
+void Location::setEvents(const std::string& events) { this->events = events; }
+
 // Assign keys to an item class object after completing item class
 void Location::setNorthKey(const std::string& northKey) { this->northKey = northKey; }
 void Location::setSouthKey(const std::string& southKey) { this->southKey = southKey; }
 void Location::setEastKey(const std::string& eastKey) { this->eastKey = eastKey; }
 void Location::setWestKey(const std::string& westKey) { this->westKey = westKey; }
-
-//add an int counter or boolean for first visit to an area?

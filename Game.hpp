@@ -32,6 +32,7 @@ public:
     void startGame();                       //public method to start the game
     void loadGameData();                    //calls loading functions for all txt file assets
     void loadLocations();                   //loads locations from txt file
+    
     //void loadActions();                   //Loads actions from txt file
     void loadItems();                       //Loads items from txt file
     //void loadCharacters();                //Loads characters from txt file
@@ -42,7 +43,8 @@ public:
     void printHelp() const;                 //prints help menu
     //void update();                        //updates game state such as moving locations, picking item up, etc.
     //void display();                       //displays current game state like location, items, etc.
-    void printTextFile(const std::string& filename) const;
+    void printTextFile(const std::string& filename) const;   //prints text file to console - for longer exposition/events
+    std::string removeAllWhitespace(const std::string& input); //removes all whitespace from a string
 
 
 };
