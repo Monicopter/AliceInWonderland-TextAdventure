@@ -1,4 +1,10 @@
+(Press Enter to proceed through exposition...)
 Welcome to the Alice in Wonderland Text Adventure Game!
 In this game, you will play as Alice; a curious and imaginative young girl.
-
-You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed into her novel.
+You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed by her novel...
+"It's quite warm out. My eyes feel so very heavy..."
+Suddenly, a peculiar white rabbit wearing a waistcoat hops while mumbling about being so very late. He stops briefly and pulls out a pocket watch then scurries along faster.
+You jolt to your feet! 
+You've never before seen a rabbit with either a waistcoat or a watch to take out of it! 
+You're positively burning with curiousity!
+Chase that rabbit! He ran East towards the hedges!
