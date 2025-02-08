@@ -4,7 +4,13 @@
 #include <string>
 #include <vector>
 #include <map>
+
+#include <algorithm>
+#include <cctype>
+
 #include <limits>
+
+#include <filesystem>
 
 #include "Game.hpp"
 
@@ -25,12 +31,7 @@ Game::~Game()
 
 void Game::startGame()
 {
-    // std::cout << "Welcome to the Alice in Wonderland Text Adventure Game!" << std::endl;
-    // std::cout << "In this game, you will play as Alice; a curious and imaginative young girl.\n" << std::endl;
-    // std::cout << "You begin your adventure on the bank of a river, your older sister is sitting not far off, completely absorbed into her novel." << std::endl;
-    // std::cout << "where you see a White Rabbit with a pocket watch.\n" << std::endl;
-
-    printTextFile("Intro.txt");
+    //printTextFile("Intro.txt");
     loadGameData();
 
     if (!locations.empty())
@@ -159,6 +160,14 @@ void Game::loadLocations()
         {
             location.setWestIsLocked(line.substr(14) == "true");
         }
+        if (line.find("firstVisit: ") == 0)
+        {
+            location.setFirstVisit(line.substr(12) == "true");
+        }
+        if (line.find("events: ") == 0)
+        {
+            location.setEvents(removeAllWhitespace(line.substr(8)));
+        }
         if (line.find("northKey: ") == 0)
         {
             location.setNorthKey(line.substr(10));
@@ -175,6 +184,7 @@ void Game::loadLocations()
         {
             location.setWestKey(line.substr(9));
         }
+        
     }
     // Add the last location object to the locations vector if it has a non-empty id
     if (!location.getId().empty())
@@ -287,6 +297,10 @@ void Game::loadItems()
 
 /*----------------------------------------------------------------------------*/
 
+
+
+
+
 // Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
 {
@@ -320,6 +334,8 @@ void Game::move(Direction direction)
         std::cerr << "Invalid direction." << std::endl;
         return;
     }
+    
+    
 
     // iterates over each object in the locations vector uses & to reference each object to avoid copying the object for efficiency
     for (auto &location : locations)
@@ -329,9 +345,24 @@ void Game::move(Direction direction)
         if (location.getId() == nextLocationId)
         {
             currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
-            std::cout << "Moved to: " << currentLocation->getName() << std::endl;
-            std::cout << "Description: " << currentLocation->getDescription() << std::endl;
-            return;
+
+            bool firstVisit = currentLocation->getFirstVisit();
+            std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl;
+
+            // if the current location has not been visited before and has events, print the events
+            if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   //DEBUG THIS THE true IS NOT WORKING SOMEWHERE BETWEEN LOCATIONS.TXT AND HERE
+                
+                printTextFile(currentLocation->getEvents());
+                //currentLocation->setFirstVisit(false);
+                std::cout << "Moved to: " << currentLocation->getName() << std::endl;
+                std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+                return;
+            } else {
+                //currentLocation->setFirstVisit(false);
+                std::cout << "Moved to: " << currentLocation->getName() << std::endl;
+                std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+                return;
+            }
         }
     }
     std::cerr << "Cannot move in that direction." << std::endl;
@@ -506,4 +537,13 @@ void Game::printTextFile(const std::string& filename) const {
 
 
     file.close();
+}
+
+/*----------------------------------------------------------------------------*/
+
+std::string Game::removeAllWhitespace(const std::string& input) {
+
+    std::string result = input;
+    result.erase(std::remove_if(result.begin(), result.end(), isspace), result.end());
+    return result;
 }

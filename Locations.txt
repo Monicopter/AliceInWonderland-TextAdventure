@@ -16,6 +16,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -39,6 +41,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -61,6 +65,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: fallingEvent.txt
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -84,6 +90,8 @@ northIsLocked: false
 southIsLocked: true
 eastIsLocked: true
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: small_gold_key
 eastKey: tears_event
@@ -107,6 +115,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -131,6 +141,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -156,6 +168,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -180,6 +194,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -205,6 +221,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -230,6 +248,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -254,6 +274,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -279,6 +301,8 @@ northIsLocked: false
 southIsLocked: true
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -303,6 +327,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -327,6 +353,8 @@ northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -351,6 +379,8 @@ northIsLocked: true
 southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
+firstVisit: true
+events: NULL
 northKey: NULL
 southKey: NULL
 eastKey: NULL

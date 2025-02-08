@@ -2,6 +2,8 @@
 
 #include <string>
 
+class Game;
+
 class Location {
 private:
     std::string id;
@@ -22,13 +24,15 @@ private:
     bool eastIsLocked;
     bool westIsLocked;
 
+    bool firstVisit;
+    std::string events;
+
     // Assign keys to an item class object after completing item class
     std::string northKey;
     std::string southKey;
     std::string eastKey;
     std::string westKey;
 
-    //add an int counter or boolean for first visit to an area?
 
 public:
     // Getters
@@ -49,6 +53,10 @@ public:
     bool getSouthIsLocked() const;
     bool getEastIsLocked() const;
     bool getWestIsLocked() const;
+
+    bool getFirstVisit() const;
+    std::string getEvents() const;
+
     std::string getNorthKey() const;
     std::string getSouthKey() const;
     std::string getEastKey() const;
@@ -73,11 +81,15 @@ public:
     void setEastIsLocked(bool eastIsLocked);
     void setWestIsLocked(bool westIsLocked);
 
+    void setFirstVisit (bool firstVisit);
+    void setEvents(const std::string& events);
+
     // Assign keys to an item class object after completing item class
     void setNorthKey(const std::string& northKey);
     void setSouthKey(const std::string& southKey);
     void setEastKey(const std::string& eastKey);
     void setWestKey(const std::string& westKey);
 
-     //add an int counter or boolean for first visit to an area?
+    friend class Game;  //makes Game class a friend so it can access private variables (like firstVisit and events)
+     
 };
