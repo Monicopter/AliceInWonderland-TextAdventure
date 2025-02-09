@@ -1,11 +1,13 @@
 #include "Locations.hpp"
+#include "Items.hpp"
+#include <vector>
 
 
 // Getters
 std::string Location::getId() const { return id; }
 std::string Location::getName() const { return name; }
 std::string Location::getDescription() const { return description; }
-std::string Location::getItems() const { return items; }
+std::vector<Item> Location::getItems() const { return items; }
 std::string Location::getCharacters() const { return characters; }
 std::string Location::getPathNorth() const { return pathNorth; }
 std::string Location::getPathSouth() const { return pathSouth; }
@@ -38,7 +40,7 @@ std::string Location::getWestKey() const { return westKey; }
 void Location::setId(const std::string& id) { this->id = id; }
 void Location::setName(const std::string& name) { this->name = name; }
 void Location::setDescription(const std::string& description) { this->description = description; }
-void Location::setItems(const std::string& items) { this->items = items; }
+void Location::setItems(const std::vector<Item>& items) { this->items = items; }
 void Location::setCharacters(const std::string& characters) { this->characters = characters; }
 void Location::setPathNorth(const std::string& pathNorth) { this->pathNorth = pathNorth; }
 void Location::setPathSouth(const std::string& pathSouth) { this->pathSouth = pathSouth; }

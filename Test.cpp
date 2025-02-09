@@ -57,3 +57,19 @@
 // currentLocation->setWestKey("Test West Key");
 // std::cout << "West Key: " << currentLocation->getWestKey() << std::endl;
 
+
+//    // DEBUGGING CODE - prints all item IDs at game start
+//    std::cout << "All Item IDs:" << std::endl;
+//    for (const Item& item : items) {
+//         std::cout << " - " << item.getId() << std::endl;
+//         std::cout << " - " << item.getName() << std::endl;
+//         std::cout << " - " << item.getDescription() << std::endl;
+//         std::cout << " - " << item.getCanTake() << std::endl;
+//         std::cout << " - " << item.getIsConsumable() << std::endl;
+//         std::cout << " - " << item.getIsUsable() << std::endl;
+//         std::cout << " - " << item.getIsKey() << std::endl;
+//         std::cout << " - " << item.getKeyLocationId() << std::endl;
+//         std::cout << " - " << item.getConsumeEffect() << std::endl;
+//         std::cout << " - " << item.getUseEffect() << std::endl;
+//         std::cout << " - " << item.getTakeEffect() << std::endl;
+//    }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "Items.hpp"
 
 class Game;
 
@@ -9,7 +11,7 @@ private:
     std::string id;
     std::string name;
     std::string description;
-    std::string items;
+    std::vector<Item> items;
     std::string characters;
     std::string pathNorth;
     std::string pathSouth;
@@ -39,7 +41,7 @@ public:
     std::string getId() const;
     std::string getName() const;
     std::string getDescription() const;
-    std::string getItems() const;
+    std::vector<Item> getItems() const; 
     std::string getCharacters() const;
     std::string getPathNorth() const;
     std::string getPathSouth() const;
@@ -66,7 +68,7 @@ public:
     void setId(const std::string& id);
     void setName(const std::string& name);
     void setDescription(const std::string& description);
-    void setItems(const std::string& items);
+    void setItems(const std::vector<Item>& items);
     void setCharacters(const std::string& characters);
     void setPathNorth(const std::string& pathNorth);
     void setPathSouth(const std::string& pathSouth);

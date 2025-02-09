@@ -1,12 +1,12 @@
 #Location0
-id: RiverBank
+id: riverBank
 name: River Bank
 description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
 items: NULL
 characters: sister
 pathNorth: NULL
 pathSouth: NULL
-pathEast: RabbitHole
+pathEast: rabbitHole
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
@@ -24,14 +24,14 @@ eastKey: NULL
 westKey: NULL
 
 #Location1
-id: RabbitHole
+id: rabbitHole
 name: Rabbit Hole
 description: Part of the perimeter hedges for your family's estate. The hedges are well groomed by the groundskeeper. Though there seems to be a rather large rabbit hole hidden underneath this section of hedging. That peculiar White Rabbit went this way!
 items: NULL
 characters: NULL
 pathNorth: NULL
 pathSouth: NULL
-pathEast: LandingHall
+pathEast: landingHall
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
@@ -49,12 +49,12 @@ eastKey: NULL
 westKey: NULL
 
 #Location2
-id: LandingHall
+id: landingHall
 name: Landing Hall
 description: A long low hallway absent of chandeliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
 items: NULL
 pathNorth: NULL
-pathSouth: DoorwayHall
+pathSouth: doorwayHall
 pathEast: NULL
 pathWest: NULL
 northDesc: NULL
@@ -73,14 +73,14 @@ eastKey: NULL
 westKey: NULL
 
 #Location3
-id: DoorwayHall
+id: doorwayHall
 name: Doorway Hall
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall.
 characters: whiteRabbit
-items: GLASS_TABLE, TINY_GOLD_KEY, SMALL_BOX, CAKE, TONIC
-pathNorth: LandingHall
-pathSouth: RoyalGardens
-pathEast: MarchHareHome
+items: GLASS_TABLE TINY_GOLD_KEY SMALL_BOX CAKE TONIC
+pathNorth: landingHall
+pathSouth: royalGardens
+pathEast: marchHareHome
 pathWest: NULL
 northDesc: NULL
 southDesc: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
@@ -98,7 +98,7 @@ eastKey: tears_event
 westKey: NULL
 
 #Location4
-id: BeachBank
+id: beachBank
 name: Beach Bank
 description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
 items: NULL
@@ -180,7 +180,7 @@ westKey: NULL
 id: mushroomPatch
 name: Mushroom Patch
 description: These mushrooms seem so large while I'm shrunk down. There's a particularly large mushroom infront of me. I can't quite see above it, maybe if I inspect it...
-items: SHRINK_MUSHROOM, ENLARGE_MUSHROOM
+items: SHRINK_MUSHROOM ENLARGE_MUSHROOM
 characters: caterpillar, pigeon
 pathNorth: duchessHomeExt
 pathSouth: NULL
@@ -234,7 +234,7 @@ westKey: NULL
 id: duchessHomeInt
 name: Duchess' Home Interior
 description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stirring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hideous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
-items: UGLY_BABY, PEPPER
+items: UGLY_BABY
 characters: cook, duchess, uglyBaby, cheshireCat
 pathNorth: NULL
 pathSouth: NULL

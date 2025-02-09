@@ -31,7 +31,7 @@ Game::~Game()
 
 void Game::startGame()
 {
-    //printTextFile("Intro.txt");
+    //printTextFile("Intro.txt"); //BE SURE TO UNCOMMENT FOR FINAL BUILD
     loadGameData();
 
     if (!locations.empty())
@@ -44,18 +44,20 @@ void Game::startGame()
     {
         std::cerr << "No locations loaded." << std::endl;
     }
+
 }
 
 /*----------------------------------------------------------------------------*/
 
 void Game::loadGameData()
 {
+    loadItems();
     loadLocations();
     // loadActions();
-    loadItems();
     // loadCharacters();
     // loadInventory();
 }
+
 
 /*----------------------------------------------------------------------------*/
 
@@ -104,7 +106,27 @@ void Game::loadLocations()
         }
         if (line.find("items: ") == 0)
         {
-            location.setItems(line.substr(7));
+            //create a vector of items to store the items in the location cell
+            std::vector<Item> locationItems;
+            std::istringstream itemsStream(line.substr(7));
+            std::string itemId;
+            //goes through the 'items: ' line of locations.txt and extracts the item ids and stores them in the locationItems vector
+            while (itemsStream >> itemId)
+            {
+                //for loop that compares objects within the Game class items vector to the extracted item id from the location's cell items variable
+                for (Item& item : items)
+                {
+                    if (itemId == "NULL") {
+                        break;
+                    }
+                    else if (item.getId() == itemId)
+                    {
+                        locationItems.push_back(item);
+                        break;
+                    }
+                }
+            }
+            location.setItems(locationItems);
         }
         if (line.find("characters: ") == 0)
         {
@@ -164,7 +186,7 @@ void Game::loadLocations()
         {
             location.setFirstVisit(line.substr(12) == "true");
         }
-        if (line.find("events: ") == 0)
+        if (line.find("events: ") == 0)     //events has to use the removeAllWhitespace function otherwise it wont load the text file properly
         {
             location.setEvents(removeAllWhitespace(line.substr(8)));
         }
@@ -232,54 +254,60 @@ void Game::loadItems()
                 item = Item();
             }
         }
+    
+
+        // follows the same format as the loadLocations function but with different keywords
+        if (line.find("id: ") == 0)
+        {
+            item.setId(line.substr(4));
+        }
+        if (line.find("name: ") == 0)
+        {
+            item.setName(line.substr(6));
+        }
+        if (line.find("description: ") == 0)
+        {
+            item.setDescription(line.substr(13));
+        }
+        if (line.find("canTake: ") == 0)
+        {
+            item.setCanTake(line.substr(9) == "true");
+        }
+        if (line.find("isConsumable: ") == 0)
+        {
+            item.setIsConsumable(line.substr(14) == "true");
+        }
+        if (line.find("isUsable: ") == 0)
+        {
+            item.setIsUsable(line.substr(10) == "true");
+        }
+        if (line.find("isKey: ") == 0)
+        {
+            item.setIsKey(line.substr(8) == "true");
+        }
+        if (line.find("keyLocationId: ") == 0)
+        {
+            item.setKeyLocationId(line.substr(15));
+        }
+        if (line.find("consumeEffect: ") == 0)
+        {
+            item.setConsumeEffect(line.substr(15));
+        }
+        if (line.find("useEffect: ") == 0)
+        {
+            item.setUseEffect(line.substr(11));
+        }
+    }
+    // Add the last item if it has a non-empty id
+    if (!item.getId().empty())
+    {
+        items.push_back(item);
     }
 
-    // follows the same format as the loadLocations function but with different keywords
-    if (line.find("id: ") == 0)
-    {
-        item.setId(line.substr(4));
-    }
-    if (line.find("name: ") == 0)
-    {
-        item.setName(line.substr(6));
-    }
-    if (line.find("description: ") == 0)
-    {
-        item.setDescription(line.substr(13));
-    }
-    if (line.find("canTake: ") == 0)
-    {
-        item.setCanTake(line.substr(9) == "true");
-    }
-    if (line.find("isConsumable: ") == 0)
-    {
-        item.setIsConsumable(line.substr(14) == "true");
-    }
-    if (line.find("isUsable: ") == 0)
-    {
-        item.setIsUsable(line.substr(10) == "true");
-    }
-    if (line.find("isKey: ") == 0)
-    {
-        item.setIsKey(line.substr(8) == "true");
-    }
-    if (line.find("keyLocationId: ") == 0)
-    {
-        item.setKeyLocationId(line.substr(15));
-    }
-    if (line.find("consumeEffect: ") == 0)
-    {
-        item.setConsumeEffect(line.substr(15));
-    }
-    if (line.find("useEffect: ") == 0)
-    {
-        item.setUseEffect(line.substr(11));
-    }
-    if (line.find("takeEffect: ") == 0)
-    {
-        item.setTakeEffect(std::stoi(line.substr(12)));
-    }
+    file.close();
+
 }
+
 
 /*----------------------------------------------------------------------------*/
 
@@ -296,10 +324,6 @@ void Game::loadItems()
 // }
 
 /*----------------------------------------------------------------------------*/
-
-
-
-
 
 // Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
@@ -335,8 +359,6 @@ void Game::move(Direction direction)
         return;
     }
     
-    
-
     // iterates over each object in the locations vector uses & to reference each object to avoid copying the object for efficiency
     for (auto &location : locations)
     {
@@ -344,21 +366,23 @@ void Game::move(Direction direction)
         // compares the id of the current location to the id of the next location from the switch statement
         if (location.getId() == nextLocationId)
         {
+            // Changes old current location to false - so it doesn't trigger first visit events/scripts upon future visits to a location
+            currentLocation->setFirstVisit(false);
             currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
 
-            bool firstVisit = currentLocation->getFirstVisit();
-            std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl;
+            //bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
+            //std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
 
             // if the current location has not been visited before and has events, print the events
             if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   //DEBUG THIS THE true IS NOT WORKING SOMEWHERE BETWEEN LOCATIONS.TXT AND HERE
                 
                 printTextFile(currentLocation->getEvents());
-                //currentLocation->setFirstVisit(false);
+                
                 std::cout << "Moved to: " << currentLocation->getName() << std::endl;
                 std::cout << "Description: " << currentLocation->getDescription() << std::endl;
                 return;
             } else {
-                //currentLocation->setFirstVisit(false);
+                
                 std::cout << "Moved to: " << currentLocation->getName() << std::endl;
                 std::cout << "Description: " << currentLocation->getDescription() << std::endl;
                 return;
@@ -423,6 +447,11 @@ void Game::userInput(const std::string &input)
         case Action::INSPECT:
             std::cout << "Inspect" << std::endl;
             std::cout << "Current Location: " << currentLocation->getName() << std::endl;
+            // std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
+            // for (const Item& item : currentLocation->getItems())
+            // {
+            //     std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;
+            // }
             break;
         case Action::TALK:
             std::cout << "Talk" << std::endl;
@@ -464,6 +493,7 @@ void Game::userInput(const std::string &input)
 
 /*----------------------------------------------------------------------------*/
 
+// function to handle player input for the "move" command - links with the move function
 void Game::playerDirectionalInput(const std::string &input)
 {
 
@@ -491,16 +521,17 @@ void Game::playerDirectionalInput(const std::string &input)
 
 /*----------------------------------------------------------------------------*/
 
+// function to print the help menu from the user input "help"
 void Game::printHelp() const
 {
 
     std::cout << "Available commands:" << std::endl;
-    std::cout << "HELP - Display this help message." << std::endl;
-    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;
+    std::cout << "HELP - Display this help message." << std::endl;      //DONE
+    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;     
     std::cout << "TALK <character> - Talk to a character." << std::endl;
     std::cout << "TAKE <item> - Take an item." << std::endl;
     std::cout << "USE <item> - Use an item." << std::endl;
-    std::cout << "MOVE <direction> - Move in a direction (north, south, east, or west)." << std::endl;
+    std::cout << "MOVE <direction> - Move in a direction (north, south, east, or west)." << std::endl;      //DONE
     std::cout << "INVENTORY - Show your inventory." << std::endl;
     std::cout << "CONSUME <item> - Consume an item." << std::endl;
     std::cout << "QUIT - Quit the game." << std::endl;
@@ -520,7 +551,7 @@ void Game::printHelp() const
 
 /*----------------------------------------------------------------------------*/
 
-
+//Used to print text files to the terminal - used for long exposition or events
 void Game::printTextFile(const std::string& filename) const {
     std::ifstream file(filename);
     if (!file.is_open()) {
@@ -541,6 +572,8 @@ void Game::printTextFile(const std::string& filename) const {
 
 /*----------------------------------------------------------------------------*/
 
+// function to remove all whitespace from a string - mostly just used for the events variable 
+// in Locations class as it cannot load the text file properly without removing the invisible whitespace 
 std::string Game::removeAllWhitespace(const std::string& input) {
 
     std::string result = input;
