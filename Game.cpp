@@ -52,12 +52,119 @@ void Game::startGame()
 void Game::loadGameData()
 {
     loadItems();
-    loadLocations();
-    // loadActions();
     // loadCharacters();
     // loadInventory();
+    loadLocations();
+    // loadActions();
+
 }
 
+
+/*----------------------------------------------------------------------------*/
+
+// void Game::loadActions()
+// {
+
+// }
+
+/*----------------------------------------------------------------------------*/
+
+void Game::loadItems()
+{
+    // See loadLocations for comments on how this function works - it follows the same format
+
+    std::ifstream file("Items.txt");
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open Items.txt" << std::endl;
+        return;
+    }
+
+    std::string line;
+    Item item;
+    while (std::getline(file, line))
+    {
+        if (line.empty())
+            continue;
+
+        if (line[0] == '#')
+        {
+
+            if (!item.getId().empty())
+            {
+                items.push_back(item);
+
+                item = Item();
+            }
+        }
+    
+
+        // follows the same format as the loadLocations function but with different keywords
+        if (line.find("id: ") == 0)
+        {
+            item.setId(line.substr(4));
+        }
+        if (line.find("name: ") == 0)
+        {
+            item.setName(line.substr(6));
+        }
+        if (line.find("description: ") == 0)
+        {
+            item.setDescription(line.substr(13));
+        }
+        if (line.find("canTake: ") == 0)
+        {
+            item.setCanTake(line.substr(9) == "true");
+        }
+        if (line.find("isConsumable: ") == 0)
+        {
+            item.setIsConsumable(line.substr(14) == "true");
+        }
+        if (line.find("isUsable: ") == 0)
+        {
+            item.setIsUsable(line.substr(10) == "true");
+        }
+        if (line.find("isKey: ") == 0)
+        {
+            item.setIsKey(line.substr(8) == "true");
+        }
+        if (line.find("keyLocationId: ") == 0)
+        {
+            item.setKeyLocationId(line.substr(15));
+        }
+        if (line.find("consumeEffect: ") == 0)
+        {
+            item.setConsumeEffect(line.substr(15));
+        }
+        if (line.find("useEffect: ") == 0)
+        {
+            item.setUseEffect(line.substr(11));
+        }
+    }
+    // Add the last item if it has a non-empty id
+    if (!item.getId().empty())
+    {
+        items.push_back(item);
+    }
+
+    file.close();
+
+}
+
+
+/*----------------------------------------------------------------------------*/
+
+// void Game::loadCharacters()
+// {
+
+// }
+
+/*----------------------------------------------------------------------------*/
+
+// void Game::loadInventory()
+// {
+
+// }
 
 /*----------------------------------------------------------------------------*/
 
@@ -94,7 +201,7 @@ void Game::loadLocations()
 
         if (line.find("id: ") == 0)
         {                                   // If the line starts with "id: ", extract the rest of the line
-            location.setId(line.substr(4)); // Set the id of the location object to the rest of the line starting at the 4th character index
+            location.setId(removeAllWhitespace(line.substr(4))); // Set the id of the location object to the rest of the line starting at the 4th character index
         }
         if (line.find("name: ") == 0)
         { // Same as above just with different keywords
@@ -219,112 +326,6 @@ void Game::loadLocations()
 
 /*----------------------------------------------------------------------------*/
 
-// void Game::loadActions()
-// {
-
-// }
-
-/*----------------------------------------------------------------------------*/
-
-void Game::loadItems()
-{
-    // See loadLocations for comments on how this function works - it follows the same format
-
-    std::ifstream file("Items.txt");
-    if (!file.is_open())
-    {
-        std::cerr << "Failed to open Items.txt" << std::endl;
-        return;
-    }
-
-    std::string line;
-    Item item;
-    while (std::getline(file, line))
-    {
-        if (line.empty())
-            continue;
-
-        if (line[0] == '#')
-        {
-
-            if (!item.getId().empty())
-            {
-                items.push_back(item);
-
-                item = Item();
-            }
-        }
-    
-
-        // follows the same format as the loadLocations function but with different keywords
-        if (line.find("id: ") == 0)
-        {
-            item.setId(line.substr(4));
-        }
-        if (line.find("name: ") == 0)
-        {
-            item.setName(line.substr(6));
-        }
-        if (line.find("description: ") == 0)
-        {
-            item.setDescription(line.substr(13));
-        }
-        if (line.find("canTake: ") == 0)
-        {
-            item.setCanTake(line.substr(9) == "true");
-        }
-        if (line.find("isConsumable: ") == 0)
-        {
-            item.setIsConsumable(line.substr(14) == "true");
-        }
-        if (line.find("isUsable: ") == 0)
-        {
-            item.setIsUsable(line.substr(10) == "true");
-        }
-        if (line.find("isKey: ") == 0)
-        {
-            item.setIsKey(line.substr(8) == "true");
-        }
-        if (line.find("keyLocationId: ") == 0)
-        {
-            item.setKeyLocationId(line.substr(15));
-        }
-        if (line.find("consumeEffect: ") == 0)
-        {
-            item.setConsumeEffect(line.substr(15));
-        }
-        if (line.find("useEffect: ") == 0)
-        {
-            item.setUseEffect(line.substr(11));
-        }
-    }
-    // Add the last item if it has a non-empty id
-    if (!item.getId().empty())
-    {
-        items.push_back(item);
-    }
-
-    file.close();
-
-}
-
-
-/*----------------------------------------------------------------------------*/
-
-// void Game::loadCharacters()
-// {
-
-// }
-
-/*----------------------------------------------------------------------------*/
-
-// void Game::loadInventory()
-// {
-
-// }
-
-/*----------------------------------------------------------------------------*/
-
 // Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
 {
@@ -441,27 +442,47 @@ void Game::userInput(const std::string &input)
         // switch statement (it->second) pulls the value of the keyword from the actionMap which would be ACTION::HELP, ACTION::INSPECT, etc.
         switch (it->second)
         {
+
         case Action::HELP:
             printHelp();
             break;
+
         case Action::INSPECT:
             std::cout << "Inspect" << std::endl;
             std::cout << "Current Location: " << currentLocation->getName() << std::endl;
-            // std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
-            // for (const Item& item : currentLocation->getItems())
-            // {
-            //     std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;
-            // }
+            std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
+            for (const Item& item : currentLocation->getItems())
+            {
+                std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;
+            }
             break;
+
         case Action::TALK:
             std::cout << "Talk" << std::endl;
             break;
+
         case Action::TAKE:
-            std::cout << "Take" << std::endl;
+            // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
+            if (commands.size() > 1) {
+                std::string itemName;
+                // Starts at commands[1] to avoid the command keyword - then increments by 1 through to the end of the commands vector
+                for (size_t i = 1; i < commands.size(); ++i) { 
+                    if (i > 1) {
+                        itemName += " ";        // Add a space between words
+                    }
+                    itemName += commands[i];    // Concatenates the current commands vector word to the itemName string
+                }
+                takeCommand(itemName);          // Passes the itemName string to the takeCommand function
+                break;
+            } else {
+                std::cerr << "Take what? Input the item name: 'take <item name>'" << std::endl;
+            }
             break;
+
         case Action::USE:
             std::cout << "Use" << std::endl;
             break;
+
         case Action::MOVE:
             if (commands.size() > 1)
             {
@@ -472,15 +493,19 @@ void Game::userInput(const std::string &input)
                 std::cerr << "Move where? Options are North, South, East, or West." << std::endl;
             }
             break;
+
         case Action::INVENTORY:
-            std::cout << "Inventory" << std::endl;
+            inventory.printInventory();
             break;
+
         case Action::CONSUME:
             std::cout << "Consume" << std::endl;
             break;
+
         case Action::QUIT:
             std::cout << "Exiting game, Goodbye..." << std::endl;
             exit(0);
+
         default:
             break;
         }
@@ -539,6 +564,69 @@ void Game::printHelp() const
 
 /*----------------------------------------------------------------------------*/
 
+void Game::takeCommand(const std::string &input)
+{
+    std::string inputString = input;
+
+    //item map to convert a user input string for the item name into the item's ID
+    std::map<std::string, std::string> itemInputMap = {
+        {"tonic", "TONIC"},
+        {"cake", "CAKE"},
+        {"small cake", "CAKE"},
+        {"key", "TINY_GOLD_KEY"},
+        {"tiny key", "TINY_GOLD_KEY"},
+        {"gold key", "TINY_GOLD_KEY"},
+        {"white gloves", "WHITE_GLOVES"},
+        {"gloves", "WHITE_GLOVES"},
+        {"glove", "WHITE_GLOVES"},
+        {"fan", "FAN"},
+        {"hand fan", "FAN"},
+        {"stick", "STICK"},
+        {"blue mushroom", "SHRINK_MUSHROOM"},
+        {"b mushroom", "SHRINK_MUSHROOM"},
+        {"green mushroom", "ENLARGE_MUSHROOM"},
+        {"g mushroom", "ENLARGE_MUSHROOM"},
+        {"tea", "TEA"},
+        {"tart", "TART"},
+        {"ugly baby", "UGLY_BABY"},
+        {"baby", "UGLY_BABY"},
+        {"box", "SMALL_BOX"},
+        {"small box", "SMALL_BOX"},
+        {"paint", "RED_PAINT"},
+        {"red paint", "RED_PAINT"},
+        {"bucket of paint", "RED_PAINT"},
+        {"bucket of red paint", "RED_PAINT"},
+        {"flamingo", "FLAMINGO"}
+    };
+
+    //iterates through the itemInputMap to find a matching value for the user input keyword
+    auto it = itemInputMap.find(inputString);
+
+    if (it != itemInputMap.end())
+    {
+        inputString = it->second;
+    } else {
+        std::cerr << "Item not found." << std::endl;
+    }
+
+
+    //iterates through the current location's items vector to find a matching item ID to the user input 
+    //then adds the item to the player's inventory
+    std::cout << "Input: " << inputString << std::endl;
+
+    for (const Item& item : currentLocation->getItems()) {
+        if (item.getId() == inputString && item.getCanTake() == true) {
+            inventory.addItem(item);
+            std::cout << "You have taken: " << item.getName() << std::endl;
+        } else if (item.getId() == inputString && item.getCanTake() == false) {
+            std::cout << "You cannot take: " << item.getName() << std::endl;
+        }
+    }
+}
+
+
+/*---------------------------------------------------------------------------*/ 
+
 // void Game::update()
 // {
 // }
@@ -570,7 +658,7 @@ void Game::printTextFile(const std::string& filename) const {
     file.close();
 }
 
-/*----------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------*/
 
 // function to remove all whitespace from a string - mostly just used for the events variable 
 // in Locations class as it cannot load the text file properly without removing the invisible whitespace 
@@ -579,4 +667,14 @@ std::string Game::removeAllWhitespace(const std::string& input) {
     std::string result = input;
     result.erase(std::remove_if(result.begin(), result.end(), isspace), result.end());
     return result;
+}
+
+/*---------------------------------------------------------------------------*/
+
+void Game::printAllItemIds() const
+{
+    for (const Item& item : items)
+    {
+        std::cout << item.getId() << std::endl;
+    }
 }

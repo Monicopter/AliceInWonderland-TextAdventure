@@ -74,6 +74,8 @@
         "filesystem": "cpp",
         "forward_list": "cpp",
         "iomanip": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "list": "cpp",
+        "xhash": "cpp"
     }
 }

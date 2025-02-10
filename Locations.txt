@@ -2,7 +2,7 @@
 id: riverBank
 name: River Bank
 description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
-items: NULL
+items: CAKE RED_PAINT UGLY_BABY
 characters: sister
 pathNorth: NULL
 pathSouth: NULL
