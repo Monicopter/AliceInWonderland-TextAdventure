@@ -77,7 +77,7 @@ id: doorwayHall
 name: Doorway Hall
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall.
 characters: whiteRabbit
-items: GLASS_TABLE TINY_GOLD_KEY SMALL_BOX CAKE TONIC
+items: TINY_GOLD_KEY
 pathNorth: landingHall
 pathSouth: royalGardens
 pathEast: marchHareHome
@@ -93,8 +93,8 @@ westIsLocked: false
 firstVisit: true
 events: NULL
 northKey: NULL
-southKey: small_gold_key
-eastKey: tears_event
+southKey: TINY_GOLD_KEY
+eastKey: NULL
 westKey: NULL
 
 #Location4

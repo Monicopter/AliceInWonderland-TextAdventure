@@ -33,7 +33,7 @@ isUsable: true
 isKey: true
 keyLocationId: royalGardens
 consumeEffect: NULL
-useEffect: unlock_royalGardens
+useEffect: UNLOCK
 
 #Item3
 id: SMALL_BOX
@@ -45,7 +45,7 @@ isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: CAKE
+useEffect: SPAWN_CAKE
 
 #Item4
 id: WHITE_GLOVES
@@ -81,7 +81,7 @@ isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: I throw the stick away from myself. It catches the dog's attention and he quickly chases after it. Now's my chance to escape!
+useEffect: THROW
 
 #Item7
 id: SHRINK_MUSHROOM

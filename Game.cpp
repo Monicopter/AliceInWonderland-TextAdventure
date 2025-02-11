@@ -375,7 +375,7 @@ void Game::move(Direction direction)
             //std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
 
             // if the current location has not been visited before and has events, print the events
-            if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   //DEBUG THIS THE true IS NOT WORKING SOMEWHERE BETWEEN LOCATIONS.TXT AND HERE
+            if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   
                 
                 printTextFile(currentLocation->getEvents());
                 
@@ -433,7 +433,7 @@ void Game::userInput(const std::string &input)
         std::cerr << "No command entered." << std::endl;
         return;
     }
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     // looping the first command (commands[0]) through the actionMap to find a matching keyword
     auto it = actionMap.find(commands[0]);
     // if the commands[0] is NOT equal to the end of the actionMap - that means it DID find a matching keyword
@@ -446,7 +446,7 @@ void Game::userInput(const std::string &input)
         case Action::HELP:
             printHelp();
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::INSPECT:
             std::cout << "Inspect" << std::endl;
             std::cout << "Current Location: " << currentLocation->getName() << std::endl;
@@ -457,11 +457,11 @@ void Game::userInput(const std::string &input)
             }
             std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::TALK:
             std::cout << "Talk" << std::endl;
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::TAKE:
             // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
             if (commands.size() > 1) {
@@ -479,11 +479,25 @@ void Game::userInput(const std::string &input)
                 std::cerr << "Take what? Input the item name: 'take <item name>'" << std::endl;
             }
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::USE:
-            std::cout << "Use" << std::endl;
+            // Follows the same format as the takeCommand function but with different keywords
+            if (commands.size() > 1) {
+                std::string itemName;
+                
+                for (size_t i = 1; i < commands.size(); ++i) { 
+                    if (i > 1) {
+                        itemName += " ";        
+                    }
+                    itemName += commands[i];    
+                }
+                useCommand(itemName); 
+                break;
+            } else {
+                std::cerr << "Use what? Input the item name: 'use <item name>' This item MUST be in your inventory." << std::endl;
+            }
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::MOVE:
             if (commands.size() > 1)
             {
@@ -494,11 +508,11 @@ void Game::userInput(const std::string &input)
                 std::cerr << "Move where? Options are North, South, East, or West." << std::endl;
             }
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::INVENTORY:
             inventory.printInventory();
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::CONSUME:
             // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
             if (commands.size() > 1) {
@@ -516,11 +530,11 @@ void Game::userInput(const std::string &input)
                 std::cerr << "Consume what? Input the item name: 'consume <item name>' This item MUST be in your inventory." << std::endl;
             }
             break;
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         case Action::QUIT:
             std::cout << "Exiting game, Goodbye..." << std::endl;
             exit(0);
-
+//////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         default:
             break;
         }
@@ -618,10 +632,90 @@ void Game::takeCommand(const std::string &input)
         }
     }
     std::cerr << "Item not found in the current location." << std::endl;
-
 }
 
 /*---------------------------------------------------------------------------*/ 
+
+void Game::useCommand(const std::string &input)
+{
+    std::string inputString = input;
+
+    // Iterates through the itemInputMap to find a matching value for the user input keyword
+    auto it = itemInputMap.find(inputString);
+
+    if (it != itemInputMap.end())
+    {
+        inputString = it->second;
+    }
+    else
+    {
+        std::cerr << "Item not found." << std::endl;
+        return;
+    }
+
+    // Follows a similar format to the takeCommand function but compares with the inventory items vector instead of the current location's items vector
+    auto &inventoryItems = inventory.getItems();
+ 
+    for (auto itemCycle = inventoryItems.begin(); itemCycle != inventoryItems.end(); ++itemCycle)
+    {   
+        if (itemCycle->getId() == inputString && itemCycle->getIsUsable() == true)
+        {   
+            std::string effect = itemCycle->getUseEffect();
+
+            if (effect == SHRINK)
+            {
+                playerEffect = "SHRINK";
+            }
+            else if (effect == ENLARGE)
+            {
+                playerEffect = "ENLARGE";
+            }
+            else if (effect == UNLOCK)
+            {
+                handleUnlockEffect(itemCycle->getKeyLocationId);
+            }
+            else if (effect == WEAR)
+            {
+                std::cout << "You are now wearing the " << itemCycle->getName << std::endl;
+            }
+            else if (effect == THROW)
+            {
+                printTextFile("dogStickEvent.txt"); 
+                currentLocation->setLocation
+            }
+            else if (effect == SPAWN_CAKE)
+            {
+                Item cake = findItemById("CAKE");
+                if (cake != nullptr)
+                {
+                    inventory.addItem(cake);
+                    std::cout << "There was a small cake inside the box! It looks delicious." << std::endl;
+                }
+                else
+                {
+                    std::cerr << "item not found." << std::endl;
+                }
+            }
+            else
+            {
+                std::cerr << "Unknown effect: " << effect << std::endl;
+            }
+
+            inventoryItems.erase(itemCycle); // Removes the item from the inventory
+            std::cout << "You have used: " << itemCycle->getName() << std::endl;
+            return; 
+        }
+        else if (itemCycle->getId() == inputString && itemCycle->getIsUsable() == false) 
+        {
+            std::cout << "You cannot use: " << itemCycle->getName() << std::endl;
+            return; 
+        }
+    }
+    std::cerr << "Item not found in the inventory." << std::endl;
+}
+
+/*---------------------------------------------------------------------------*/ 
+
 void Game::consumeCommand(const std::string &input)
 {
     std::string inputString = input;
@@ -649,7 +743,7 @@ void Game::consumeCommand(const std::string &input)
             playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
             std::cout << "Effect: " << playerEffect << std::endl;
             inventoryItems.erase(itemCycle); // Removes the item from the inventory
-            std::cout << "You have consumed: " << itemCycle->getName() << std::endl;
+            std::cout << "You have used: " << itemCycle->getName() << std::endl;
             return; 
         }
         else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false) 
@@ -659,7 +753,6 @@ void Game::consumeCommand(const std::string &input)
         }
     }
     std::cerr << "Item not found in the inventory." << std::endl;
-    
 }
 
 /*---------------------------------------------------------------------------*/ 
@@ -697,6 +790,22 @@ void Game::printTextFile(const std::string& filename) const {
 
 /*---------------------------------------------------------------------------*/
 
+void Game::handleUnlockEffect(const std::string& locationId)
+{
+    for (auto& location : locations)
+    {
+        if (location.getId() == locationId)
+        {
+            location.setIsLocked(false);
+            std::cout << "Unlocked location: " << location.getName() << std::endl;
+            return;
+        }
+    }
+    std::cerr << "Location to unlock not found." << std::endl;
+}
+
+/*---------------------------------------------------------------------------*/
+
 // function to remove all whitespace from a string - mostly just used for the events variable 
 // in Locations class as it cannot load the text file properly without removing the invisible whitespace 
 std::string Game::removeAllWhitespace(const std::string& input) {
@@ -715,3 +824,53 @@ void Game::printAllItemIds() const
         std::cout << item.getId() << std::endl;
     }
 }
+
+
+/*---------------------------------------------------------------------------*/
+
+
+Item* Game::findItemById(const std::string& itemId)
+{
+    for (auto& item : items)
+    {
+        if (item.getId() == itemId)
+        {
+            return &item;
+        }
+    }
+    return nullptr;
+}
+
+/*---------------------------------------------------------------------------*/
+
+// for (auto &location : locations)
+// {
+
+//     // compares the id of the current location to the id of the next location from the switch statement
+//     if (location.getId() == nextLocationId)
+//     {
+//         // Changes old current location to false - so it doesn't trigger first visit events/scripts upon future visits to a location
+//         currentLocation->setFirstVisit(false);
+//         currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
+
+//         //bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
+//         //std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
+
+//         // if the current location has not been visited before and has events, print the events
+//         if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   
+            
+//             printTextFile(currentLocation->getEvents());
+            
+//             std::cout << "Moved to: " << currentLocation->getName() << std::endl;
+//             std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+//             return;
+//         } else {
+            
+//             std::cout << "Moved to: " << currentLocation->getName() << std::endl;
+//             std::cout << "Description: " << currentLocation->getDescription() << std::endl;
+//             return;
+//         }
+//     }
+// }
+// std::cerr << "Cannot move in that direction." << std::endl;
+// }
