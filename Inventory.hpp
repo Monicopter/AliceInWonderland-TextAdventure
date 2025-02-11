@@ -6,9 +6,8 @@
 
 class Inventory {
 private:
-    //std::map<std::string, int> items; // Map to store item IDs and their counts
+    std::map<std::string, int> itemCounts; // Map to store item IDs and their counts
     std::vector<Item> items; // Vector to store the items in the player's inventory
-    int itemCount = 0; // Counter to keep track of the number of items in the inventory
 
 public:
     void addItem(const Item& item);

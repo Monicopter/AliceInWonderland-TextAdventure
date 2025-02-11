@@ -604,9 +604,11 @@ void Game::takeCommand(const std::string &input)
     {   
         if (itemCycle->getId() == inputString && itemCycle->getCanTake() == true)
         {
-            inventory.addItem(*itemCycle);  // Adds the item to the player's inventory - after dereferencing itemCycle to add the item
-            locationItems.erase(itemCycle); // Removes the item from the location's items vector
-            std::cout << "You have taken: " << itemCycle->getName() << std::endl;
+            
+            inventory.addItem(*itemCycle);                 // Adds the item to the player's inventory - after dereferencing itemCycle to add the item
+            std::cout << "You have taken: " << itemCycle->getName() << std::endl; // prints out the name of the item taken
+            locationItems.erase(itemCycle);                // Removes the item from the location's item vector
+         
             return; 
         }
         else if (itemCycle->getId() == inputString && itemCycle->getCanTake() == false) //edge case where the item exists but the user cannot take it
