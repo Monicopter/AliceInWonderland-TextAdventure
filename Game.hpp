@@ -77,14 +77,12 @@ public:
     void takeCommand(const std::string &input);              //handles player take command
     void useCommand(const std::string &input);              //handles player use command
     void consumeCommand(const std::string &input);          //handles player consume command
-    //void useCommand(const std::string &input);              //handles player use command
 
     //void update();                        //updates game state such as moving locations, picking item up, etc.
     //void display();                       //displays current game state like location, items, etc.
     void printTextFile(const std::string& filename) const;   //prints text file to console - for longer exposition/events
     void handleUnlockEffect(const std::string& locationId);
     std::string removeAllWhitespace(const std::string& input); //removes all whitespace from a string
-    void printAllItemIds() const;           //prints all item IDs to console
-    void addInventoryItemById(const std::string& itemId);
+    void addInventoryItemById(const std::string& itemId);      //adds item to inventory from an input item ID
 
 };
