@@ -23,6 +23,37 @@ private:
     std::vector<Item> items;                //all ingame items vector
     Inventory inventory;                    //player inventory class object
     //std::vector<Character> characters;    //Game characters (incl. player char Alice)
+    //item map to convert a user input string for the item name into the item's ID
+    std::map<std::string, std::string> itemInputMap = {     // Map to convert user input string to an item ID - used by take, use, and consume commands
+        {"tonic", "TONIC"},
+        {"cake", "CAKE"},
+        {"small cake", "CAKE"},
+        {"key", "TINY_GOLD_KEY"},
+        {"tiny key", "TINY_GOLD_KEY"},
+        {"gold key", "TINY_GOLD_KEY"},
+        {"white gloves", "WHITE_GLOVES"},
+        {"gloves", "WHITE_GLOVES"},
+        {"glove", "WHITE_GLOVES"},
+        {"fan", "FAN"},
+        {"hand fan", "FAN"},
+        {"stick", "STICK"},
+        {"blue mushroom", "SHRINK_MUSHROOM"},
+        {"b mushroom", "SHRINK_MUSHROOM"},
+        {"green mushroom", "ENLARGE_MUSHROOM"},
+        {"g mushroom", "ENLARGE_MUSHROOM"},
+        {"tea", "TEA"},
+        {"tart", "TART"},
+        {"ugly baby", "UGLY_BABY"},
+        {"baby", "UGLY_BABY"},
+        {"box", "SMALL_BOX"},
+        {"small box", "SMALL_BOX"},
+        {"paint", "RED_PAINT"},
+        {"red paint", "RED_PAINT"},
+        {"bucket of paint", "RED_PAINT"},
+        {"bucket of red paint", "RED_PAINT"},
+        {"flamingo", "FLAMINGO"}
+        };
+    std::string playerEffect = "Normal";   //player effect string to store the current player effect from consumables
 
 
 public:
@@ -44,6 +75,9 @@ public:
     void playerDirectionalInput(const std::string &input);   //handles player directional input
     void printHelp() const;                 //prints help menu
     void takeCommand(const std::string &input);              //handles player take command
+    void consumeCommand(const std::string &input);          //handles player consume command
+    //void useCommand(const std::string &input);              //handles player use command
+
     //void update();                        //updates game state such as moving locations, picking item up, etc.
     //void display();                       //displays current game state like location, items, etc.
     void printTextFile(const std::string& filename) const;   //prints text file to console - for longer exposition/events

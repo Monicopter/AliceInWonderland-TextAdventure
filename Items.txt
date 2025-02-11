@@ -7,7 +7,7 @@ isConsumable: true
 isUsable: false
 isKey: false
 keyLocationId: NULL
-consumeEffect: ENLARGE
+consumeEffect: SHRINK
 useEffect: NULL
 
 
@@ -20,7 +20,7 @@ isConsumable: true
 isUsable: false
 isKey: false
 keyLocationId: NULL
-consumeEffect: SHRINK
+consumeEffect: ENLARGE
 useEffect: NULL
 
 #Item2
@@ -39,13 +39,13 @@ useEffect: unlock_royalGardens
 id: SMALL_BOX
 name: Small Box
 description: A small box. It has ornate metal work on the surface, is it a jewelry box? What's inside?
-canTake: false
+canTake: true
 isConsumable: false
 isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: OPEN
+useEffect: CAKE
 
 #Item4
 id: WHITE_GLOVES

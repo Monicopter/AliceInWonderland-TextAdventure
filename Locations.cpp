@@ -7,7 +7,7 @@
 std::string Location::getId() const { return id; }
 std::string Location::getName() const { return name; }
 std::string Location::getDescription() const { return description; }
-std::vector<Item> Location::getItems() const { return items; }
+std::vector<Item>& Location::getItems() { return items; }    //removed const from getItems() to allow for item removal in takeCommand()
 std::string Location::getCharacters() const { return characters; }
 std::string Location::getPathNorth() const { return pathNorth; }
 std::string Location::getPathSouth() const { return pathSouth; }

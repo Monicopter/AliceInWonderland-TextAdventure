@@ -18,10 +18,3 @@ enum class Direction {
     EAST,
     WEST
 };
-
-enum class consumeEffect {
-    NONE,
-    SHRINK,
-    ENLARGE,
-    SATIATE,
-};

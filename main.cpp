@@ -2,7 +2,8 @@
 #include "Game.hpp"
 #include "Locations.hpp"
 #include "Actions.hpp"
-
+#include "Inventory.hpp"
+#include "Items.hpp"
 
 
 

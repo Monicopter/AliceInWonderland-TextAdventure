@@ -451,10 +451,11 @@ void Game::userInput(const std::string &input)
             std::cout << "Inspect" << std::endl;
             std::cout << "Current Location: " << currentLocation->getName() << std::endl;
             std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
-            for (const Item& item : currentLocation->getItems())
+            for (const Item& item : currentLocation->getItems())        //DEBUGGING CODE - NOT NEEDED
             {
-                std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;
+                std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  //DEBUGGING CODE - NOT NEEDED
             }
+            std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
             break;
 
         case Action::TALK:
@@ -499,7 +500,21 @@ void Game::userInput(const std::string &input)
             break;
 
         case Action::CONSUME:
-            std::cout << "Consume" << std::endl;
+            // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
+            if (commands.size() > 1) {
+                std::string itemName;
+                // Starts at commands[1] to avoid the command keyword - then increments by 1 through to the end of the commands vector
+                for (size_t i = 1; i < commands.size(); ++i) { 
+                    if (i > 1) {
+                        itemName += " ";        // Add a space between words
+                    }
+                    itemName += commands[i];    // Concatenates the current commands vector word to the itemName string
+                }
+                consumeCommand(itemName);          // Passes the itemName string to the takeCommand function
+                break;
+            } else {
+                std::cerr << "Consume what? Input the item name: 'consume <item name>' This item MUST be in your inventory." << std::endl;
+            }
             break;
 
         case Action::QUIT:
@@ -567,38 +582,7 @@ void Game::printHelp() const
 void Game::takeCommand(const std::string &input)
 {
     std::string inputString = input;
-
-    //item map to convert a user input string for the item name into the item's ID
-    std::map<std::string, std::string> itemInputMap = {
-        {"tonic", "TONIC"},
-        {"cake", "CAKE"},
-        {"small cake", "CAKE"},
-        {"key", "TINY_GOLD_KEY"},
-        {"tiny key", "TINY_GOLD_KEY"},
-        {"gold key", "TINY_GOLD_KEY"},
-        {"white gloves", "WHITE_GLOVES"},
-        {"gloves", "WHITE_GLOVES"},
-        {"glove", "WHITE_GLOVES"},
-        {"fan", "FAN"},
-        {"hand fan", "FAN"},
-        {"stick", "STICK"},
-        {"blue mushroom", "SHRINK_MUSHROOM"},
-        {"b mushroom", "SHRINK_MUSHROOM"},
-        {"green mushroom", "ENLARGE_MUSHROOM"},
-        {"g mushroom", "ENLARGE_MUSHROOM"},
-        {"tea", "TEA"},
-        {"tart", "TART"},
-        {"ugly baby", "UGLY_BABY"},
-        {"baby", "UGLY_BABY"},
-        {"box", "SMALL_BOX"},
-        {"small box", "SMALL_BOX"},
-        {"paint", "RED_PAINT"},
-        {"red paint", "RED_PAINT"},
-        {"bucket of paint", "RED_PAINT"},
-        {"bucket of red paint", "RED_PAINT"},
-        {"flamingo", "FLAMINGO"}
-    };
-
+ 
     //iterates through the itemInputMap to find a matching value for the user input keyword
     auto it = itemInputMap.find(inputString);
 
@@ -609,21 +593,72 @@ void Game::takeCommand(const std::string &input)
         std::cerr << "Item not found." << std::endl;
     }
 
-
     //iterates through the current location's items vector to find a matching item ID to the user input 
     //then adds the item to the player's inventory
-    std::cout << "Input: " << inputString << std::endl;
-
-    for (const Item& item : currentLocation->getItems()) {
-        if (item.getId() == inputString && item.getCanTake() == true) {
-            inventory.addItem(item);
-            std::cout << "You have taken: " << item.getName() << std::endl;
-        } else if (item.getId() == inputString && item.getCanTake() == false) {
-            std::cout << "You cannot take: " << item.getName() << std::endl;
+    
+    // assigns a reference &locationItems from the current locations items vector
+    auto &locationItems = currentLocation->getItems();
+    /* itemCycle is an iterator that iterates through each item in the referenced vector for the current location's
+    items - increments by 1 element until it reaches the end of the vector */
+    for (auto itemCycle = locationItems.begin(); itemCycle != locationItems.end(); ++itemCycle)
+    {   
+        if (itemCycle->getId() == inputString && itemCycle->getCanTake() == true)
+        {
+            inventory.addItem(*itemCycle);  // Adds the item to the player's inventory - after dereferencing itemCycle to add the item
+            locationItems.erase(itemCycle); // Removes the item from the location's items vector
+            std::cout << "You have taken: " << itemCycle->getName() << std::endl;
+            return; 
+        }
+        else if (itemCycle->getId() == inputString && itemCycle->getCanTake() == false) //edge case where the item exists but the user cannot take it
+        {
+            std::cout << "You cannot take: " << itemCycle->getName() << std::endl;
+            return; 
         }
     }
+    std::cerr << "Item not found in the current location." << std::endl;
+
 }
 
+/*---------------------------------------------------------------------------*/ 
+void Game::consumeCommand(const std::string &input)
+{
+    std::string inputString = input;
+
+    // Iterates through the itemInputMap to find a matching value for the user input keyword
+    auto it = itemInputMap.find(inputString);
+
+    if (it != itemInputMap.end())
+    {
+        inputString = it->second;
+    }
+    else
+    {
+        std::cerr << "Item not found." << std::endl;
+        return;
+    }
+
+    // Follows a similar format to the takeCommand function but compares with the inventory items vector instead of the current location's items vector
+    auto &inventoryItems = inventory.getItems();
+ 
+    for (auto itemCycle = inventoryItems.begin(); itemCycle != inventoryItems.end(); ++itemCycle)
+    {   
+        if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == true)
+        {   
+            playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
+            std::cout << "Effect: " << playerEffect << std::endl;
+            inventoryItems.erase(itemCycle); // Removes the item from the inventory
+            std::cout << "You have consumed: " << itemCycle->getName() << std::endl;
+            return; 
+        }
+        else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false) 
+        {
+            std::cout << "You cannot consume: " << itemCycle->getName() << std::endl;
+            return; 
+        }
+    }
+    std::cerr << "Item not found in the inventory." << std::endl;
+    
+}
 
 /*---------------------------------------------------------------------------*/ 
 

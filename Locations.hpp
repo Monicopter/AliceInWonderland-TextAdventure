@@ -41,7 +41,7 @@ public:
     std::string getId() const;
     std::string getName() const;
     std::string getDescription() const;
-    std::vector<Item> getItems() const; 
+    std::vector<Item>& getItems();      //removed const from getItems() to allow for item removal in takeCommand()
     std::string getCharacters() const;
     std::string getPathNorth() const;
     std::string getPathSouth() const;
