@@ -85,6 +85,6 @@ public:
     void handleUnlockEffect(const std::string& locationId);
     std::string removeAllWhitespace(const std::string& input); //removes all whitespace from a string
     void printAllItemIds() const;           //prints all item IDs to console
-    Item findItemById(const std::string& itemId);
+    void addInventoryItemById(const std::string& itemId);
 
 };

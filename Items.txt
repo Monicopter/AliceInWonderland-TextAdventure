@@ -138,7 +138,7 @@ useEffect: NULL
 id: TART
 name: "Tart"
 description: "A delicious plate of tarts. Looks like it was made for royalty."
-canTake: true
+canTake: false
 isConsumable: true
 isUsable: false
 isKey: false
@@ -162,13 +162,13 @@ useEffect: "The baby has completely turned into a piglet! It would be rather sil
 id: RED_PAINT
 name: "Bucket of Red Paint"
 description: "The bucket of red paint that Two, Five, and Seven were using to paint the roses."
-canTake: false
+canTake: true
 isConsumable: false
 isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: I paint one of the white roses red. The Queen will never know the difference!
+useEffect: "I paint one of the white roses red. The Queen will never know the difference!"
 
 #Item15
 id: FLAMINGO
