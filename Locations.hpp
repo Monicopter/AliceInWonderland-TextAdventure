@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Items.hpp"
+#include "Characters.hpp"
 
 class Game;
 
@@ -12,7 +13,7 @@ private:
     std::string name;
     std::string description;
     std::vector<Item> items;
-    std::string characters;
+    std::vector<Character> characters;
     std::string pathNorth;
     std::string pathSouth;
     std::string pathEast;
@@ -42,7 +43,7 @@ public:
     std::string getName() const;
     std::string getDescription() const;
     std::vector<Item>& getItems();      //removed const from getItems() to allow for item removal in takeCommand()
-    std::string getCharacters() const;
+    std::vector<Character>& getCharacters();
     std::string getPathNorth() const;
     std::string getPathSouth() const;
     std::string getPathEast() const;
@@ -69,7 +70,7 @@ public:
     void setName(const std::string& name);
     void setDescription(const std::string& description);
     void setItems(const std::vector<Item>& items);
-    void setCharacters(const std::string& characters);
+    void setCharacters(const std::vector<Character>& characters);
     void setPathNorth(const std::string& pathNorth);
     void setPathSouth(const std::string& pathSouth);
     void setPathEast(const std::string& pathEast);

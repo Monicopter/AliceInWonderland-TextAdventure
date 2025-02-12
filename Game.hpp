@@ -9,7 +9,7 @@
 #include "Locations.hpp"
 #include "Actions.hpp"
 #include "Items.hpp"
-// #include "Characters.hpp"
+#include "Characters.hpp"
 #include "Inventory.hpp"
 
 
@@ -19,10 +19,12 @@ private:
 
     Location* currentLocation;              //Pointer to the player's current location
 
-    std::vector<Location> locations;        //all in game location cells
+    std::vector<Character> characters;       //all ingame characters vector
     std::vector<Item> items;                //all ingame items vector
+    std::vector<Location> locations;        //all in game location cells
     Inventory inventory;                    //player inventory class object
-    //std::vector<Character> characters;    //Game characters (incl. player char Alice)
+    std::string playerEffect = "NORMAL";   //player effect string to store the current player effect from consumables
+
     //item map to convert a user input string for the item name into the item's ID
     std::map<std::string, std::string> itemInputMap = {     // Map to convert user input string to an item ID - used by take, use, and consume commands
         {"tonic", "TONIC"},
@@ -53,8 +55,6 @@ private:
         {"bucket of red paint", "RED_PAINT"},
         {"flamingo", "FLAMINGO"}
         };
-    std::string playerEffect = "NORMAL";   //player effect string to store the current player effect from consumables
-
 
 public:
 
@@ -63,12 +63,10 @@ public:
 
     void startGame();                       //public method to start the game
     void loadGameData();                    //calls loading functions for all txt file assets
-
     void loadItems();                       //Loads items from txt file
-    //void loadCharacters();                //Loads characters from txt file
-    //void loadInventory();                 //Loads inventory from txt file
+    void loadCharacters();                  //Loads characters from txt file
     void loadLocations();                   //loads locations from txt file
-    //void loadActions();                   //Loads actions from txt file
+
 
     void move(Direction direction);         //moves player to a new location
     void userInput(const std::string &input);                //handles player input

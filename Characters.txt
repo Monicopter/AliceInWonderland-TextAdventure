@@ -1,120 +1,441 @@
 #Character0
-id: player
-name: Alice
-description: "The protagonist of the story. A curious and adventurous young girl. She is polite, logical, and not afraid to say her piece."
-
-#Character1
 id: sister
 name: Sister
-description: "Alice's older sister. She seems to be completely absorbed in the book she is reading." 
-talk: "I should let my sister alone. She's enjoying her boring pictureless book."
+description: Alice's older sister. She seems to be completely absorbed in the book she is reading.
+talk_riverBank: I should let my sister alone. She's enjoying her boring pictureless book.
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
-#Character2
+#Character1
 id: whiteRabbit
 name: White Rabbit
-description: "A frantic, anxious, and manic rabbit wearing a waistcoat and pocket watch. He is always worried about being late for something important."
-talk_doorwayHall: "The White Rabbit seems startled by me and anxiously quickens his pace down the hall. It looks like he dropped some small white gloves and a hand fan."
-talk_whiteRabbitHome: "Mary Ann! Fetch me my gloves and fan this instant!!!"
-talk_royalGardens: "Hush! Keep your voice down. The Queen is in a mood! She just sentenced her cousin, the Duchess, to a beheading. Did you say what a pity!? No? Oh, nevermind."
-talk_throne: "SHHHH! The trial is about to start. Go sit down!"
+description: A frantic, anxious, and manic rabbit wearing a waistcoat and pocket watch. He is always worried about being late for something important.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: Mary Ann! Fetch me my gloves and fan this instant!
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: Hush! Keep your voice down. The Queen is in a mood! She just sentenced her cousin, the Duchess, to a beheading. Did you say what a pity!? No? Oh, nevermind.
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: SHHHH! The trial is about to start. Go sit down!
+
+
+#Character2
+id: queenHearts
+name: Queen of Hearts
+description: An oppressive and violent Queen. She is easily angered and quick to order her subject's executions. Be careful what you say.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
+
 
 #Character3
-id: queenHearts
-name: "Queen of Hearts"
-description: "An oppressive and violent Queen. She is easily angered and quick to order her subject's executions. Be careful what you say."
-talk_royalGardens: "Off with their heads! Guards, seize them immediately!"
+id: kingHearts
+name: King of Hearts
+description: The Queen's meek and submissive husband. He will often try to calm down the Queen but lacks a spine. He always pardons the victims of the Queen's execution orders.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character4
-id: kingHearts
-name: "King of Hearts"
-description: "The Queen's meek and submissive husband. He will often try to calm down the Queen but lacks a spine. He always pardons the victims of the Queen's execution orders."
+id: cheshireCat
+name: Cheshire Cat
+description: A large, mischievous cat that is perpetually grinning. Despite his unsettling appearance, he seems to be the most sane creature in Wonderland.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character5
-id: cheshireCat
-name: "Cheshire Cat"
-description: "A large, mischievous cat that is perpetually grinning. Despite his unsettling appearance, he seems to be the most sane creature in Wonderland."
+id: duchess
+name: Duchess
+description: An incredibly rude, unpleasant, and hideous woman. Part of the royal court. She is overall an untrustworthy and abusive person.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character6
-id: duchess
-name: "Duchess"
-description: "An incredibly rude, unpleasant, and hideous woman. Part of the royal court. She is overall an untrustworthy and abusive person."
+id: caterpillar
+name: Caterpillar
+description: A giant blue caterpillar that enjoys his alone time atop a mushroom with a hookah. He has a prickly temperament but is wise, if cryptic, in his advice.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character7
-id: caterpillar
-name: "Caterpillar"
-description: "A giant blue caterpillar that enjoys his alone time atop a mushroom with a hookah. He has a prickly temperament but is wise, if cryptic, in his advice."
+id: madHatter
+name: Mad Hatter
+description: An incredibly eccentric host of the Mad Tea Party. He likes to ask nonsensical questions and has strange mannerisms.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character8
-id: madHatter
-name: "Mad Hatter"
-description: "An incredibly eccentric host of the Mad Tea Party. He likes to ask nonsensical questions and has strange mannerisms."
+id: marchHare
+name: March Hare
+description: One of the Mad Hatter's companions for the eternal tea party. Equally as mad as the Hatter.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character9
-id: marchHare
-name: "March Hare"
-description: "One of the Mad Hatter's companions for the eternal tea party. Equally as mad as the Hatter."
+id: dormouse
+name: Dormouse
+description: A strange creature with narcolepsy, the third and final guest of the eternal tea party. He is apparently quite the storyteller.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character10
-id: dormouse
-name: "Dormouse"
-description: "A strange creature with narcolepsy, the third and final guest of the eternal tea party. He is apparently quite the storyteller."
+id: mockTurtle
+name: Mock Turtle
+description: A melancholic half pig, half turtle. He is incredibly self-absorbed and forlorn. He has a penchant for reminiscing.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character11
-id: mockTurtle
-name: "Mock Turtle"
-description: "A melancholic half pig, half turtle. He is incredibly self-absorbed and forlorn. He has a penchant for reminiscing."
+id: knave
+name: Knave
+description: The Knave of the royal house. Not much is known except his being on trial for thievery of the royal tarts.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character12
-id: knave
-name: "Knave"
-description: "The Knave of the royal house. Not much is known except his being on trial for thievery of the royal tarts."
+id: mouse
+name: Mouse
+description: An easily offended French mouse who presumably came over to these lands with William the Conqueror. He hates cats and dogs due to his long, violent history with them.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character13
-id: mouse
-name: "Mouse"
-description: "An easily offended French mouse who presumably came over to these lands with William the Conqueror. He hates cats and dogs due to his long, violent history with them."
+id: dodo
+name: Dodo
+description: A dodo bird that enjoys using refined vocabulary despite the fact that his peers criticize his use of it.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character14
-id: dodo
-name: "Dodo"
-description: "A dodo bird that enjoys using refined vocabulary despite the fact that his peers criticize his use of it."
+id: lory
+name: Lory
+description: The Lory, who is most definitely older than Alice. We're not quite sure how old they are, but we trust them!
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character15
-id: lory
-name: "Lory"
-description: "The Lory, who is most definitely older than Alice. We're not quite sure how old they are, but we trust them!"
+id: cook
+name: Cook
+description: The Duchess's cook. A crude woman of few words but brash behavior. Her favorite pastime is throwing household items at people.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character16
-id: cook
-name: "Cook"
-description: "The Duchess's cook. A crude woman of few words but brash behavior. Her favorite pastime is throwing household items at people."
+id: pigeon
+name: Pigeon
+description: This pigeon has been severely wronged by serpents who are trying to steal its eggs. Therefore anything that looks even remotely like a serpent must be so!
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character17
-id: pigeon
-name: "Pigeon"
-description: "This pigeon has been severely wronged by serpents who are trying to steal its eggs. Therefore anything that looks even remotely like a serpent must be so!"
+id: twoFiveSeven
+name: Two, Five, and Seven
+description: Three stooges who are trying to paint white roses red to avoid execution by the Queen.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character18
-id: twoFiveSeven
-name: "Two, Five, and Seven"
-description: "Three stooges who are trying to paint white roses red to avoid execution by the Queen."
+id: billLizard
+name: Bill the Lizard
+description: An unfortunately dull creature who is always on the receiving end of bullying.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character19
-id: billLizard
-name: "Bill the Lizard"
-description: "An unfortunately dull creature who is always on the receiving end of bullying."
+id: frogFootman
+name: Frog Footman
+description: A frustrating creature who enjoys speaking absolute nonsense regarding who may enter and leave the house.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character20
-id: frogFootman
-name: "Frog Footman"
-description: "A frustrating creature who enjoys speaking absolute nonsense regarding who may enter and leave the house."
+id: gryphon
+name: Gryphon
+description: A half-lion, half-eagle creature tasked with escorting Alice to meet the Mock Turtle. Seems a decent enough fellow, if a bit bossy.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: NULL
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL
 
 #Character21
-id: gryphon
-name: "Gryphon"
-description: "A half-lion, half-eagle creature tasked with escorting Alice to meet the Mock Turtle. Seems a decent enough fellow, if a bit bossy."
-
-#Character22
-id: pigBaby
-name: "Pig Baby"
-description: "An unfortunately ugly baby who looks more pig than human—rather sounds like one too, actually..."
+id: dog
+name: Excited Dog
+description: What appears to be a Yorkshire Terrier. He seems awfully excitable. I should throw something to get it's attention away from me.
+talk_riverBank: NULL
+talk_rabbitHole: NULL
+talk_landingHall: NULL
+talk_doorwayHall: NULL
+talk_beachBank: NULL
+talk_whiteRabbitHome: NULL
+talk_denseWoods: BARK! BARK!
+talk_mushroomPatch: NULL
+talk_duchessHomeExt: NULL
+talk_duchessHomeInt: NULL
+talk_marchHareHome: NULL
+talk_royalGardens: NULL
+talk_croquetField: NULL
+talk_royalBeach: NULL
+talk_throne: NULL

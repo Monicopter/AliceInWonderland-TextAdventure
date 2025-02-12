@@ -8,7 +8,7 @@ std::string Location::getId() const { return id; }
 std::string Location::getName() const { return name; }
 std::string Location::getDescription() const { return description; }
 std::vector<Item>& Location::getItems() { return items; }    //removed const from getItems() to allow for item removal in takeCommand()
-std::string Location::getCharacters() const { return characters; }
+std::vector<Character>& Character::getCharacters() { return characters; }
 std::string Location::getPathNorth() const { return pathNorth; }
 std::string Location::getPathSouth() const { return pathSouth; }
 std::string Location::getPathEast() const { return pathEast; }
@@ -41,7 +41,7 @@ void Location::setId(const std::string& id) { this->id = id; }
 void Location::setName(const std::string& name) { this->name = name; }
 void Location::setDescription(const std::string& description) { this->description = description; }
 void Location::setItems(const std::vector<Item>& items) { this->items = items; }
-void Location::setCharacters(const std::string& characters) { this->characters = characters; }
+void Location::setCharacters(const std::vector<Character>& characters) { this->characters = characters; }
 void Location::setPathNorth(const std::string& pathNorth) { this->pathNorth = pathNorth; }
 void Location::setPathSouth(const std::string& pathSouth) { this->pathSouth = pathSouth; }
 void Location::setPathEast(const std::string& pathEast) { this->pathEast = pathEast; }

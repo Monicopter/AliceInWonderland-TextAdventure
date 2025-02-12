@@ -14,20 +14,20 @@
 
 #include "Game.hpp"
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 Game::Game()
 {
     currentLocation = nullptr;
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 Game::~Game()
 {
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::startGame()
 {
@@ -47,7 +47,7 @@ void Game::startGame()
 
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::loadGameData()
 {
@@ -58,14 +58,7 @@ void Game::loadGameData()
     // loadActions();
 }
 
-/*----------------------------------------------------------------------------*/
-
-// void Game::loadActions()
-// {
-
-// }
-
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::loadItems()
 {
@@ -74,7 +67,7 @@ void Game::loadItems()
     std::ifstream file("Items.txt");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open Items.txt" << std::endl;
+        std::cerr << "Failed to open: " << file << std::endl;
         return;
     }
 
@@ -95,7 +88,6 @@ void Game::loadItems()
                 item = Item();
             }
         }
-    
 
         // follows the same format as the loadLocations function but with different keywords
         if (line.find("id: ") == 0)
@@ -150,28 +142,131 @@ void Game::loadItems()
 }
 
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
-// void Game::loadCharacters()
-// {
+void Game::loadCharacters()
+{
+    // See loadLocations for comments on how this function works - it follows the same format
 
-// }
+    std::ifstream file("Characters.txt");
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open: " << file << std::endl;
+        return;
+    }
 
-/*----------------------------------------------------------------------------*/
+    std::string line;
+    Character character;
+    while (std::getline(file, line))
+    {
+        if (line.empty())
+            continue;
 
-// void Game::loadInventory()
-// {
+        if (line[0] == '#')
+        {
 
-// }
+            if (!character.getId().empty())
+            {
+                characters.push_back(character);
 
-/*----------------------------------------------------------------------------*/
+                character = Character();
+            }
+        }
+    
+
+        // follows the same format as the loadLocations function but with different keywords
+        if (line.find("id: ") == 0)
+        {
+            character.setId(removeAllWhitespace(line.substr(4)));
+        }
+        if (line.find("name: ") == 0)
+        {
+            character.setName(line.substr(6));
+        }
+        if (line.find("description: ") == 0)
+        {
+            character.setDescription(line.substr(13));
+        }
+        if (line.find("talk_riverBank: ") == 0)
+        {
+            character.setTalkRiverBank(line.substr(16));
+        }
+        if (line.find("talk_rabbitHole: ") == 0)
+        {
+            character.setTalkRabbitHole(line.substr(17));
+        }
+        if (line.find("talk_landingHall: ") == 0)
+        {
+            character.setTalkLandingHall(line.substr(18));
+        }
+        if (line.find("talk_doorwayHall: ") == 0)
+        {
+            character.setTalkDoorwayHall(line.substr(18));
+        }
+        if (line.find("talk_beachBank: ") == 0)
+        {
+            character.setTalkBeachBank(line.substr(16));
+        }
+        if (line.find("talk_whiteRabbitHome: ") == 0)
+        {
+            character.setTalkWhiteRabbitHome(line.substr(22));
+        }
+        if (line.find("talk_denseWoods: ") == 0)
+        {
+            character.setTalkDenseWoods(line.substr(17));
+        }
+        if (line.find("talk_mushroomPatch: ") == 0)
+        {
+            character.setTalkMushroomPatch(line.substr(20));
+        }
+        if (line.find("talk_duchessHomeExt: ") == 0)
+        {
+            character.setTalkDuchessHomeExt(line.substr(21));
+        }
+        if (line.find("talk_duchessHomeInt: ") == 0)
+        {
+            character.setTalkDuchessHomeInt(line.substr(21));
+        }
+        if (line.find("talk_marchHareHome: ") == 0)
+        {
+            character.setTalkMarchHareHome(line.substr(20));
+        }
+        if (line.find("talk_royalGardens: ") == 0)
+        {
+            character.setTalkRoyalGardens(line.substr(19));
+        }
+        if (line.find("talk_croquetField: ") == 0)
+        {
+            character.setTalkCroquetField(line.substr(19));
+        }
+        if (line.find("talk_royalBeach: ") == 0)
+        {
+            character.setTalkRoyalBeach(line.substr(17));
+        }
+        if (line.find("talk_throne: ") == 0)
+        {
+            character.setTalkThrone(line.substr(13));
+        }
+        
+    }
+    // Add the last item if it has a non-empty id
+    if (!character.getId().empty())
+    {
+        characters.push_back(character);
+    }
+
+    file.close();
+
+}
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::loadLocations()
 {
     std::ifstream file("Locations.txt");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open Locations.txt" << std::endl;
+        std::cerr << "Failed to open: " << file << std::endl;
         return;
     }
 
@@ -235,7 +330,27 @@ void Game::loadLocations()
         }
         if (line.find("characters: ") == 0)
         {
-            location.setCharacters(line.substr(12));
+            //create a vector of characters to store the characters in the location cell
+            std::vector<Character> locationCharacters;
+            std::istringstream charactersStream(line.substr(12));
+            std::string characterId;
+            //goes through the 'characters: ' line of locations.txt and extracts the character ids and stores them in the locationCharacters vector
+            while (charactersStream >> characterId)
+            {
+                //for loop that compares objects within the Game class character vector to the extracted character id from the location's cell characters variable
+                for (Character& character : characters)
+                {
+                    if (characterId == "NULL") {
+                        break;
+                    }
+                    else if (character.getId() == characterId)
+                    {
+                        locationCharacters.push_back(character);
+                        break;
+                    }
+                }
+            }
+            location.setCharacters(locationCharacters);
         }
         if (line.find("pathNorth: ") == 0)
         {
@@ -322,7 +437,7 @@ void Game::loadLocations()
     file.close();
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // Direction is an enum declared in Actions.hpp
 void Game::move(Direction direction)
@@ -391,7 +506,7 @@ void Game::move(Direction direction)
     std::cerr << "Cannot move in that direction." << std::endl;
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::userInput(const std::string &input)
 {
@@ -543,7 +658,7 @@ void Game::userInput(const std::string &input)
     }
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // function to handle player input for the "move" command - links with the move function
 void Game::playerDirectionalInput(const std::string &input)
@@ -571,7 +686,7 @@ void Game::playerDirectionalInput(const std::string &input)
     }
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // function to print the help menu from the user input "help"
 void Game::printHelp() const
@@ -589,7 +704,7 @@ void Game::printHelp() const
     std::cout << "QUIT - Quit the game." << std::endl;
 }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::takeCommand(const std::string &input)
 {
@@ -632,7 +747,7 @@ void Game::takeCommand(const std::string &input)
     std::cerr << "Item not found in the current location." << std::endl;
 }
 
-/*---------------------------------------------------------------------------*/ 
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::useCommand(const std::string &input)
 {
@@ -714,7 +829,7 @@ void Game::useCommand(const std::string &input)
     std::cerr << "Item not found in the inventory." << std::endl;
 }
 
-/*---------------------------------------------------------------------------*/ 
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::consumeCommand(const std::string &input)
 {
@@ -755,19 +870,19 @@ void Game::consumeCommand(const std::string &input)
     std::cerr << "Item not found in the inventory." << std::endl;
 }
 
-/*---------------------------------------------------------------------------*/ 
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // void Game::update()
 // {
 // }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // void Game::display()
 // {
 // }
 
-/*----------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 //Used to print text files to the terminal - used for long exposition or events
 void Game::printTextFile(const std::string& filename) const 
@@ -788,9 +903,9 @@ void Game::printTextFile(const std::string& filename) const
     file.close();
 }
 
-/*---------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
-//used for keys that unlock a location cell
+//used for key items that unlock a location cell
 void Game::handleUnlockEffect(const std::string& locationId)
 {
     for (auto& location : locations)
@@ -805,7 +920,7 @@ void Game::handleUnlockEffect(const std::string& locationId)
     std::cerr << "Location to unlock not found." << std::endl;
 }
 
-/*---------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // function to remove all whitespace from a string - mostly just used for the events variable 
 // in Locations class as it cannot load the text file properly without removing the invisible whitespace 
@@ -816,7 +931,7 @@ std::string Game::removeAllWhitespace(const std::string& input)
     return result;
 }
 
-/*---------------------------------------------------------------------------*/
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::addInventoryItemById(const std::string& itemId)
 {
@@ -832,36 +947,4 @@ void Game::addInventoryItemById(const std::string& itemId)
     std::cout << "Item not found!" << std::endl;
 }
 
-/*---------------------------------------------------------------------------*/
-
-// for (auto &location : locations)
-// {
-
-//     // compares the id of the current location to the id of the next location from the switch statement
-//     if (location.getId() == nextLocationId)
-//     {
-//         // Changes old current location to false - so it doesn't trigger first visit events/scripts upon future visits to a location
-//         currentLocation->setFirstVisit(false);
-//         currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
-
-//         //bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
-//         //std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
-
-//         // if the current location has not been visited before and has events, print the events
-//         if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   
-            
-//             printTextFile(currentLocation->getEvents());
-            
-//             std::cout << "Moved to: " << currentLocation->getName() << std::endl;
-//             std::cout << "Description: " << currentLocation->getDescription() << std::endl;
-//             return;
-//         } else {
-            
-//             std::cout << "Moved to: " << currentLocation->getName() << std::endl;
-//             std::cout << "Description: " << currentLocation->getDescription() << std::endl;
-//             return;
-//         }
-//     }
-// }
-// std::cerr << "Cannot move in that direction." << std::endl;
-// }
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
