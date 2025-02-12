@@ -1,5 +1,6 @@
 #include "Locations.hpp"
 #include "Items.hpp"
+#include "Characters.hpp"
 #include <vector>
 
 
@@ -8,7 +9,7 @@ std::string Location::getId() const { return id; }
 std::string Location::getName() const { return name; }
 std::string Location::getDescription() const { return description; }
 std::vector<Item>& Location::getItems() { return items; }    //removed const from getItems() to allow for item removal in takeCommand()
-std::vector<Character>& Character::getCharacters() { return characters; }
+std::vector<Character>& Location::getCharacters() { return characters; }
 std::string Location::getPathNorth() const { return pathNorth; }
 std::string Location::getPathSouth() const { return pathSouth; }
 std::string Location::getPathEast() const { return pathEast; }

@@ -52,10 +52,9 @@ void Game::startGame()
 void Game::loadGameData()
 {
     loadItems();
-    // loadCharacters();
-    // loadInventory();
+    loadCharacters();
     loadLocations();
-    // loadActions();
+    
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
@@ -67,7 +66,7 @@ void Game::loadItems()
     std::ifstream file("Items.txt");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open: " << file << std::endl;
+        std::cerr << "Failed to open Items.txt" << std::endl;
         return;
     }
 
@@ -151,7 +150,7 @@ void Game::loadCharacters()
     std::ifstream file("Characters.txt");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open: " << file << std::endl;
+        std::cerr << "Failed to open Characters.txt" << std::endl;
         return;
     }
 
@@ -177,7 +176,7 @@ void Game::loadCharacters()
         // follows the same format as the loadLocations function but with different keywords
         if (line.find("id: ") == 0)
         {
-            character.setId(removeAllWhitespace(line.substr(4)));
+            character.setId(line.substr(4));
         }
         if (line.find("name: ") == 0)
         {
@@ -266,7 +265,7 @@ void Game::loadLocations()
     std::ifstream file("Locations.txt");
     if (!file.is_open())
     {
-        std::cerr << "Failed to open: " << file << std::endl;
+        std::cerr << "Failed to open Locations.txt" << std::endl;
         return;
     }
 
@@ -457,17 +456,49 @@ void Game::move(Direction direction)
     switch (direction)
     {
     case Direction::NORTH:
+        if (currentLocation->getNorthIsLocked() == true)
+        {
+            std::cerr << "The North pathway is locked." << std::endl;
+            return;
+        } 
+        else
+        { 
         nextLocationId = currentLocation->getPathNorth();
         break;
+        }
     case Direction::SOUTH:
+        if (currentLocation->getSouthIsLocked() == true)
+        {
+            std::cerr << "The South pathway is locked." << std::endl;
+            return;
+        } 
+        else
+        { 
         nextLocationId = currentLocation->getPathSouth();
         break;
+        }
     case Direction::EAST:
+        if (currentLocation->getEastIsLocked() == true)
+        {
+            std::cerr << "The East pathway is locked." << std::endl;
+            return;
+        } 
+        else
+        { 
         nextLocationId = currentLocation->getPathEast();
         break;
+        }
     case Direction::WEST:
+        if (currentLocation->getWestIsLocked() == true)
+        {
+            std::cerr << "The West pathway is locked." << std::endl;
+            return;
+        } 
+        else
+        { 
         nextLocationId = currentLocation->getPathWest();
         break;
+        }
     default:
         std::cerr << "Invalid direction." << std::endl;
         return;
@@ -567,6 +598,11 @@ void Game::userInput(const std::string &input)
             for (const Item& item : currentLocation->getItems())        //DEBUGGING CODE - NOT NEEDED
             {
                 std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  //DEBUGGING CODE - NOT NEEDED
+            }
+            std::cout << "Location Characters: " << std::endl;  
+            for (const Character& character: currentLocation->getCharacters())
+            {
+                std::cout << " - " << character.getName() << std::endl;     //DEBUGGING CODE - NOT NEEDED
             }
             std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
             break;
@@ -793,6 +829,7 @@ void Game::useCommand(const std::string &input)
                 inventoryItems.erase(itemCycle); 
                 std::cout << "You have used: " << usedItemName << std::endl;
                 handleUnlockEffect(itemCycle->getKeyLocationId());
+                
             }
             else if (effect == "WEAR")
             {
@@ -912,7 +949,8 @@ void Game::handleUnlockEffect(const std::string& locationId)
     {
         if (location.getId() == locationId)
         {
-            location.setSouthIsLocked(false);
+            
+            currentLocation->setSouthIsLocked(false);
             std::cout << "Unlocked location: " << location.getName() << std::endl;
             return;
         }

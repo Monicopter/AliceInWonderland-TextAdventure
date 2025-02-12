@@ -102,7 +102,7 @@ id: beachBank
 name: Beach Bank
 description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
 items: NULL
-characters: mouse, dodo, lory
+characters: mouse dodo lory
 pathNorth: NULL
 pathSouth: NULL
 pathEast: whiteRabbitHome
@@ -128,7 +128,7 @@ id: whiteRabbitHome
 name: White Rabbit's Home
 description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
 items: CAKE
-characters: whiteRabbit, billLizard, groundskeeperPat
+characters: whiteRabbit billLizard groundskeeperPat
 pathNorth: denseWoods
 pathSouth: NULL
 pathEast: NULL
