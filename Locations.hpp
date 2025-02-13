@@ -43,7 +43,7 @@ public:
     std::string getName() const;
     std::string getDescription() const;
     std::vector<Item>& getItems();      //removed const from getItems() to allow for item removal in takeCommand()
-    std::vector<Character>& getCharacters();
+    std::vector<Character>& getCharacters(); //same as for items - characters may need to be removed from a location
     std::string getPathNorth() const;
     std::string getPathSouth() const;
     std::string getPathEast() const;
@@ -92,6 +92,8 @@ public:
     void setSouthKey(const std::string& southKey);
     void setEastKey(const std::string& eastKey);
     void setWestKey(const std::string& westKey);
+
+    void addCharacter(const Character& character);
 
     friend class Game;  //makes Game class a friend so it can access private variables (like firstVisit and events)
      

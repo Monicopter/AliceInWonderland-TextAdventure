@@ -64,3 +64,9 @@ void Location::setNorthKey(const std::string& northKey) { this->northKey = north
 void Location::setSouthKey(const std::string& southKey) { this->southKey = southKey; }
 void Location::setEastKey(const std::string& eastKey) { this->eastKey = eastKey; }
 void Location::setWestKey(const std::string& westKey) { this->westKey = westKey; }
+
+// Adds a character to the existing vector of characters
+void Location::addCharacter(const Character& character) 
+{
+    characters.push_back(character);
+}

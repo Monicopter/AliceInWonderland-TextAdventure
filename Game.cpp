@@ -986,3 +986,16 @@ void Game::addInventoryItemById(const std::string& itemId)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+void Game::addCharacterToLocation(const std::string& characterId)
+{
+    for (auto& character : characters)
+    {
+        if (character.getId() == characterId)
+        {
+            currentLocation->addCharacter(character);
+            return;
+        }
+    }
+    std::cout << "Character not found!" << std::endl;
+}   
