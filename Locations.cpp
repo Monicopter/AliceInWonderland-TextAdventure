@@ -70,3 +70,9 @@ void Location::addCharacter(const Character& character)
 {
     characters.push_back(character);
 }
+
+// Adds an item to the existing vector of items
+void Location::addItem(const Item& item) 
+{
+    items.push_back(item);
+}

@@ -1,5 +1,5 @@
 #Item0
-id: TONIC
+id: SHRINK_TONIC
 name: Tonic potion
 description: A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How ominous...
 canTake: true
@@ -219,3 +219,14 @@ keyLocationId: NULL
 consumeEffect: NULL
 useEffect: NULL
 
+#Item19
+id: ENLARGE_POTION
+name: Potion
+description: A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How ominous...
+canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: ENLARGE
+useEffect: NULL

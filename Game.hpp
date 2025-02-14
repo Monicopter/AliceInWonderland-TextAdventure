@@ -27,7 +27,8 @@ private:
 
     //item map to convert a user input string for the item name into the item's ID
     std::map<std::string, std::string> itemInputMap = {     // Map to convert user input string to an item ID - used by take, use, and consume commands
-        {"tonic", "TONIC"},
+        {"tonic", "SHRINK_TONIC"},
+        {"potion", "ENLARGE_POTION"},
         {"cake", "CAKE"},
         {"small cake", "CAKE"},
         {"key", "TINY_GOLD_KEY"},

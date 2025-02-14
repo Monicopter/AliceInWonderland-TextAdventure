@@ -903,47 +903,52 @@ void Game::useCommand(const std::string &input)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
-
 void Game::consumeCommand(const std::string &input)
 {
     std::string inputString = input;
 
-    // Iterates through the itemInputMap to find a matching value for the user input keyword
-    auto it = itemInputMap.find(inputString);
-
-    if (it != itemInputMap.end())
-    {
-        inputString = it->second;
-    }
-    else
-    {
-        std::cerr << "Item not found." << std::endl;
-        return;
-    }
-
-    // Follows a similar format to the takeCommand function but compares with the inventory items vector instead of the current location's items vector
+    // Iterate through the items in the player's inventory
     auto &inventoryItems = inventory.getItems();
- 
     for (auto itemCycle = inventoryItems.begin(); itemCycle != inventoryItems.end(); ++itemCycle)
-    {   
-        if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == true)
-        {   
+    {
+        std::string itemName = itemCycle->getName();
+
+        // Convert the item name to lowercase
+        for (int n = 0; n < itemName.length(); n++)
+        {
+            itemName[n] = tolower(itemName[n]);
+        }
+
+        // Check if the input string is a substring of the item name and if the item is consumable
+        if (itemName.find(inputString) != std::string::npos && itemCycle->getIsConsumable() == true)
+        {
             playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
             std::cout << "Effect: " << playerEffect << std::endl;
-            inventory.decrementItem(*itemCycle); //decrements item in inventory - prevents a count bug if player happened to have 2 of the same item in inventory
+
+            std::string consumedItemName = itemCycle->getName(); // Store the name of the consumed item
+            inventory.decrementItem(*itemCycle); // Decrement the item count
             inventoryItems.erase(itemCycle); // Removes the item from the inventory
-            std::cout << "You have consumed: " << itemCycle->getName() << std::endl;
-            return; 
+            std::cout << "You have consumed: " << consumedItemName << std::endl;
+
+            // Check if the consumed item is the SHRINK_TONIC for doorway hall scripted event
+            if (inputString == "tonic")
+            {
+                currentLocation->setSouthIsLocked(true);
+                std::cout << "Great! You're now around 10 inches tall! Small enough to fit through that door. Unfortunately, the door is now closed and the key is on top of the table." << std::endl;
+                std::cout << "Now that you're tiny you notice a small box near the feet of the table. What's inside?" << std::endl;
+                return;
+            }
+
+            return;
         }
-        else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false) 
+        else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false)
         {
             std::cout << "You cannot consume: " << itemCycle->getName() << std::endl;
-            return; 
+            return;
         }
     }
     std::cerr << "Item not found in the inventory." << std::endl;
 }
-
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::talkCommand(const std::string &input) {
@@ -1182,7 +1187,18 @@ void Game::handleUnlockEffect(const std::string& locationId)
         //for the first visit load a story txt file then transports player to beachBank location
         if (currentLocation->getId() == "doorwayHall" && currentLocation->getFirstVisit() == true)
         {
-            printTextFile("tearsEvent.txt");
+            for (auto& item : items)
+            {
+                if (item.getId() == "SHRINK_TONIC")
+                {
+                     currentLocation->addItem(item);
+                     currentLocation->setSouthIsLocked(false);
+                     std::cout << "The door is now open but there's no way for me to fit through at my current size." << std::endl;
+                     std::cout << "Alice looks back at the glass table and notices a tonic bottle there now," << std::endl;
+                     std::cout << "That certainly wasn't there before, was it?" << std::endl;
+                     return;
+                }
+            }
             return;
         }
         //for second visit to doorwayhall area allows player to unlock door to royal gardens

@@ -77,12 +77,12 @@ id: doorwayHall
 name: Doorway Hall
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall. It looks like there's something small on top of the table.
 characters: whiteRabbit
-items: TINY_GOLD_KEY SMALL_BOX 
+items: TINY_GOLD_KEY SMALL_BOX GLASS_TABLE
 pathNorth: landingHall
 pathSouth: royalGardens
 pathEast: marchHareHome
 pathWest: NULL
-northDesc: NULL
+northDesc: That path goes back to the hallway where I landed from the rabbit hole.
 southDesc: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
 eastDesc: This is a rather cozy looking craftsman door. The wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. Feels like it's locked from the other side with a latch.
 westDesc: NULL
@@ -127,7 +127,7 @@ westKey: NULL
 id: whiteRabbitHome
 name: White Rabbit's Home
 description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbits bedroom. There's a nightstand by the bed and large window that brings in natural light.
-items: NIGHTSTAND TONIC LOOKING_GLASS
+items: NIGHTSTAND ENLARGE_POTION LOOKING_GLASS
 characters: whiteRabbit billLizard groundskeeperPat
 pathNorth: denseWoods
 pathSouth: NULL

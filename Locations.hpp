@@ -94,6 +94,9 @@ public:
     void setWestKey(const std::string& westKey);
 
     void addCharacter(const Character& character);
+    void addItem(const Item& item);
+
+
 
     friend class Game;  //makes Game class a friend so it can access private variables (like firstVisit and events)
      
