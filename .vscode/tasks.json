@@ -12,6 +12,7 @@
                 "Locations.cpp",
                 "Items.cpp",
                 "Inventory.cpp",
+                "Characters.cpp",
                 "-o",
                 "game"
             ],

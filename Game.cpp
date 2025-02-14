@@ -586,7 +586,7 @@ void Game::userInput(const std::string &input)
         // switch statement (it->second) pulls the value of the keyword from the actionMap which would be ACTION::HELP, ACTION::INSPECT, etc.
         switch (it->second)
         {
-
+///////////////////////////////////////////////////////////////////////////////            
         case Action::HELP:
             printHelp();
             break;
@@ -608,7 +608,21 @@ void Game::userInput(const std::string &input)
             break;
 ///////////////////////////////////////////////////////////////////////////////
         case Action::TALK:
-            std::cout << "Talk" << std::endl;
+            // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
+            if (commands.size() > 1) {
+                std::string characterName;
+                // Starts at commands[1] to avoid the command keyword - then increments by 1 through to the end of the commands vector
+                for (size_t i = 1; i < commands.size(); ++i) { 
+                    if (i > 1) {
+                        characterName += " ";        // Add a space between words
+                    }
+                    characterName += commands[i];    // Concatenates the current commands vector word to the itemName string
+                }
+                talkCommand(characterName);          // Passes the itemName string to the takeCommand function
+                break;
+            } else {
+                std::cerr << "Talk to whom? Input the character name: 'talk <character name>'" << std::endl;
+            }
             break;
 ///////////////////////////////////////////////////////////////////////////////
         case Action::TAKE:
@@ -909,6 +923,75 @@ void Game::consumeCommand(const std::string &input)
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
+void Game::talkCommand(const std::string &input) {
+    std::string inputString = input;
+
+    // Iterate through the characters in the current location
+    for (const Character& character : currentLocation->getCharacters()) {
+
+        std::string characterName = character.getName();
+
+        //converts character name to lower case to match player input
+        for (int n = 0; n < characterName.length(); n++)
+        {
+            characterName[n] = tolower(characterName[n]);
+        }
+    
+
+        // Checks if the player input is even sligtly a match to a character name present in currentLocation
+        if (characterName.find(inputString) != std::string::npos) {
+            // Pull the appropriate talk line for the current location
+            std::string talkLine;
+            
+            //finds current location and assigns the correct contextual talk dialogue for currentLocation
+            if (currentLocation->getId() == "riverBank") {
+                talkLine = character.getTalkRiverBank();
+            } else if (currentLocation->getId() == "rabbitHole") {
+                talkLine = character.getTalkRabbitHole();
+            } else if (currentLocation->getId() == "landingHall") {
+                talkLine = character.getTalkLandingHall();
+            } else if (currentLocation->getId() == "doorwayHall") {
+                talkLine = character.getTalkDoorwayHall();
+            } else if (currentLocation->getId() == "beachBank") {
+                talkLine = character.getTalkBeachBank();
+            } else if (currentLocation->getId() == "whiteRabbitHome") {
+                talkLine = character.getTalkWhiteRabbitHome();
+            } else if (currentLocation->getId() == "denseWoods") {
+                talkLine = character.getTalkDenseWoods();
+            } else if (currentLocation->getId() == "mushroomPatch") {
+                talkLine = character.getTalkMushroomPatch();
+            } else if (currentLocation->getId() == "duchessHomeExt") {
+                talkLine = character.getTalkDuchessHomeExt();
+            } else if (currentLocation->getId() == "duchessHomeInt") {
+                talkLine = character.getTalkDuchessHomeInt();
+            } else if (currentLocation->getId() == "marchHareHome") {
+                talkLine = character.getTalkMarchHareHome();
+            } else if (currentLocation->getId() == "royalGardens") {
+                talkLine = character.getTalkRoyalGardens();
+            } else if (currentLocation->getId() == "croquetField") {
+                talkLine = character.getTalkCroquetField();
+            } else if (currentLocation->getId() == "royalBeach") {
+                talkLine = character.getTalkRoyalBeach();
+            } else if (currentLocation->getId() == "throne") {
+                talkLine = character.getTalkThrone();
+            }
+            //edge case if a character is present but doesn't have a talk line - the player should never see this message in final draft.
+            if (talkLine == "NULL")
+            {
+                std::cout << character.getName() << " has nothing to say to you." << std::endl;
+                return;
+            }
+            // Print the talk line
+            std::cout << character.getName() << " says: " << talkLine << std::endl;
+            return;
+        }
+    }
+
+    std::cerr << "Character not found in the current location." << std::endl;
+}
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 // void Game::update()
 // {
 // }
@@ -998,4 +1081,4 @@ void Game::addCharacterToLocation(const std::string& characterId)
         }
     }
     std::cout << "Character not found!" << std::endl;
-}   
+}

@@ -75,6 +75,7 @@ public:
     void takeCommand(const std::string &input);              //handles player take command
     void useCommand(const std::string &input);              //handles player use command
     void consumeCommand(const std::string &input);          //handles player consume command
+    void talkCommand(const std::string &input);             //handles player talk command
 
     //void update();                        //updates game state such as moving locations, picking item up, etc.
     //void display();                       //displays current game state like location, items, etc.
@@ -82,6 +83,6 @@ public:
     void handleUnlockEffect(const std::string& locationId);
     std::string removeAllWhitespace(const std::string& input); //removes all whitespace from a string
     void addInventoryItemById(const std::string& itemId);      //adds item to inventory from an input item ID
-    void addCharacterToLocation(const std::string& characterId) //adds a character to the current location cell
+    void addCharacterToLocation(const std::string& characterId); //adds a character to the current location cell
 
 };
