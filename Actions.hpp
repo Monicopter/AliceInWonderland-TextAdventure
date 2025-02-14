@@ -9,6 +9,7 @@ enum class Action {
     MOVE,
     INVENTORY,
     CONSUME,
+    DISPLAY,
     QUIT
 };
 

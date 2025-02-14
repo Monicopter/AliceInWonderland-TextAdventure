@@ -11,6 +11,7 @@ private:
 
 public:
     void addItem(const Item& item);
+    void decrementItem(const Item& item);
     void printInventory() const;
     std::vector<Item>& getItems(); // Method to get the items vector for player's inventory
 };

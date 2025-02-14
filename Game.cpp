@@ -564,6 +564,7 @@ void Game::userInput(const std::string &input)
         {"move", Action::MOVE},
         {"inventory", Action::INVENTORY},
         {"consume", Action::CONSUME},
+        {"display", Action::DISPLAY},  //used for debugging
         {"quit", Action::QUIT}};
 
     // Extract words from userInput separated by whitespace
@@ -588,24 +589,28 @@ void Game::userInput(const std::string &input)
         {
 ///////////////////////////////////////////////////////////////////////////////            
         case Action::HELP:
+
             printHelp();
             break;
 ///////////////////////////////////////////////////////////////////////////////
         case Action::INSPECT:
-            std::cout << "Inspect" << std::endl;
-            std::cout << "Current Location: " << currentLocation->getName() << std::endl;
-            std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
-            for (const Item& item : currentLocation->getItems())        //DEBUGGING CODE - NOT NEEDED
-            {
-                std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  //DEBUGGING CODE - NOT NEEDED
+
+            if (commands.size() > 1) {
+                std::string inspectObject;
+                // Starts at commands[1] to avoid the command keyword - then increments by 1 through to the end of the commands vector
+                for (size_t i = 1; i < commands.size(); ++i) { 
+                    if (i > 1) {
+                        inspectObject += " ";        // Add a space between words
+                    }
+                    inspectObject += commands[i];    // Concatenates the current commands vector word to the inspectObject string
+                }
+                inspectCommand(inspectObject);          // Passes the inspectObject string to the inspectCommand function
+                break;
+            } else {
+                std::cerr << "Inspect what? Specify what you wish to inspect. It can be a location, direction, item, or character." << std::endl;
             }
-            std::cout << "Location Characters: " << std::endl;  
-            for (const Character& character: currentLocation->getCharacters())
-            {
-                std::cout << " - " << character.getName() << std::endl;     //DEBUGGING CODE - NOT NEEDED
-            }
-            std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
             break;
+
 ///////////////////////////////////////////////////////////////////////////////
         case Action::TALK:
             // If the user input has more than one word (commands.size() > 1) then it will take every word in the commands vector and pass it to the takeCommand function
@@ -694,6 +699,11 @@ void Game::userInput(const std::string &input)
             }
             break;
 ///////////////////////////////////////////////////////////////////////////////
+        //Used for debugging - not part of the game loop - might remove for final build
+        case Action::DISPLAY:
+            display();
+            break;
+///////////////////////////////////////////////////////////////////////////////
         case Action::QUIT:
             std::cout << "Exiting game, Goodbye..." << std::endl;
             exit(0);
@@ -743,12 +753,12 @@ void Game::printHelp() const
 {
 
     std::cout << "Available commands:" << std::endl;
-    std::cout << "HELP - Display this help message." << std::endl;      //DONE
+    std::cout << "HELP - Display this help message." << std::endl;     
     std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;     
     std::cout << "TALK <character> - Talk to a character." << std::endl;
     std::cout << "TAKE <item> - Take an item." << std::endl;
     std::cout << "USE <item> - Use an item." << std::endl;
-    std::cout << "MOVE <direction> - Move in a direction (north, south, east, or west)." << std::endl;      //DONE
+    std::cout << "MOVE <direction> - Move in a direction (north, south, east, or west)." << std::endl;
     std::cout << "INVENTORY - Show your inventory." << std::endl;
     std::cout << "CONSUME <item> - Consume an item." << std::endl;
     std::cout << "QUIT - Quit the game." << std::endl;
@@ -908,8 +918,9 @@ void Game::consumeCommand(const std::string &input)
         {   
             playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
             std::cout << "Effect: " << playerEffect << std::endl;
+            inventory.decrementItem(*itemCycle); //decrements item in inventory - prevents a count bug if player happened to have 2 of the same item in inventory
             inventoryItems.erase(itemCycle); // Removes the item from the inventory
-            std::cout << "You have used: " << itemCycle->getName() << std::endl;
+            std::cout << "You have consumed: " << itemCycle->getName() << std::endl;
             return; 
         }
         else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false) 
@@ -982,7 +993,7 @@ void Game::talkCommand(const std::string &input) {
                 return;
             }
             // Print the talk line
-            std::cout << character.getName() << " says: " << talkLine << std::endl;
+            std::cout << character.getName() << talkLine << std::endl;
             return;
         }
     }
@@ -991,16 +1002,114 @@ void Game::talkCommand(const std::string &input) {
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+void Game::inspectCommand(const std::string &input) 
+{
+    std::string inputString = input;
+
+    // Check if the input refers to a direction
+    if (inputString == "north" || inputString == "n")
+    {
+        std::cout << currentLocation->getNorthDesc() << std::endl;
+        return;
+    }
+    else if (inputString == "south" || inputString == "s")
+    {
+        std::cout << currentLocation->getSouthDesc() << std::endl;
+        return;
+    }
+    else if (inputString == "east" || inputString == "e")
+    {
+        std::cout << currentLocation->getEastDesc() << std::endl;
+        return;
+    }
+    else if (inputString == "west" || inputString == "w")
+    {
+        std::cout << currentLocation->getWestDesc() << std::endl;
+        return;
+    }
+
+    // Check if the input refers to a location name
+    for (const auto& location : locations)
+    {
+        std::string locationName = location.getName();
+        // Convert the location name to lowercase
+        for (int n = 0; n < locationName.length(); n++)
+        {
+            locationName[n] = tolower(locationName[n]);
+        }
+        //if the inputString is not equal to the end position of the string (meaning it found a match)
+        //Get the description
+        if (locationName.find(inputString) != std::string::npos)
+        {
+            std::cout << location.getDescription() << std::endl;
+            return;
+        }
+    }
+
+    // Check if the input refers to a character name
+    for (const auto& character : currentLocation->getCharacters())
+    {
+        std::string characterName = character.getName();
+        // Convert the character name to lowercase
+        for (int n = 0; n < characterName.length(); n++)
+        {
+            characterName[n] = tolower(characterName[n]);
+        }
+
+        //if the inputString is not equal to the end position of the string (meaning it found a match)
+        //Get the description
+        if (characterName.find(inputString) != std::string::npos)
+        {
+            std::cout << character.getDescription() << std::endl;
+            return;
+        }
+    }
+
+    // Check if the input refers to an item name
+    for (const auto& item : currentLocation->getItems())
+    {
+        std::string itemName = item.getName();
+        // Convert the item name to lowercase
+        for (int n = 0; n < itemName.length(); n++)
+        {
+            itemName[n] = tolower(itemName[n]);
+        }
+        //if the inputString is not equal to the end position of the string (meaning it found a match)
+        //Get the description
+        if (itemName.find(inputString) != std::string::npos)
+        {
+            std::cout << item.getDescription() << std::endl;
+            return;
+        }
+    }
+
+    std::cerr << "Cannot inspect: " << inputString << std::endl;
+}
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 // void Game::update()
 // {
 // }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+// Used for debugging - can be called with display command from in game
+void Game::display()
+{
+        std::cout << "DISPLAY" << std::endl;
+        std::cout << "Current Location: " << currentLocation->getName() << std::endl;
+        std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
+        for (const Item& item : currentLocation->getItems())        //DEBUGGING CODE - NOT NEEDED
+        {
+            std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  //DEBUGGING CODE - NOT NEEDED
+        }
+        std::cout << "Location Characters: " << std::endl;  
+        for (const Character& character: currentLocation->getCharacters())
+        {
+            std::cout << " - " << character.getName() << std::endl;     //DEBUGGING CODE - NOT NEEDED
+        }
+        std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
 
-// void Game::display()
-// {
-// }
+}
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 

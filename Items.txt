@@ -111,8 +111,8 @@ useEffect: NULL
 
 #Item9
 id: TEA
-name: "Tea"
-description: "A cup of tea I took from the tea party. I wonder what type of tea it is?"
+name: Tea
+description: A cup of tea I took from the tea party. I wonder what type of tea it is?
 canTake: true
 isConsumable: true
 isUsable: false
@@ -124,8 +124,8 @@ useEffect: NULL
 
 #Item10
 id: MARMALADE
-name: "Marmalade Jar"
-description: "A jar of marmalade! Too bad it's empty..."
+name: Marmalade Jar
+description: A jar of marmalade! Too bad it's empty...
 canTake: true
 isConsumable: false
 isUsable: false
@@ -136,8 +136,8 @@ useEffect: NULL
 
 #Item11
 id: TART
-name: "Tart"
-description: "A delicious plate of tarts. Looks like it was made for royalty."
+name: Tart
+description: A delicious plate of tarts. Looks like it was made for royalty.
 canTake: false
 isConsumable: true
 isUsable: false
@@ -148,37 +148,37 @@ useEffect: NULL
 
 #Item13
 id: UGLY_BABY
-name: "Ugly Baby"
-description: "A rather ugly baby with pig like features. The more I look at it, the closer it resembles one. Not to mention it snorts like one too!"
+name: Ugly Baby
+description: A rather ugly baby with pig like features. The more I look at it, the closer it resembles one. Not to mention it snorts like one too!
 canTake: true
 isConsumable: false
 isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: "The baby has completely turned into a piglet! It would be rather silly if I kept holding it like a baby now wouldn't it?"
+useEffect: The baby has completely turned into a piglet! It would be rather silly if I kept holding it like a baby now wouldn't it?
 
 #Item14
 id: RED_PAINT
-name: "Bucket of Red Paint"
-description: "The bucket of red paint that Two, Five, and Seven were using to paint the roses."
+name: Bucket of Red Paint
+description: The bucket of red paint that Two, Five, and Seven were using to paint the roses.
 canTake: true
 isConsumable: false
 isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: "I paint one of the white roses red. The Queen will never know the difference!"
+useEffect: I paint one of the white roses red. The Queen will never know the difference!
 
 #Item15
 id: FLAMINGO
-name: "Flamingo"
-description: "A rather sassy flamingo, it definitely does not like me handling it like a croquet club."
+name: Flamingo
+description: A rather sassy flamingo, it definitely does not like me handling it like a croquet club.
 canTake: true
 isConsumable: false
 isUsable: true
 isKey: false
 keyLocationId: NULL
 consumeEffect: NULL
-useEffect: "I try to use the flamingo as a croquet club and hit the hedgehogs towards the score pylons. The hedgehogs keep running away though!
+useEffect: I try to use the flamingo as a croquet club and hit the hedgehogs towards the score pylons. The hedgehogs keep running away though!
 
