@@ -2,7 +2,7 @@
 id: riverBank
 name: River Bank
 description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
-items: CAKE RED_PAINT UGLY_BABY SMALL_BOX WHITE_GLOVES FAN
+items: NULL
 characters: sister
 pathNorth: NULL
 pathSouth: NULL
@@ -35,7 +35,7 @@ pathEast: landingHall
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
-eastDesc: It's a rather large rabbit hole. Looks like it travels rather deep as I can't see the bottom.
+eastDesc: It's a rather deep looking rabbit hole. I can't see the bottom...
 westDesc: NULL
 northIsLocked: false
 southIsLocked: false
@@ -51,14 +51,14 @@ westKey: NULL
 #Location2
 id: landingHall
 name: Landing Hall
-description: A long low hallway absent of chandeliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing.
+description: A long low hallway absent of chandeliers, making it rather dark overhead. There's a bend in the hall a few meters ahead. Underneath you is a large pile of leaves and sticks that softened your landing. You briefly see the White Rabbit moving down the hallway south before he turns with the bend.
 items: NULL
 pathNorth: NULL
 pathSouth: doorwayHall
 pathEast: NULL
 pathWest: NULL
 northDesc: NULL
-southDesc: There's a bend in the hallway. Looks like it's the only path forward!
+southDesc: This is the only way forward. There's a bend at the end of this hall.
 eastDesc: NULL
 westDesc: NULL
 northIsLocked: false
@@ -75,9 +75,9 @@ westKey: NULL
 #Location3
 id: doorwayHall
 name: Doorway Hall
-description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall.
+description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall. It looks like there's something small on top of the table.
 characters: whiteRabbit
-items: TINY_GOLD_KEY SMALL_BOX
+items: TINY_GOLD_KEY SMALL_BOX 
 pathNorth: landingHall
 pathSouth: royalGardens
 pathEast: marchHareHome
@@ -100,7 +100,7 @@ westKey: NULL
 #Location4
 id: beachBank
 name: Beach Bank
-description: Looks like a typical beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
+description: Looks like a typical coastal beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
 items: NULL
 characters: mouse dodo lory
 pathNorth: NULL
@@ -109,7 +109,7 @@ pathEast: whiteRabbitHome
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
-eastDesc: After climbing the hill you notice a lovely home in the distant fields.
+eastDesc: There's a sheer hill this way. Theres a well travelled but steep pathway that cuts through it. Maybe there's something over this way?
 westDesc: NULL
 northIsLocked: false
 southIsLocked: false
@@ -126,8 +126,8 @@ westKey: NULL
 #Location5
 id: whiteRabbitHome
 name: White Rabbit's Home
-description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard.
-items: CAKE
+description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbits bedroom. There's a nightstand by the bed and large window that brings in natural light.
+items: NIGHTSTAND TONIC LOOKING_GLASS
 characters: whiteRabbit billLizard groundskeeperPat
 pathNorth: denseWoods
 pathSouth: NULL
@@ -142,7 +142,7 @@ southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
 firstVisit: true
-events: NULL
+events: rabbitHomeEvent.txt
 northKey: NULL
 southKey: NULL
 eastKey: NULL

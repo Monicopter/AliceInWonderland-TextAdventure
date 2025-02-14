@@ -727,22 +727,34 @@ void Game::playerDirectionalInput(const std::string &input)
     if (input == "north" || input == "n")
     {
         move(Direction::NORTH);
+        return;
     }
-    else if (input == "south" || input == "s")
-    {
+    if (input == "south" || input == "s")
+    {   //conditional for the doorway hall path south into the gardens - player needs to be shrunk to use this pathway
+        if (currentLocation->getId() == "doorwayHall" && playerEffect != "SHRINK" && currentLocation->getSouthIsLocked() == false ) {
+            std::cerr << "You need to be shrunk to fit through this doorway!" << std::endl;
+            return;     
+        } else {
+            move(Direction::SOUTH);
+            return;
+        }
         move(Direction::SOUTH);
+        return;
     }
-    else if (input == "east" || input == "e")
+    if (input == "east" || input == "e")
     {
         move(Direction::EAST);
+        return;
     }
-    else if (input == "west" || input == "w")
+    if (input == "west" || input == "w")
     {
         move(Direction::WEST);
+        return;
     }
     else
     {
         std::cerr << "Invalid direction. Use north, south, east, or west." << std::endl;
+        return;
     }
 }
 
@@ -1007,44 +1019,60 @@ void Game::inspectCommand(const std::string &input)
     std::string inputString = input;
 
     // Check if the input refers to a direction
-    if (inputString == "north" || inputString == "n")
+    if (inputString == "north" || inputString == "n" && currentLocation->getNorthDesc() != "NULL")
     {
+        if (currentLocation->getNorthDesc() == "NULL") {
+            std::cout << "There's nothing of interest in that direction." << std::endl;
+            return;
+        }
         std::cout << currentLocation->getNorthDesc() << std::endl;
         return;
     }
-    else if (inputString == "south" || inputString == "s")
+    else if (inputString == "south" || inputString == "s" && currentLocation->getSouthDesc() != "NULL")
     {
+        if (currentLocation->getSouthDesc() == "NULL") {
+            std::cout << "There's nothing of interest in that direction." << std::endl;
+            return;
+        }
         std::cout << currentLocation->getSouthDesc() << std::endl;
         return;
     }
-    else if (inputString == "east" || inputString == "e")
+    else if (inputString == "east" || inputString == "e" && currentLocation->getEastDesc() != "NULL")
     {
+        if (currentLocation->getEastDesc() == "NULL") {
+            std::cout << "There's nothing of interest in that direction." << std::endl;
+            return;
+        }
         std::cout << currentLocation->getEastDesc() << std::endl;
         return;
     }
-    else if (inputString == "west" || inputString == "w")
+    else if (inputString == "west" || inputString == "w" && currentLocation->getWestDesc() != "NULL")
     {
-        std::cout << currentLocation->getWestDesc() << std::endl;
-        return;
-    }
-
-    // Check if the input refers to a location name
-    for (const auto& location : locations)
-    {
-        std::string locationName = location.getName();
-        // Convert the location name to lowercase
-        for (int n = 0; n < locationName.length(); n++)
-        {
-            locationName[n] = tolower(locationName[n]);
-        }
-        //if the inputString is not equal to the end position of the string (meaning it found a match)
-        //Get the description
-        if (locationName.find(inputString) != std::string::npos)
-        {
-            std::cout << location.getDescription() << std::endl;
+        if (currentLocation->getWestDesc() == "NULL") {
+            std::cout << "There's nothing of interest in that direction." << std::endl;
             return;
         }
+        std::cout << currentLocation->getWestDesc() << std::endl;
+        return;
+    } 
+
+
+    // Check if the input refers to a location name
+
+    std::string locationName = currentLocation->getName();
+    // Convert the location name to lowercase
+    for (int n = 0; n < locationName.length(); n++)
+    {
+        locationName[n] = tolower(locationName[n]);
     }
+    //if the inputString is not equal to the end position of the string (meaning it found a match)
+    //Get the description
+    if (locationName.find(inputString) != std::string::npos) 
+    {
+        std::cout << currentLocation->getDescription() << std::endl;
+        return;
+    } 
+
 
     // Check if the input refers to a character name
     for (const auto& character : currentLocation->getCharacters())
@@ -1065,7 +1093,7 @@ void Game::inspectCommand(const std::string &input)
         }
     }
 
-    // Check if the input refers to an item name
+    // Check if the input refers to an item within the location
     for (const auto& item : currentLocation->getItems())
     {
         std::string itemName = item.getName();
@@ -1083,13 +1111,25 @@ void Game::inspectCommand(const std::string &input)
         }
     }
 
+    // Check if the input refers to an item within player's inventory
+    for (const auto& item : inventory.getItems())
+    {
+        std::string itemName = item.getName();
+        // Convert the item name to lowercase
+        for (int n = 0; n < itemName.length(); n++)
+        {
+            itemName[n] = tolower(itemName[n]);
+        }
+        //if the inputString is not equal to the end position of the string (meaning it found a match)
+        //Get the description
+        if (itemName.find(inputString) != std::string::npos)
+        {
+            std::cout << item.getDescription() << std::endl;
+            return;
+        }
+    }
     std::cerr << "Cannot inspect: " << inputString << std::endl;
 }
-/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
-
-// void Game::update()
-// {
-// }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 // Used for debugging - can be called with display command from in game
@@ -1139,9 +1179,15 @@ void Game::handleUnlockEffect(const std::string& locationId)
 {
     for (auto& location : locations)
     {
+        //for the first visit load a story txt file then transports player to beachBank location
+        if (currentLocation->getId() == "doorwayHall" && currentLocation->getFirstVisit() == true)
+        {
+            printTextFile("tearsEvent.txt");
+            return;
+        }
+        //for second visit to doorwayhall area allows player to unlock door to royal gardens
         if (location.getId() == locationId)
         {
-            
             currentLocation->setSouthIsLocked(false);
             std::cout << "Unlocked location: " << location.getName() << std::endl;
             return;

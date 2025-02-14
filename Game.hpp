@@ -53,6 +53,12 @@ private:
         {"red paint", "RED_PAINT"},
         {"bucket of paint", "RED_PAINT"},
         {"bucket of red paint", "RED_PAINT"},
+        {"table", "GLASS_TABLE"},
+        {"glass table", "GLASS_TABLE"},
+        {"night stand", "NIGHT_STAND"},
+        {"stand", "NIGHT_STAND"},
+        {"looking glass", "LOOKING_GLASS"},
+        {"mirror", "LOOKING_GLASS"},
         {"flamingo", "FLAMINGO"}
         };
 
@@ -78,7 +84,6 @@ public:
     void talkCommand(const std::string &input);             //handles player talk command
     void inspectCommand(const std::string &input);          //handles player inspect command
 
-    //void update();                                        //updates game state such as moving locations, picking item up, etc.
     void display();                                         //displays current game state like location, items, etc.
     void printTextFile(const std::string& filename) const;  //prints text file to console - for longer exposition/events
     void handleUnlockEffect(const std::string& locationId);      //used to unlock direction pathways from USE command of key items

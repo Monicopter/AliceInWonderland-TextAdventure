@@ -182,3 +182,40 @@ keyLocationId: NULL
 consumeEffect: NULL
 useEffect: I try to use the flamingo as a croquet club and hit the hedgehogs towards the score pylons. The hedgehogs keep running away though!
 
+#Item16
+id: GLASS_TABLE
+name: Glass Table
+description: A small three-legged glass table, there's a tiny gold key on the top of it. I wonder if it opens that small door?
+canTake: false
+isConsumable: false
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: NULL
+useEffect: NULL
+
+
+#Item17
+id: NIGHT_STAND
+name: Night Stand
+description: A lovely little nightstand that has several pairs of white gloves and a hand fan on top.
+canTake: false
+isConsumable: false
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: NULL
+useEffect: NULL
+
+#Item18
+id: LOOKING_GLASS
+name: Looking Glass
+description: A fancy looking glass. It looks out to the West. You can see the beach that you just came from. Further in the distance a bit over the ocean channel you can just barely make out a beautiful castle surrounded by stone walls through the fog.
+canTake: false
+isConsumable: false
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: NULL
+useEffect: NULL
+
