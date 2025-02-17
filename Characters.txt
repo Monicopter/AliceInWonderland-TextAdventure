@@ -27,7 +27,7 @@ talk_rabbitHole: NULL
 talk_landingHall: NULL
 talk_doorwayHall: NULL
 talk_beachBank: NULL
-talk_whiteRabbitHome: Mary Ann! Fetch me my gloves and fan this instant!
+talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
@@ -355,7 +355,7 @@ talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
-talk_royalGardens: NULL
+talk_royalGardens: Goodness! If we don't paint these roses red quickly, the Queen will have our heads!
 talk_croquetField: NULL
 talk_royalBeach: NULL
 talk_throne: NULL
@@ -369,7 +369,7 @@ talk_rabbitHole: NULL
 talk_landingHall: NULL
 talk_doorwayHall: NULL
 talk_beachBank: NULL
-talk_whiteRabbitHome: NULL
+talk_whiteRabbitHome: This poor lizard seems rather dull. He's staring blankly into the distance.
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
@@ -378,7 +378,7 @@ talk_marchHareHome: NULL
 talk_royalGardens: NULL
 talk_croquetField: NULL
 talk_royalBeach: NULL
-talk_throne: NULL
+talk_throne: The dull lizard is sitting in the jurors box. His pencil makes an irritating squeaking sound during use.
 
 #Character19
 id: frogFootman
