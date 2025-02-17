@@ -1,7 +1,7 @@
 #Location0
 id: riverBank
 name: River Bank
-description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East.
+description: A picturesque river bank on your family estate. Lush grass and flowers populate the area. The summer sun beams down on the open landscape and the air is filled with humidity and the smell of pollen. There's a lovely old willow tree close by and some well groomed hedges to the East. Your older sister is sitting under the tree, reading a book that seems to have encapsulated her entire attention. That White Rabbit went East, toward the hedges.
 items: NULL
 characters: sister
 pathNorth: NULL
@@ -76,15 +76,15 @@ westKey: NULL
 id: doorwayHall
 name: Doorway Hall
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall. It looks like there's something small on top of the table.
-characters: whiteRabbit
+characters: NULL
 items: TINY_GOLD_KEY SMALL_BOX GLASS_TABLE
 pathNorth: landingHall
 pathSouth: royalGardens
 pathEast: marchHareHome
 pathWest: NULL
-northDesc: That path goes back to the hallway where I landed from the rabbit hole.
+northDesc: That path goes back to the hallway where I landed after falling down the rabbit hole.
 southDesc: There's a rather small door behind these low hanging curtains! The door is much too small for me to fit through at my current size. Maybe that key on the glass table will open this door?
-eastDesc: This is a rather cozy looking craftsman door. The wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. Feels like it's locked from the other side with a latch.
+eastDesc: This is a rather cozy looking craftsman door. The wood looks very old. I can see vines peaking through the edges of the doorway. It doesn't budge when I try to open it. It feels like it's locked from the other side.
 westDesc: NULL
 northIsLocked: false
 southIsLocked: true
@@ -100,7 +100,7 @@ westKey: NULL
 #Location4
 id: beachBank
 name: Beach Bank
-description: Looks like a typical coastal beach you'd find in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
+description: The surroundings looks like a typical coastal beach in England. Waves gently wash over the sand, with the occasional large rock, driftwood, and shell scattering the area.
 items: NULL
 characters: mouse dodo lory
 pathNorth: NULL
@@ -109,7 +109,7 @@ pathEast: whiteRabbitHome
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
-eastDesc: There's a sheer hill this way. Theres a well travelled but steep pathway that cuts through it. Maybe there's something over this way?
+eastDesc: There's a sheer hill this way. There's a well travelled but steep pathway that cuts through it. Maybe there's something over this way?
 westDesc: NULL
 northIsLocked: false
 southIsLocked: false
@@ -126,7 +126,7 @@ westKey: NULL
 #Location5
 id: whiteRabbitHome
 name: White Rabbit's Home
-description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbits bedroom. There's a nightstand by the bed and large window that brings in natural light.
+description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbit's bedroom. There's a nightstand by the bed and large window that brings in natural light.
 items: NIGHTSTAND ENLARGE_POTION LOOKING_GLASS
 characters: whiteRabbit billLizard groundskeeperPat
 pathNorth: denseWoods

@@ -939,6 +939,11 @@ void Game::consumeCommand(const std::string &input)
                 return;
             }
 
+            if (inputString == "cake")
+            {
+                std::cout << "Curiouser and curiouser"
+            }
+
             return;
         }
         else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false)

@@ -14,7 +14,7 @@ useEffect: NULL
 #Item1
 id: CAKE
 name: Small Cake
-description: A tiny cake that smells of lemon. Seems very tempting...
+description: A tiny cake that you found in the box. It has the words 'EAT ME' written on it in currants.
 canTake: true
 isConsumable: true
 isUsable: false
