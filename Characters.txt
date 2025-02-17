@@ -25,7 +25,7 @@ description: A frantic, anxious, and manic rabbit wearing a waistcoat and pocket
 talk_riverBank: NULL
 talk_rabbitHole: NULL
 talk_landingHall: NULL
-talk_doorwayHall: NULL
+talk_doorwayHall: The White Rabbit purposefully ignores your pleas for help, almost as if he's frightened by you. He quickly skitters away, dropping a pair of small white gloves and a hand fan.
 talk_beachBank: NULL
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL

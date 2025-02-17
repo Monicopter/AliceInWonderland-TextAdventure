@@ -91,5 +91,6 @@ public:
     std::string removeAllWhitespace(const std::string& input);   //removes all whitespace from a string
     void addInventoryItemById(const std::string& itemId);        //adds item to inventory from an input item ID
     void addCharacterToLocation(const std::string& characterId); //adds a character to the current location cell
+    void addItemToLocation(const std::string& itemId);
 
 };

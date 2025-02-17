@@ -847,11 +847,11 @@ void Game::useCommand(const std::string &input)
         {   //Checks the item useEffect for items in player's inventory then diverts to the appropriate effect
             std::string effect = itemCycle->getUseEffect();
 
-            if (effect == "SHRINK")
+            if (effect == "SHRINK") //for the hand fan object and doorwayhall tears event
             {
                 inventoryItems.erase(itemCycle); // Removes the item from the inventory
                 playerEffect = "SHRINK";
-                std::cout << "You are now shrunk" << std::endl;
+                printTextFile("tearsEvent.txt");
             }
             else if (effect == "ENLARGE")
             {
@@ -859,7 +859,7 @@ void Game::useCommand(const std::string &input)
                 playerEffect = "ENLARGE";
                 std::cout << "You are now enlarged" << std::endl;
             }
-            else if (effect == "UNLOCK")
+            else if (effect == "UNLOCK")    //for the tiny gold key item
             {
                 std::string usedItemName = itemCycle->getName();
                 inventoryItems.erase(itemCycle); 
@@ -867,11 +867,22 @@ void Game::useCommand(const std::string &input)
                 handleUnlockEffect(itemCycle->getKeyLocationId());
                 
             }
-            else if (effect == "WEAR")
+            else if (effect == "WEAR")  //for the white gloves item object
             {
+                if (playerEffect == "ENLARGE")
+                {
+                    std::cout << "You're much too large to wear these gloves!" << std::endl;
+                    return;
+                }
+                if (playerEffect == "SHRINK")
+                {
+                    std::cout << "You're much too tiny to wear these gloves!" << std::endl;
+                    return;
+                }
                 std::string usedItemName = itemCycle->getName();
                 inventoryItems.erase(itemCycle); 
                 std::cout << "You are now wearing the " << usedItemName << std::endl;
+                return;
             }
             else if (effect == "THROW")
             {
@@ -941,10 +952,15 @@ void Game::consumeCommand(const std::string &input)
 
             if (inputString == "cake")
             {
-                std::cout << "Curiouser and curiouser"
+                std::cout << "Curiouser and curiouser" << std::endl;
+                std::cout << "You've now grown VERY large, you have to bend your neck to avoid hitting the ceiling beams." << std::endl;
+                std::cout << "Alice is really having a rough go of it. She starts weaping. Is she going to be this large forever now?" << std::endl;
+                std::cout << "You suddenly spot the frantic White Rabbit hopping down the hall towards you. Maybe you could ask for his help?" << std::endl;
+                addCharacterToLocation("whiteRabbit");
+                return;
             }
-
             return;
+
         }
         else if (itemCycle->getId() == inputString && itemCycle->getIsConsumable() == false)
         {
@@ -975,6 +991,7 @@ void Game::talkCommand(const std::string &input) {
         if (characterName.find(inputString) != std::string::npos) {
             // Pull the appropriate talk line for the current location
             std::string talkLine;
+            std::string characterId;
             
             //finds current location and assigns the correct contextual talk dialogue for currentLocation
             if (currentLocation->getId() == "riverBank") {
@@ -985,6 +1002,13 @@ void Game::talkCommand(const std::string &input) {
                 talkLine = character.getTalkLandingHall();
             } else if (currentLocation->getId() == "doorwayHall") {
                 talkLine = character.getTalkDoorwayHall();
+                characterId = character.getId();
+                if (characterId == "whiteRabbit")   
+                {
+                    addItemToLocation("WHITE_GLOVES");
+                    addItemToLocation("FAN");
+                    // MAKE A FUNCTION THAT REMOVES A CHARACTER FROM A LOCATION
+                }
             } else if (currentLocation->getId() == "beachBank") {
                 talkLine = character.getTalkBeachBank();
             } else if (currentLocation->getId() == "whiteRabbitHome") {
@@ -1192,18 +1216,11 @@ void Game::handleUnlockEffect(const std::string& locationId)
         //for the first visit load a story txt file then transports player to beachBank location
         if (currentLocation->getId() == "doorwayHall" && currentLocation->getFirstVisit() == true)
         {
-            for (auto& item : items)
-            {
-                if (item.getId() == "SHRINK_TONIC")
-                {
-                     currentLocation->addItem(item);
-                     currentLocation->setSouthIsLocked(false);
-                     std::cout << "The door is now open but there's no way for me to fit through at my current size." << std::endl;
-                     std::cout << "Alice looks back at the glass table and notices a tonic bottle there now," << std::endl;
-                     std::cout << "That certainly wasn't there before, was it?" << std::endl;
-                     return;
-                }
-            }
+            addItemToLocation("SHRINK_TONIC");
+            currentLocation->setSouthIsLocked(false);
+            std::cout << "The door is now open but there's no way for me to fit through at my current size." << std::endl;
+            std::cout << "Alice looks back at the glass table and notices a tonic bottle there now," << std::endl;
+            std::cout << "That certainly wasn't there before, was it?" << std::endl;
             return;
         }
         //for second visit to doorwayhall area allows player to unlock door to royal gardens
@@ -1257,4 +1274,19 @@ void Game::addCharacterToLocation(const std::string& characterId)
         }
     }
     std::cout << "Character not found!" << std::endl;
+}
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+void Game::addItemToLocation(const std::string& itemId)
+{
+    for (auto& item : items)
+    {
+        if (item.getId() == itemId)
+        {
+            currentLocation->addItem(item);
+            return;
+        }
+    }
+    std::cout << "Item not found!" << std::endl;
 }
