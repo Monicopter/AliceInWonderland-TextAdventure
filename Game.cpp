@@ -888,7 +888,7 @@ void Game::useCommand(const std::string &input)
             {
                 inventoryItems.erase(itemCycle); 
                 printTextFile("dogStickEvent.txt"); 
-                //currentLocation->setLocation()
+                //currentLocation->setLocation(locations[7])  TEST THIS!!!!
             }
             else if (effect == "SPAWN_CAKE")
             {
@@ -974,11 +974,14 @@ void Game::consumeCommand(const std::string &input)
 
 void Game::talkCommand(const std::string &input) {
     std::string inputString = input;
+    auto &locationCharacters = currentLocation->getCharacters();
 
     // Iterate through the characters in the current location
-    for (const Character& character : currentLocation->getCharacters()) {
+    //for (const Character& character : currentLocation->getCharacters()) {
+    for (auto characterCycle = locationCharacters.begin(); characterCycle != locationCharacters.end(); ++characterCycle) {
 
-        std::string characterName = character.getName();
+     
+        std::string characterName = characterCycle->getName();
 
         //converts character name to lower case to match player input
         for (int n = 0; n < characterName.length(); n++)
@@ -994,52 +997,84 @@ void Game::talkCommand(const std::string &input) {
             std::string characterId;
             
             //finds current location and assigns the correct contextual talk dialogue for currentLocation
-            if (currentLocation->getId() == "riverBank") {
-                talkLine = character.getTalkRiverBank();
-            } else if (currentLocation->getId() == "rabbitHole") {
-                talkLine = character.getTalkRabbitHole();
-            } else if (currentLocation->getId() == "landingHall") {
-                talkLine = character.getTalkLandingHall();
-            } else if (currentLocation->getId() == "doorwayHall") {
-                talkLine = character.getTalkDoorwayHall();
-                characterId = character.getId();
+            if (currentLocation->getId() == "riverBank") 
+            {
+                talkLine = characterCycle->getTalkRiverBank();
+            } 
+            if (currentLocation->getId() == "rabbitHole") 
+            {
+                talkLine = characterCycle->getTalkRabbitHole();
+            } 
+            if (currentLocation->getId() == "landingHall") 
+            {
+                talkLine = characterCycle->getTalkLandingHall();
+            } 
+            if (currentLocation->getId() == "doorwayHall") 
+            {
+                talkLine = characterCycle->getTalkDoorwayHall();
+                characterId = characterCycle->getId();
                 if (characterId == "whiteRabbit")   
                 {
                     addItemToLocation("WHITE_GLOVES");
                     addItemToLocation("FAN");
+                    locationCharacters.erase(characterCycle);
                     // MAKE A FUNCTION THAT REMOVES A CHARACTER FROM A LOCATION
                 }
-            } else if (currentLocation->getId() == "beachBank") {
-                talkLine = character.getTalkBeachBank();
-            } else if (currentLocation->getId() == "whiteRabbitHome") {
-                talkLine = character.getTalkWhiteRabbitHome();
-            } else if (currentLocation->getId() == "denseWoods") {
-                talkLine = character.getTalkDenseWoods();
-            } else if (currentLocation->getId() == "mushroomPatch") {
-                talkLine = character.getTalkMushroomPatch();
-            } else if (currentLocation->getId() == "duchessHomeExt") {
-                talkLine = character.getTalkDuchessHomeExt();
-            } else if (currentLocation->getId() == "duchessHomeInt") {
-                talkLine = character.getTalkDuchessHomeInt();
-            } else if (currentLocation->getId() == "marchHareHome") {
-                talkLine = character.getTalkMarchHareHome();
-            } else if (currentLocation->getId() == "royalGardens") {
-                talkLine = character.getTalkRoyalGardens();
-            } else if (currentLocation->getId() == "croquetField") {
-                talkLine = character.getTalkCroquetField();
-            } else if (currentLocation->getId() == "royalBeach") {
-                talkLine = character.getTalkRoyalBeach();
-            } else if (currentLocation->getId() == "throne") {
-                talkLine = character.getTalkThrone();
+            } 
+            if (currentLocation->getId() == "beachBank") 
+            {
+                talkLine = characterCycle->getTalkBeachBank();
+            } 
+            if (currentLocation->getId() == "whiteRabbitHome") 
+            {
+                talkLine = characterCycle->getTalkWhiteRabbitHome();
+            } 
+            if (currentLocation->getId() == "denseWoods") 
+            {
+                talkLine = characterCycle->getTalkDenseWoods();
+            } 
+            if (currentLocation->getId() == "mushroomPatch") 
+            {
+                talkLine = characterCycle->getTalkMushroomPatch();
+            } 
+            if (currentLocation->getId() == "duchessHomeExt") 
+            {
+                talkLine = characterCycle->getTalkDuchessHomeExt();
+            } 
+            if (currentLocation->getId() == "duchessHomeInt") 
+            {
+                talkLine = characterCycle->getTalkDuchessHomeInt();
+            } 
+            if (currentLocation->getId() == "marchHareHome") 
+            {
+                talkLine = characterCycle->getTalkMarchHareHome();
+            } 
+            if (currentLocation->getId() == "royalGardens") 
+            {
+                talkLine = characterCycle->getTalkRoyalGardens();
+            } 
+            if (currentLocation->getId() == "croquetField") 
+            {
+                talkLine = characterCycle->getTalkCroquetField();
+            } 
+            if (currentLocation->getId() == "royalBeach") 
+            {
+                talkLine = characterCycle->getTalkRoyalBeach();
+            } 
+            if (currentLocation->getId() == "throne") 
+            {
+                talkLine = characterCycle->getTalkThrone();
             }
+
             //edge case if a character is present but doesn't have a talk line - the player should never see this message in final draft.
             if (talkLine == "NULL")
             {
-                std::cout << character.getName() << " has nothing to say to you." << std::endl;
+                std::cout << characterCycle->getName() << " has nothing to say to you." << std::endl;
                 return;
             }
+
             // Print the talk line
-            std::cout << character.getName() << talkLine << std::endl;
+            std::cout << characterCycle->getName() << talkLine << std::endl;
             return;
         }
     }
