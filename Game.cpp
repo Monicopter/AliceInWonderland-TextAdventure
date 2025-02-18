@@ -852,6 +852,7 @@ void Game::useCommand(const std::string &input)
                 inventoryItems.erase(itemCycle); // Removes the item from the inventory
                 playerEffect = "SHRINK";
                 printTextFile("tearsEvent.txt");
+                setPlayerLocation("beachBank");
             }
             else if (effect == "ENLARGE")
             {
@@ -888,13 +889,13 @@ void Game::useCommand(const std::string &input)
             {
                 inventoryItems.erase(itemCycle); 
                 printTextFile("dogStickEvent.txt"); 
-                //currentLocation->setLocation(locations[7])  TEST THIS!!!!
+                setPlayerLocation("mushroomPatch");
             }
             else if (effect == "SPAWN_CAKE")
             {
                 inventoryItems.erase(itemCycle); 
                 addInventoryItemById("CAKE");
-                std::cout << "There was a small lemon cake inside the box! It looks delicious." << std::endl;
+                std::cout << "There was a small cake inside the box! It has the words 'EAT ME' written neatly in currants on it." << std::endl;
             }
             else
             {   
@@ -904,6 +905,7 @@ void Game::useCommand(const std::string &input)
             }
             return; 
         }
+
         else if (itemCycle->getId() == inputString && itemCycle->getIsUsable() == false) 
         {
             std::cout << "You cannot use: " << itemCycle->getName() << std::endl;
@@ -995,86 +997,107 @@ void Game::talkCommand(const std::string &input) {
             // Pull the appropriate talk line for the current location
             std::string talkLine;
             std::string characterId;
+            std::string characterName;
             
             //finds current location and assigns the correct contextual talk dialogue for currentLocation
             if (currentLocation->getId() == "riverBank") 
             {
                 talkLine = characterCycle->getTalkRiverBank();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "rabbitHole") 
             {
                 talkLine = characterCycle->getTalkRabbitHole();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "landingHall") 
             {
                 talkLine = characterCycle->getTalkLandingHall();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "doorwayHall") 
             {
                 talkLine = characterCycle->getTalkDoorwayHall();
+                characterName = characterCycle->getName();
                 characterId = characterCycle->getId();
                 if (characterId == "whiteRabbit")   
                 {
                     addItemToLocation("WHITE_GLOVES");
                     addItemToLocation("FAN");
                     locationCharacters.erase(characterCycle);
-                    // MAKE A FUNCTION THAT REMOVES A CHARACTER FROM A LOCATION
                 }
             } 
             if (currentLocation->getId() == "beachBank") 
             {
+
                 talkLine = characterCycle->getTalkBeachBank();
+                characterName = characterCycle->getName();
+                characterId = characterCycle->getId();
+                if (characterId == "mouse")   
+                {
+                    locationCharacters.erase(characterCycle);
+                }
             } 
             if (currentLocation->getId() == "whiteRabbitHome") 
             {
                 talkLine = characterCycle->getTalkWhiteRabbitHome();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "denseWoods") 
             {
                 talkLine = characterCycle->getTalkDenseWoods();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "mushroomPatch") 
             {
                 talkLine = characterCycle->getTalkMushroomPatch();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "duchessHomeExt") 
             {
                 talkLine = characterCycle->getTalkDuchessHomeExt();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "duchessHomeInt") 
             {
                 talkLine = characterCycle->getTalkDuchessHomeInt();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "marchHareHome") 
             {
                 talkLine = characterCycle->getTalkMarchHareHome();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "royalGardens") 
             {
                 talkLine = characterCycle->getTalkRoyalGardens();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "croquetField") 
             {
                 talkLine = characterCycle->getTalkCroquetField();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "royalBeach") 
             {
                 talkLine = characterCycle->getTalkRoyalBeach();
+                characterName = characterCycle->getName();
             } 
             if (currentLocation->getId() == "throne") 
             {
                 talkLine = characterCycle->getTalkThrone();
+                characterName = characterCycle->getName();
             }
 
             //edge case if a character is present but doesn't have a talk line - the player should never see this message in final draft.
             if (talkLine == "NULL")
             {
-                std::cout << characterCycle->getName() << " has nothing to say to you." << std::endl;
+                std::cout << characterName << " has nothing to say to you." << std::endl;
                 return;
             }
 
             // Print the talk line
-            std::cout << characterCycle->getName() << talkLine << std::endl;
+            std::cout << characterName << ": " << talkLine << std::endl;
             return;
         }
     }
@@ -1325,3 +1348,19 @@ void Game::addItemToLocation(const std::string& itemId)
     }
     std::cout << "Item not found!" << std::endl;
 }
+
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+void Game::setPlayerLocation(const std::string& locationId)
+{
+    for (auto& location : locations)
+    {
+        if (location.getId() == locationId)
+        {
+            currentLocation = &location;        //Updates the players location to the current location iteration pointer - effectively changing the player's current location 
+            return;
+        }
+    }
+    std::cerr << "Location not found!" << std::endl;
+}
+

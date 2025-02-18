@@ -127,8 +127,8 @@ westKey: NULL
 id: whiteRabbitHome
 name: White Rabbit's Home
 description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbit's bedroom. There's a nightstand by the bed and large window that brings in natural light.
-items: NIGHTSTAND ENLARGE_POTION LOOKING_GLASS
-characters: whiteRabbit billLizard groundskeeperPat
+items: NIGHT_STAND ENLARGE_POTION LOOKING_GLASS
+characters: whiteRabbit billLizard
 pathNorth: denseWoods
 pathSouth: NULL
 pathEast: NULL

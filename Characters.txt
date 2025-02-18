@@ -248,7 +248,7 @@ talk_riverBank: NULL
 talk_rabbitHole: NULL
 talk_landingHall: NULL
 talk_doorwayHall: NULL
-talk_beachBank: NULL
+talk_beachBank: The mouse begins to passionately recall his story, but you get completely entranced in the twists and bends in his tail... He realizes you are completely ignoring his story and is offended yet again. This time he storms away, to your dismay!
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
@@ -268,7 +268,7 @@ talk_riverBank: NULL
 talk_rabbitHole: NULL
 talk_landingHall: NULL
 talk_doorwayHall: NULL
-talk_beachBank: NULL
+talk_beachBank: We need to adopt more energetic remedies to dry off. I propose a Caucus-race!
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
@@ -288,7 +288,7 @@ talk_riverBank: NULL
 talk_rabbitHole: NULL
 talk_landingHall: NULL
 talk_doorwayHall: NULL
-talk_beachBank: NULL
+talk_beachBank: Do not argue with me. I am most definitely older than you, and therefore, know what's best. 
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
