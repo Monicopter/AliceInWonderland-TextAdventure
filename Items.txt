@@ -198,7 +198,7 @@ useEffect: NULL
 #Item17
 id: NIGHT_STAND
 name: Night Stand
-description: A lovely little nightstand that has several pairs of white gloves and a hand fan on top.
+description: A lovely little nightstand that has several pairs of white gloves and a hand fan on top. However, that potion has certainly drawn your attention.
 canTake: false
 isConsumable: false
 isUsable: false
@@ -210,7 +210,7 @@ useEffect: NULL
 #Item18
 id: LOOKING_GLASS
 name: Looking Glass
-description: A fancy looking glass. It looks out to the West. You can see the beach that you just came from. Further in the distance a bit over the ocean channel you can just barely make out a beautiful castle surrounded by stone walls through the fog.
+description: It's a looking glass. You see yourself in the reflection.
 canTake: false
 isConsumable: false
 isUsable: false
@@ -222,11 +222,23 @@ useEffect: NULL
 #Item19
 id: ENLARGE_POTION
 name: Potion
-description: A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How ominous...
+description: A mysterious bottle with a simple cork stopper and a label saying DRINK ME. How curious.
 canTake: true
 isConsumable: true
 isUsable: false
 isKey: false
 keyLocationId: NULL
 consumeEffect: ENLARGE
+useEffect: NULL
+
+#Item20
+id: PEBBLE
+name: Pebble
+description: Oh! This is not a pebble but infact a tiny cake. Maybe it will make you small again?
+canTake: true
+isConsumable: true
+isUsable: false
+isKey: false
+keyLocationId: NULL
+consumeEffect: SHRINK
 useEffect: NULL

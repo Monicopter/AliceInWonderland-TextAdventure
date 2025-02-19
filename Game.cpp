@@ -725,19 +725,22 @@ void Game::playerDirectionalInput(const std::string &input)
 {
 
     if (input == "north" || input == "n")
-    {
+    {   //conditional check if the player is enlarged within the white rabbit's home location - cannot leave until shrunk again.
+        if (currentLocation->getId() == "wRHome" && playerEffect == "ENLARGE")
+        {
+            std::cout << "You're much too large to fit through the doorway, or the windows for that matter." << std::endl;
+            return;
+        }
         move(Direction::NORTH);
         return;
     }
     if (input == "south" || input == "s")
     {   //conditional for the doorway hall path south into the gardens - player needs to be shrunk to use this pathway
-        if (currentLocation->getId() == "doorwayHall" && playerEffect != "SHRINK" && currentLocation->getSouthIsLocked() == false ) {
-            std::cerr << "You need to be shrunk to fit through this doorway!" << std::endl;
+        if (currentLocation->getId() == "doorwayHall" && playerEffect != "SHRINK" && currentLocation->getSouthIsLocked() == false ) 
+        {
+            std::cout << "You need to be shrunk to fit through this doorway!" << std::endl;
             return;     
-        } else {
-            move(Direction::SOUTH);
-            return;
-        }
+        } 
         move(Direction::SOUTH);
         return;
     }
@@ -944,7 +947,7 @@ void Game::consumeCommand(const std::string &input)
             std::cout << "You have consumed: " << consumedItemName << std::endl;
 
             // Check if the consumed item is the SHRINK_TONIC for doorway hall scripted event
-            if (inputString == "tonic")
+            if (inputString == "tonic") //event for consuming the tonic item within the doorway hall location
             {
                 currentLocation->setSouthIsLocked(true);
                 std::cout << "Great! You're now around 10 inches tall! Small enough to fit through that door. Unfortunately, the door is now closed and the key is on top of the table." << std::endl;
@@ -952,7 +955,7 @@ void Game::consumeCommand(const std::string &input)
                 return;
             }
 
-            if (inputString == "cake")
+            if (inputString == "cake")  //event for consuming the cake item within the doorway hall location
             {
                 std::cout << "Curiouser and curiouser" << std::endl;
                 std::cout << "You've now grown VERY large, you have to bend your neck to avoid hitting the ceiling beams." << std::endl;
@@ -961,6 +964,20 @@ void Game::consumeCommand(const std::string &input)
                 addCharacterToLocation("whiteRabbit");
                 return;
             }
+
+            if (inputString == "potion")    //event for consuming the potion item within the white rabbit's home location
+            {
+                printTextFile("potionEvent.txt");
+                addItemToLocation("PEBBLE");
+                return;
+            }
+            if (inputString == "pebble")    //event for consuming the potion item within the white rabbit's home location
+            {
+                printTextFile("transitionHomeToWoods.txt");
+                setPlayerLocation("denseWoods");
+                return;
+            }
+
             return;
 
         }

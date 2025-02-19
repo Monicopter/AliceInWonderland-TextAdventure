@@ -58,8 +58,11 @@ private:
         {"glass table", "GLASS_TABLE"},
         {"night stand", "NIGHT_STAND"},
         {"stand", "NIGHT_STAND"},
+        {"night", "NIGHT_STAND"},
         {"looking glass", "LOOKING_GLASS"},
+        {"looking", "LOOKING_GLASS"},
         {"mirror", "LOOKING_GLASS"},
+        {"pebble", "PEBBLE"},
         {"flamingo", "FLAMINGO"}
         };
 

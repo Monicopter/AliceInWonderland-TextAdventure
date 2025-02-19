@@ -32,11 +32,11 @@ characters: NULL
 pathNorth: NULL
 pathSouth: NULL
 pathEast: landingHall
-pathWest: NULL
+pathWest: riverBank
 northDesc: NULL
 southDesc: NULL
 eastDesc: It's a rather deep looking rabbit hole. I can't see the bottom...
-westDesc: NULL
+westDesc: That's back towards the river bank where your sister is reading. No reason to go back that way!
 northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
@@ -57,7 +57,7 @@ pathNorth: NULL
 pathSouth: doorwayHall
 pathEast: NULL
 pathWest: NULL
-northDesc: NULL
+northDesc: That was a very deep rabbit hole. I certainly won't be going back that way.
 southDesc: This is the only way forward. There's a bend at the end of this hall.
 eastDesc: NULL
 westDesc: NULL
@@ -105,7 +105,7 @@ items: NULL
 characters: mouse dodo lory
 pathNorth: NULL
 pathSouth: NULL
-pathEast: whiteRabbitHome
+pathEast: wRHome
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
@@ -124,19 +124,19 @@ westKey: NULL
 
 
 #Location5
-id: whiteRabbitHome
+id: wRHome
 name: White Rabbit's Home
-description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbit's bedroom. There's a nightstand by the bed and large window that brings in natural light.
+description: A picturesque two story Victorian era home. Vines are growing up the side of the house. There's a well manicured flower garden in the front yard and what appears to be a vegetable garden in the backyard. You are currently in what appears to be the White Rabbit's bedroom. There's a nightstand by the bed and large window that brings in natural light. On the nightstand is the fan and several pairs of white gloves the White Rabbit asked for. However, there's also an enticing looking potion sitting on the table beside the looking glass... 
 items: NIGHT_STAND ENLARGE_POTION LOOKING_GLASS
-characters: whiteRabbit billLizard
+characters: billLizard
 pathNorth: denseWoods
 pathSouth: NULL
 pathEast: NULL
-pathWest: beachBank
+pathWest: NULL
 northDesc: There looks to be a dense forest in the distance.
 southDesc: NULL
 eastDesc: NULL
-westDesc: That way will lead back to the beach bank that I came from.
+westDesc: That way will lead back to the beach bank that I came from. No need to go back that way.
 northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
@@ -153,17 +153,17 @@ westKey: NULL
 #Location6
 id: denseWoods
 name: Dense Woods
-description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.
+description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.There's several leaves and sticks lying around the forest floor. Maybe one could be useful?
 items: STICK
 characters: dog
 pathNorth: duchessHomeExt
-pathSouth: whiteRabbitHome
-pathEast: mushroomPatch
+pathSouth: NULL
+pathEast: NULL
 pathWest: marchHareHome
 northDesc: There's a small opening in the woods with a tiny home sitting in the middle of the opening. I can see two people talking at the entrance.
-southDesc: This way goes back to the White Rabbit's home.
+southDesc: This way goes back to the White Rabbit's home. I do not want to go back that way.
 eastDesc: There's a rather large mushroom patch over this way.
-westDesc: I can't make out what is over this direction due to the dense trees but I can see smoke in the distance through the canopy. Must be smoke from a chimney.
+westDesc: I can't make out what is over this direction due to the dense trees but I can see smoke in the distance through the canopy. Maybe it's smoke from a chimney?
 northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
