@@ -78,7 +78,7 @@ name: Doorway Hall
 description: A long, low hallway lit up by a row of lamps hanging from the ceiling. There are several doors lining the hall with a low hanging curtain off to one side of the hallway. There's a small three legged glass table in the middle of the hall. It looks like there's something small on top of the table.
 characters: NULL
 items: TINY_GOLD_KEY SMALL_BOX GLASS_TABLE
-pathNorth: landingHall
+pathNorth: NULL
 pathSouth: royalGardens
 pathEast: marchHareHome
 pathWest: NULL
@@ -181,7 +181,7 @@ id: mushroomPatch
 name: Mushroom Patch
 description: These mushrooms seem so large while I'm shrunk down. There's a particularly large mushroom infront of me. I can't quite see above it, maybe if I inspect it...
 items: SHRINK_MUSHROOM ENLARGE_MUSHROOM
-characters: caterpillar, pigeon
+characters: caterpillar
 pathNorth: duchessHomeExt
 pathSouth: NULL
 pathEast: NULL
@@ -208,7 +208,7 @@ id: duchessHomeExt
 name: Duchess' Home
 description: A small home only about 4 feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
 items: NULL
-characters: frogFootman, cheshireCat
+characters: frogFootman cheshireCat
 pathNorth: NULL
 pathSouth: denseWoods
 pathEast: mushroomPatch
@@ -235,7 +235,7 @@ id: duchessHomeInt
 name: Duchess' Home Interior
 description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stirring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hideous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
 items: UGLY_BABY
-characters: cook, duchess, uglyBaby, cheshireCat
+characters: cook, duchess uglyBaby cheshireCat
 pathNorth: NULL
 pathSouth: NULL
 pathEast: duchessHomeExt
@@ -261,7 +261,7 @@ id: marchHareHome
 name: March Hare's Home
 description: An extremely abnormal and large house. The chimneys are shaped like ears and the roof was thatched with fur. There is a table set out in front of the house under a tree. It looks as though it's set out for a tea party.
 items: TEA
-characters: dormouse, marchHare, madHatter
+characters: dormouse marchHare madHatter
 pathNorth: NULL
 pathSouth: NULL
 pathEast: denseWoods
@@ -288,7 +288,7 @@ id: royalGardens
 name: Royal Gardens
 description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
 items: NULL
-characters: queen, king, twoFiveSeven, whiteRabbit
+characters: queen king twoFiveSeven whiteRabbit
 pathNorth: doorwayHall
 pathSouth: throne
 pathEast: royalBeach
@@ -314,7 +314,7 @@ id: croquetField
 name: Croquet Field
 description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
 items: FLAMINGO
-characters: queen, king, whiteRabbit, cheshireCat, duchess
+characters: queen king whiteRabbit cheshireCat duchess
 pathNorth: NULL
 pathSouth: NULL
 pathEast: royalGardens
@@ -340,7 +340,7 @@ id: royalBeach
 name: Palace Grounds Beach
 description: This beach stretches along the entire perimeter of the palace. Waves gently crash against the rocky beach. Ocean mist air fills your lungs. A peculiar looking animal that looks to be a mix between a pig and turtle sitting on one of the larger rocks looking rather forlorn. This must be the Mock Turtle!
 items: NULL
-characters: gryphon, mockTurtle
+characters: gryphon mockTurtle
 pathNorth: NULL
 pathSouth: NULL
 pathEast: NULL
@@ -366,7 +366,7 @@ id: throne
 name: Throne Room
 description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
 items: TART
-characters: queen, king, madHatter, marchHare, dormouse, knave, cook, billLizard, gryphon
+characters: queen king madHatter marchHare dormouse knave cook billLizard gryphon
 pathNorth: royalGardens
 pathSouth: NULL
 pathEast: NULL

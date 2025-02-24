@@ -131,7 +131,7 @@ talk_doorwayHall: NULL
 talk_beachBank: NULL
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
-talk_mushroomPatch: NULL
+talk_mushroomPatch: If you must change your size then take a piece of either side of this mushroom I sit upon. One side is a 'shrinking mushroom' and the other is an 'enlarging mushroom'. Now leave me be.
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
@@ -321,26 +321,6 @@ talk_royalBeach: NULL
 talk_throne: NULL
 
 #Character16
-id: pigeon
-name: Pigeon
-description: This pigeon has been severely wronged by serpents who are trying to steal its eggs. Therefore anything that looks even remotely like a serpent must be so!
-talk_riverBank: NULL
-talk_rabbitHole: NULL
-talk_landingHall: NULL
-talk_doorwayHall: NULL
-talk_beachBank: NULL
-talk_whiteRabbitHome: NULL
-talk_denseWoods: NULL
-talk_mushroomPatch: NULL
-talk_duchessHomeExt: NULL
-talk_duchessHomeInt: NULL
-talk_marchHareHome: NULL
-talk_royalGardens: NULL
-talk_croquetField: NULL
-talk_royalBeach: NULL
-talk_throne: NULL
-
-#Character17
 id: twoFiveSeven
 name: Two, Five, and Seven
 description: Three stooges who are trying to paint white roses red to avoid execution by the Queen.
@@ -360,7 +340,7 @@ talk_croquetField: NULL
 talk_royalBeach: NULL
 talk_throne: NULL
 
-#Character18
+#Character17
 id: billLizard
 name: Bill the Lizard
 description: An unfortunately dull creature who is always on the receiving end of bullying.
@@ -380,7 +360,7 @@ talk_croquetField: NULL
 talk_royalBeach: NULL
 talk_throne: The dull lizard is sitting in the jurors box. His pencil makes an irritating squeaking sound during use.
 
-#Character19
+#Character18
 id: frogFootman
 name: Frog Footman
 description: A frustrating creature who enjoys speaking absolute nonsense regarding who may enter and leave the house.
@@ -400,7 +380,7 @@ talk_croquetField: NULL
 talk_royalBeach: NULL
 talk_throne: NULL
 
-#Character20
+#Character19
 id: gryphon
 name: Gryphon
 description: A half-lion, half-eagle creature tasked with escorting Alice to meet the Mock Turtle. Seems a decent enough fellow, if a bit bossy.
@@ -420,7 +400,7 @@ talk_croquetField: NULL
 talk_royalBeach: NULL
 talk_throne: NULL
 
-#Character21
+#Character20
 id: dog
 name: Excited Dog
 description: What appears to be a Yorkshire Terrier. He seems awfully excitable. I should throw something to get it's attention away from me.

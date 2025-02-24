@@ -515,8 +515,7 @@ void Game::move(Direction direction)
             currentLocation->setFirstVisit(false);
             currentLocation = &location; // sets the current location to the location element in the locations vector - if it matches location.getId()
 
-            //bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
-            //std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
+           
 
             // if the current location has not been visited before and has events, print the events
             if (currentLocation->getFirstVisit() == true && currentLocation->getEvents() != "NULL") {   
@@ -854,6 +853,7 @@ void Game::useCommand(const std::string &input)
             {
                 inventoryItems.erase(itemCycle); // Removes the item from the inventory
                 playerEffect = "SHRINK";
+                currentLocation->setFirstVisit(false); // sets doorway hall first visit for false so it doesn't repeat scripted beats for tears event
                 printTextFile("tearsEvent.txt");
                 setPlayerLocation("beachBank");
             }
@@ -890,7 +890,9 @@ void Game::useCommand(const std::string &input)
             }
             else if (effect == "THROW")
             {
-                inventoryItems.erase(itemCycle); 
+                inventoryItems.erase(itemCycle);
+                removeCharacterFromLocation("dog");
+                currentLocation->setFirstVisit(false); 
                 printTextFile("dogStickEvent.txt"); 
                 setPlayerLocation("mushroomPatch");
             }
@@ -938,13 +940,8 @@ void Game::consumeCommand(const std::string &input)
         // Check if the input string is a substring of the item name and if the item is consumable
         if (itemName.find(inputString) != std::string::npos && itemCycle->getIsConsumable() == true)
         {
-            playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
-            std::cout << "Effect: " << playerEffect << std::endl;
-
+            
             std::string consumedItemName = itemCycle->getName(); // Store the name of the consumed item
-            inventory.decrementItem(*itemCycle); // Decrement the item count
-            inventoryItems.erase(itemCycle); // Removes the item from the inventory
-            std::cout << "You have consumed: " << consumedItemName << std::endl;
 
             // Check if the consumed item is the SHRINK_TONIC for doorway hall scripted event
             if (inputString == "tonic") //event for consuming the tonic item within the doorway hall location
@@ -952,7 +949,6 @@ void Game::consumeCommand(const std::string &input)
                 currentLocation->setSouthIsLocked(true);
                 std::cout << "Great! You're now around 10 inches tall! Small enough to fit through that door. Unfortunately, the door is now closed and the key is on top of the table." << std::endl;
                 std::cout << "Now that you're tiny you notice a small box near the feet of the table. What's inside?" << std::endl;
-                return;
             }
 
             if (inputString == "cake")  //event for consuming the cake item within the doorway hall location
@@ -962,22 +958,40 @@ void Game::consumeCommand(const std::string &input)
                 std::cout << "Alice is really having a rough go of it. She starts weaping. Is she going to be this large forever now?" << std::endl;
                 std::cout << "You suddenly spot the frantic White Rabbit hopping down the hall towards you. Maybe you could ask for his help?" << std::endl;
                 addCharacterToLocation("whiteRabbit");
-                return;
             }
 
             if (inputString == "potion")    //event for consuming the potion item within the white rabbit's home location
             {
                 printTextFile("potionEvent.txt");
                 addItemToLocation("PEBBLE");
-                return;
             }
             if (inputString == "pebble")    //event for consuming the potion item within the white rabbit's home location
             {
+                currentLocation->setFirstVisit(false);
                 printTextFile("transitionHomeToWoods.txt");
                 setPlayerLocation("denseWoods");
+            }
+            if (inputString == "enlarging mushroom")
+            {
+                playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
+                std::cout << "Effect: " << playerEffect << std::endl;
+                std::cout << "You have consumed a small bit of the " << consumedItemName << std::endl;
+                return;
+            }
+            if (inputString == "shrinking mushroom")
+            {
+                playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
+                std::cout << "Effect: " << playerEffect << std::endl;
+                std::cout << "You have consumed a small bit of the " << consumedItemName << std::endl;
                 return;
             }
 
+            playerEffect = itemCycle->getConsumeEffect();   // Sets the player effect to the item's consume effect
+            std::cout << "Effect: " << playerEffect << std::endl;
+            
+            inventory.decrementItem(*itemCycle); // Decrement the item count
+            inventoryItems.erase(itemCycle); // Removes the item from the inventory
+            std::cout << "You have consumed: " << consumedItemName << std::endl;
             return;
 
         }
@@ -1257,7 +1271,8 @@ void Game::display()
             std::cout << " - " << character.getName() << std::endl;     //DEBUGGING CODE - NOT NEEDED
         }
         std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
-
+        bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
+        std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
@@ -1299,10 +1314,10 @@ void Game::handleUnlockEffect(const std::string& locationId)
             return;
         }
         //for second visit to doorwayhall area allows player to unlock door to royal gardens
-        if (location.getId() == locationId)
+        if (currentLocation->getId() == "doorwayHall" && currentLocation->getFirstVisit() == false)
         {
             currentLocation->setSouthIsLocked(false);
-            std::cout << "Unlocked location: " << location.getName() << std::endl;
+            std::cout << "You've unlocked the door to the Gardens!" << std::endl;
             return;
         }
     }
@@ -1381,3 +1396,20 @@ void Game::setPlayerLocation(const std::string& locationId)
     std::cerr << "Location not found!" << std::endl;
 }
 
+/*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
+void Game::removeCharacterFromLocation(const std::string& characterId)
+{
+    auto &locationCharacters = currentLocation->getCharacters();
+
+    for (auto characterCycle = locationCharacters.begin(); characterCycle != locationCharacters.end(); ++characterCycle) 
+    {
+        std::string charId = characterCycle->getId();
+        if (charId == characterId)   
+        {
+        locationCharacters.erase(characterCycle);
+        return;
+        }
+    }
+    std::cerr << "Character not found in the current location." << std::endl;
+}

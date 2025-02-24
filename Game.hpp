@@ -40,10 +40,10 @@ private:
         {"fan", "FAN"},
         {"hand fan", "FAN"},
         {"stick", "STICK"},
-        {"blue mushroom", "SHRINK_MUSHROOM"},
-        {"b mushroom", "SHRINK_MUSHROOM"},
-        {"green mushroom", "ENLARGE_MUSHROOM"},
-        {"g mushroom", "ENLARGE_MUSHROOM"},
+        {"shrink mushroom", "SHRINK_MUSHROOM"},
+        {"shrinking mushroom", "SHRINK_MUSHROOM"},
+        {"enlarge mushroom", "ENLARGE_MUSHROOM"},
+        {"enlarging mushroom", "ENLARGE_MUSHROOM"},
         {"tea", "TEA"},
         {"tart", "TART"},
         {"ugly baby", "UGLY_BABY"},
@@ -96,5 +96,5 @@ public:
     void addCharacterToLocation(const std::string& characterId); //adds a character to the current location cell
     void addItemToLocation(const std::string& itemId);           //adds an item to the players current location
     void setPlayerLocation(const std::string& locationId);       //forcefully changes the player's current location
-
+    void removeCharacterFromLocation(const std::string& characterId); //removes a character from the currentLocation using the character's ID
 };
