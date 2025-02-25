@@ -36,7 +36,7 @@ void Game::startGame()
 
     if (!locations.empty())
     {
-        currentLocation = &locations[0];
+        currentLocation = &locations[9];  //can change the index number to spawn into a different location see locations.txt for numerical id
         std::cout << "Current Location: " << currentLocation->getName() << std::endl;
         std::cout << "Description: " << currentLocation->getDescription() << std::endl;
     }
@@ -1093,9 +1093,10 @@ void Game::talkCommand(const std::string &input) {
             {
                 talkLine = characterCycle->getTalkDuchessHomeInt();
                 characterName = characterCycle->getName();
+                characterId = characterCycle->getId();
                 if (characterId == "duchess")   
                 {
-                    printTextFile("duchessBabyEvent");
+                    printTextFile("duchessBabyEvent.txt");
                     addInventoryItemById("UGLY_BABY");
                     locationCharacters.erase(characterCycle);
                 }
@@ -1186,21 +1187,6 @@ void Game::inspectCommand(const std::string &input)
     } 
 
 
-    // Check if the input refers to a location name
-
-    std::string locationName = currentLocation->getName();
-    // Convert the location name to lowercase
-    for (int n = 0; n < locationName.length(); n++)
-    {
-        locationName[n] = tolower(locationName[n]);
-    }
-    //if the inputString is not equal to the end position of the string (meaning it found a match)
-    //Get the description
-    if (locationName.find(inputString) != std::string::npos) 
-    {
-        std::cout << currentLocation->getDescription() << std::endl;
-        return;
-    } 
 
 
     // Check if the input refers to a character name
@@ -1257,6 +1243,23 @@ void Game::inspectCommand(const std::string &input)
             return;
         }
     }
+
+    // Check if the input refers to a location name
+
+    std::string locationName = currentLocation->getName();
+    // Convert the location name to lowercase
+    for (int n = 0; n < locationName.length(); n++)
+    {
+        locationName[n] = tolower(locationName[n]);
+    }
+    //if the inputString is not equal to the end position of the string (meaning it found a match)
+    //Get the description
+    if (locationName.find(inputString) != std::string::npos) 
+    {
+        std::cout << currentLocation->getDescription() << std::endl;
+        return;
+    } 
+
     std::cerr << "Cannot inspect: " << inputString << std::endl;
 }
 
