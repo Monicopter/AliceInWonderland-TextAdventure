@@ -1093,6 +1093,12 @@ void Game::talkCommand(const std::string &input) {
             {
                 talkLine = characterCycle->getTalkDuchessHomeInt();
                 characterName = characterCycle->getName();
+                if (characterId == "duchess")   
+                {
+                    printTextFile("duchessBabyEvent");
+                    addInventoryItemById("UGLY_BABY");
+                    locationCharacters.erase(characterCycle);
+                }
             } 
             if (currentLocation->getId() == "marchHareHome") 
             {

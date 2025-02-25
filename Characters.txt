@@ -54,10 +54,10 @@ talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
-talk_royalGardens: NULL
+talk_royalGardens: Come child. Join me for a game of croquet.
 talk_croquetField: NULL
 talk_royalBeach: NULL
-talk_throne: NULL
+talk_throne: Off with her head!
 
 
 #Character3
@@ -75,10 +75,10 @@ talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
-talk_royalGardens: NULL
-talk_croquetField: NULL
+talk_royalGardens: Do not mind the Queen, she is hasty in her verdicts.
+talk_croquetField: I greatly dislike that cat. He must leave immediately or I shall find the executioner.
 talk_royalBeach: NULL
-talk_throne: NULL
+talk_throne: Guilty! The Knave is guilty of stealing the tarts, I say!
 
 #Character4
 id: cheshireCat
@@ -92,8 +92,8 @@ talk_beachBank: NULL
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
-talk_duchessHomeExt: NULL
-talk_duchessHomeInt: NULL
+talk_duchessHomeExt: We're all mad here. I'm mad. You're mad. A dog is not mad though. A dog growls when angry and wags it's tail when pleased. I do the very opposite, therefore, I am mad. Meet me at the Queen's croquet games.
+talk_duchessHomeInt: The cat says nothing, but looks at you with that unsettling grin.
 talk_marchHareHome: NULL
 talk_royalGardens: NULL
 talk_croquetField: NULL
@@ -113,7 +113,7 @@ talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
-talk_duchessHomeInt: NULL
+talk_duchessHomeInt: ...
 talk_marchHareHome: NULL
 talk_royalGardens: NULL
 talk_croquetField: NULL
@@ -154,7 +154,7 @@ talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
-talk_marchHareHome: NULL
+talk_marchHareHome: Your hair wants cutting. Tell me. Why is a raven like a writing-desk?
 talk_royalGardens: NULL
 talk_croquetField: NULL
 talk_royalBeach: NULL
@@ -174,7 +174,7 @@ talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
-talk_marchHareHome: NULL
+talk_marchHareHome: There's no room at the table for you! 
 talk_royalGardens: NULL
 talk_croquetField: NULL
 talk_royalBeach: NULL
@@ -194,7 +194,7 @@ talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
-talk_marchHareHome: NULL
+talk_marchHareHome: The Dormouse begins to say something but then suddenly falls asleep. 
 talk_royalGardens: NULL
 talk_croquetField: NULL
 talk_royalBeach: NULL
@@ -313,7 +313,7 @@ talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
-talk_duchessHomeInt: NULL
+talk_duchessHomeInt: The Cook completely ignores you. She seems much too busy aggressively stirring the soup while simultaneously adding more pepper.
 talk_marchHareHome: NULL
 talk_royalGardens: NULL
 talk_croquetField: NULL
@@ -372,7 +372,7 @@ talk_beachBank: NULL
 talk_whiteRabbitHome: NULL
 talk_denseWoods: NULL
 talk_mushroomPatch: NULL
-talk_duchessHomeExt: NULL
+talk_duchessHomeExt: There is no use in knocking, for we are both on the outside of the door. Those inside will not hear your knocking as it is too loud. I shall sit here. till to-morrow.
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
 talk_royalGardens: NULL

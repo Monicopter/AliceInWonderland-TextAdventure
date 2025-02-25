@@ -189,7 +189,7 @@ pathWest: denseWoods
 northDesc: There's a small opening in the woods with a tiny home sitting in the middle of the opening. I can see two people talking at the entrance.
 southDesc: NULL
 eastDesc: NULL
-westDesc: This path goes back to the dense woods.
+westDesc: This path leads back to the dense woods.
 northIsLocked: false
 southIsLocked: false
 eastIsLocked: false
@@ -206,7 +206,7 @@ westKey: NULL
 #Location8
 id: duchessHomeExt
 name: Duchess' Home
-description: A small home only about 4 feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
+description: A small home only about four feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
 items: NULL
 characters: frogFootman cheshireCat
 pathNorth: NULL
@@ -222,7 +222,7 @@ southIsLocked: false
 eastIsLocked: false
 westIsLocked: false
 firstVisit: true
-events: NULL
+events: duchessHomeExtEvent.txt
 northKey: NULL
 southKey: NULL
 eastKey: NULL
@@ -234,8 +234,8 @@ westKey: NULL
 id: duchessHomeInt
 name: Duchess' Home Interior
 description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stirring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hideous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
-items: UGLY_BABY
-characters: cook, duchess uglyBaby cheshireCat
+items: NULL
+characters: cook duchess cheshireCat
 pathNorth: NULL
 pathSouth: NULL
 pathEast: duchessHomeExt
