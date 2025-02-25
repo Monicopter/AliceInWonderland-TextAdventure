@@ -31,12 +31,12 @@ Game::~Game()
 
 void Game::startGame()
 {
-    //printTextFile("Intro.txt"); //BE SURE TO UNCOMMENT FOR FINAL BUILD
+    printTextFile("Intro.txt"); //BE SURE TO UNCOMMENT FOR FINAL BUILD
     loadGameData();
 
     if (!locations.empty())
     {
-        currentLocation = &locations[9];  //can change the index number to spawn into a different location see locations.txt for numerical id
+        currentLocation = &locations[0];  //can change the index number to spawn into a different location see locations.txt for numerical id
         std::cout << "Current Location: " << currentLocation->getName() << std::endl;
         std::cout << "Description: " << currentLocation->getDescription() << std::endl;
     }
