@@ -14,8 +14,8 @@
     This is a text adventure game inspired by games like Colossal Cave Adventure. It takes place in the Alice in Wonderland setting, specifically
     the original novel written by Lewis Carroll. 
 
- Compile (assuming Cygwin is running): g++ -o alicegame.exe Game.cpp Items.cpp Locations.cpp Inventory.cpp Characters.cpp main.cpp
- Execution (assuming Cygwin is running): ./alicegame.exe
+ Compile (assuming Cygwin is running): g++ -o aliceGame.exe Game.cpp Items.cpp Locations.cpp Inventory.cpp Characters.cpp main.cpp
+ Execution (assuming Cygwin is running): ./aliceGame.exe
  
  Notes: in Cygwin, main must return type int
  

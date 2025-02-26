@@ -4,12 +4,9 @@
 #include <string>
 #include <vector>
 #include <map>
-
 #include <algorithm>
 #include <cctype>
-
 #include <limits>
-
 #include <filesystem>
 
 #include "Game.hpp"
@@ -767,7 +764,7 @@ void Game::printHelp() const
 
     std::cout << "Available commands:" << std::endl;
     std::cout << "HELP - Display this help message." << std::endl;     
-    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;     
+    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc. If you wish to inspect your current location but do not remember the name simply type 'inspect area' or 'inspect location'" << std::endl;     
     std::cout << "TALK <character> - Talk to a character." << std::endl;
     std::cout << "TAKE <item> - Take an item." << std::endl;
     std::cout << "USE <item> - Use an item." << std::endl;
@@ -1149,6 +1146,13 @@ void Game::talkCommand(const std::string &input) {
 void Game::inspectCommand(const std::string &input) 
 {
     std::string inputString = input;
+
+    // inspect input if the player wants to inspect current location but doesn't remember the location name
+    if (inputString == "area" || inputString == "location")
+    {
+        std::cout << currentLocation->getDescription() << std::endl;
+        return;
+    }
 
     // Check if the input refers to a direction
     if (inputString == "north" || inputString == "n" && currentLocation->getNorthDesc() != "NULL")

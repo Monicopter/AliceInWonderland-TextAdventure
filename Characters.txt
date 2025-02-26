@@ -55,7 +55,7 @@ talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
 talk_marchHareHome: NULL
 talk_royalGardens: Come child. Join me for a game of croquet.
-talk_croquetField: NULL
+talk_croquetField: No one beats me at my game! Off with their heads!
 talk_royalBeach: NULL
 talk_throne: Off with her head!
 
@@ -96,7 +96,7 @@ talk_duchessHomeExt: We're all mad here. I'm mad. You're mad. A dog is not mad t
 talk_duchessHomeInt: The cat says nothing, but looks at you with that unsettling grin.
 talk_marchHareHome: NULL
 talk_royalGardens: NULL
-talk_croquetField: NULL
+talk_croquetField: What do you think of the Queen?
 talk_royalBeach: NULL
 talk_throne: NULL
 
@@ -154,7 +154,7 @@ talk_denseWoods: NULL
 talk_mushroomPatch: NULL
 talk_duchessHomeExt: NULL
 talk_duchessHomeInt: NULL
-talk_marchHareHome: Your hair wants cutting. Tell me. Why is a raven like a writing-desk?
+talk_marchHareHome: Your hair wants cutting! Tell me. Why is a raven like a writing-desk?
 talk_royalGardens: NULL
 talk_croquetField: NULL
 talk_royalBeach: NULL
