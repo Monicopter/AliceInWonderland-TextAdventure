@@ -1,6 +1,5 @@
 #include "Items.hpp"
 
-
 // Getters
 std::string Item::getId() const { return id; }
 std::string Item::getName() const { return name; }

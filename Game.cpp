@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <cctype>
 #include <limits>
-#include <filesystem>
+
 
 #include "Game.hpp"
 
@@ -28,7 +28,7 @@ Game::~Game()
 
 void Game::startGame()
 {
-    printTextFile("Intro.txt"); //BE SURE TO UNCOMMENT FOR FINAL BUILD
+    printTextFile("Intro.txt"); 
     loadGameData();
 
     if (!locations.empty())
@@ -1279,19 +1279,19 @@ void Game::display()
 {
         std::cout << "DISPLAY" << std::endl;
         std::cout << "Current Location: " << currentLocation->getName() << std::endl;
-        std::cout << "Location Items: " << std::endl;            //DEBUGGING CODE - NOT NEEDED
-        for (const Item& item : currentLocation->getItems())        //DEBUGGING CODE - NOT NEEDED
+        std::cout << "Location Items: " << std::endl;            
+        for (const Item& item : currentLocation->getItems())        
         {
-            std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  //DEBUGGING CODE - NOT NEEDED
+            std::cout << " - " << item.getId() << ": " << item.getName() << std::endl;  
         }
         std::cout << "Location Characters: " << std::endl;  
         for (const Character& character: currentLocation->getCharacters())
         {
-            std::cout << " - " << character.getName() << std::endl;     //DEBUGGING CODE - NOT NEEDED
+            std::cout << " - " << character.getName() << std::endl;    
         }
-        std::cout << "Current Player Effect: " << playerEffect << std::endl;    //DEBUGGING CODE - NOT NEEDED
-        bool firstVisit = currentLocation->getFirstVisit(); //DEBUGGING CODE
-        std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; //DEBUGGING CODE
+        std::cout << "Current Player Effect: " << playerEffect << std::endl;   
+        bool firstVisit = currentLocation->getFirstVisit(); 
+        std::cout << "First visit: " << (firstVisit ? "true" : "false") << std::endl; 
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/

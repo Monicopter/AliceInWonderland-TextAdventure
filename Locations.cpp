@@ -1,6 +1,7 @@
 #include "Locations.hpp"
 #include "Items.hpp"
 #include "Characters.hpp"
+
 #include <vector>
 
 
@@ -31,9 +32,6 @@ std::string Location::getNorthKey() const { return northKey; }
 std::string Location::getSouthKey() const { return southKey; }
 std::string Location::getEastKey() const { return eastKey; }
 std::string Location::getWestKey() const { return westKey; }
-
-
-
 
 /*---------------------------------------------------------------------------*/
 
