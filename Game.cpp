@@ -4,12 +4,9 @@
 #include <string>
 #include <vector>
 #include <map>
-
 #include <algorithm>
 #include <cctype>
-
 #include <limits>
-
 #include <filesystem>
 
 #include "Game.hpp"
@@ -54,7 +51,6 @@ void Game::loadGameData()
     loadItems();
     loadCharacters();
     loadLocations();
-    
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
@@ -768,7 +764,7 @@ void Game::printHelp() const
 
     std::cout << "Available commands:" << std::endl;
     std::cout << "HELP - Display this help message." << std::endl;     
-    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc." << std::endl;     
+    std::cout << "INSPECT <object> - Can be used for contextual descriptions; like directions, characters, objects, etc. If you wish to inspect your current location but do not remember the name simply type 'inspect area' or 'inspect location'" << std::endl;     
     std::cout << "TALK <character> - Talk to a character." << std::endl;
     std::cout << "TAKE <item> - Take an item." << std::endl;
     std::cout << "USE <item> - Use an item." << std::endl;
@@ -805,7 +801,11 @@ void Game::takeCommand(const std::string &input)
     {   
         if (itemCycle->getId() == inputString && itemCycle->getCanTake() == true)
         {
-            
+            if(itemCycle->getId() == "TINY_GOLD_KEY" && playerEffect == "SHRINK")
+            {
+                std::cout << "You're too small to reach the key on the table!" << std::endl;
+                return;
+            }
             inventory.addItem(*itemCycle);                 // Adds the item to the player's inventory - after dereferencing itemCycle to add the item
             std::cout << "You have taken: " << itemCycle->getName() << std::endl; // prints out the name of the item taken
             locationItems.erase(itemCycle);                // Removes the item from the location's item vector
@@ -868,6 +868,7 @@ void Game::useCommand(const std::string &input)
                 std::string usedItemName = itemCycle->getName();
                 inventoryItems.erase(itemCycle); 
                 std::cout << "You have used: " << usedItemName << std::endl;
+                addItemToLocation("TINY_GOLD_KEY");
                 handleUnlockEffect(itemCycle->getKeyLocationId());
                 
             }
@@ -921,6 +922,7 @@ void Game::useCommand(const std::string &input)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 void Game::consumeCommand(const std::string &input)
 {
     std::string inputString = input;
@@ -1003,6 +1005,7 @@ void Game::consumeCommand(const std::string &input)
     }
     std::cerr << "Item not found in the inventory." << std::endl;
 }
+
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::talkCommand(const std::string &input) {
@@ -1144,9 +1147,17 @@ void Game::talkCommand(const std::string &input) {
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 void Game::inspectCommand(const std::string &input) 
 {
     std::string inputString = input;
+
+    // inspect input if the player wants to inspect current location but doesn't remember the location name
+    if (inputString == "area" || inputString == "location")
+    {
+        std::cout << currentLocation->getDescription() << std::endl;
+        return;
+    }
 
     // Check if the input refers to a direction
     if (inputString == "north" || inputString == "n" && currentLocation->getNorthDesc() != "NULL")
@@ -1185,8 +1196,6 @@ void Game::inspectCommand(const std::string &input)
         std::cout << currentLocation->getWestDesc() << std::endl;
         return;
     } 
-
-
 
 
     // Check if the input refers to a character name
@@ -1264,6 +1273,7 @@ void Game::inspectCommand(const std::string &input)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 // Used for debugging - can be called with display command from in game
 void Game::display()
 {

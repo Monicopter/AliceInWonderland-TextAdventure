@@ -156,7 +156,7 @@ name: Dense Woods
 description: A woodland densely packed with both coniferous and deciduous trees. The trees provide shade from the sun with their canopy of leaves and branches.There's several leaves and sticks lying around the forest floor. Maybe one could be useful?
 items: STICK
 characters: dog
-pathNorth: dHomeExt
+pathNorth: duchessHomeExt
 pathSouth: NULL
 pathEast: NULL
 pathWest: marchHareHome
@@ -182,7 +182,7 @@ name: Mushroom Patch
 description: These mushrooms seem so large while I'm shrunk down. There's a particularly large mushroom infront of me. I can't quite see above it, maybe if I inspect it...
 items: SHRINK_MUSHROOM ENLARGE_MUSHROOM
 characters: caterpillar
-pathNorth: dHomeExt
+pathNorth: duchessHomeExt
 pathSouth: NULL
 pathEast: NULL
 pathWest: denseWoods
@@ -204,7 +204,7 @@ westKey: NULL
 
 
 #Location8
-id: dHomeExt
+id: duchessHomeExt
 name: Duchess' Home
 description: A small home only about four feet high located in the middle of a grassland field opening. There's a strange looking frog footman standing outside the door daydreaming.
 items: NULL
@@ -212,7 +212,7 @@ characters: frogFootman cheshireCat
 pathNorth: NULL
 pathSouth: denseWoods
 pathEast: mushroomPatch
-pathWest: dHomeInt
+pathWest: duchessHomeInt
 northDesc: NULL
 southDesc: This path leads up the hill back into the dense woods.
 eastDesc: This path leads to the mushroom patch.
@@ -231,14 +231,14 @@ westKey: NULL
 
 
 #Location9
-id: dHomeInt
+id: duchessHomeInt
 name: Duchess' Home Interior
 description: The interior of this home mostly consists of a large open kitchen space. There's a cook wildly stirring and adding ingredients to a large cauldron all while cussing and throwing implements around the house. The fire for the cauldron is producing smoke from end to end of the house. The Duchess is sitting near by the cook on a three legged stool while nursing a rather hideous baby. The is also a rather large cat sitting atop the hearth with an unsettling smile. 
 items: NULL
 characters: cook duchess cheshireCat
 pathNorth: NULL
 pathSouth: NULL
-pathEast: dHomeExt
+pathEast: duchessHomeExt
 pathWest: NULL
 northDesc: NULL
 southDesc: NULL
@@ -288,7 +288,7 @@ id: royalGardens
 name: Royal Gardens
 description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
 items: NULL
-characters: queen king twoFiveSeven whiteRabbit
+characters: queenHearts kingHearts twoFiveSeven whiteRabbit
 pathNorth: doorwayHall
 pathSouth: throne
 pathEast: royalBeach
@@ -314,7 +314,7 @@ id: croquetField
 name: Croquet Field
 description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
 items: FLAMINGO
-characters: queen king whiteRabbit cheshireCat duchess
+characters: queenHearts kingHearts whiteRabbit cheshireCat duchess
 pathNorth: NULL
 pathSouth: NULL
 pathEast: royalGardens
@@ -366,7 +366,7 @@ id: throne
 name: Throne Room
 description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
 items: TART
-characters: queen king madHatter marchHare dormouse knave cook billLizard gryphon
+characters: queenHearts kingHearts madHatter marchHare dormouse knave cook billLizard gryphon
 pathNorth: royalGardens
 pathSouth: NULL
 pathEast: NULL
