@@ -288,7 +288,7 @@ id: royalGardens
 name: Royal Gardens
 description: A beautifully manicured garden befitting royalty. Bright flowerbeds and hedges neatly line the gardens with a large fountain as the centerpiece. The water from the fountain is aerating upon it's flow cycle, causing a fine mist of cool water to populate the immediate area. There is also a large rose tree near the entrance growing white roses. Strangely enough there are three gardeners hastily painting the roses red.
 items: NULL
-characters: queen king twoFiveSeven whiteRabbit
+characters: queenHearts kingHearts twoFiveSeven whiteRabbit
 pathNorth: doorwayHall
 pathSouth: throne
 pathEast: royalBeach
@@ -314,7 +314,7 @@ id: croquetField
 name: Croquet Field
 description: A rather odd area to call a croquet field. The grounds mostly consist of ridges and furrows, not very optimal for playing croquet. Not to mention there is no equipment in sight. Just a bunch of hedgehogs and flamingos roaming the area...
 items: FLAMINGO
-characters: queen king whiteRabbit cheshireCat duchess
+characters: queenHearts kingHearts whiteRabbit cheshireCat duchess
 pathNorth: NULL
 pathSouth: NULL
 pathEast: royalGardens
@@ -366,7 +366,7 @@ id: throne
 name: Throne Room
 description: The inside of the palace. This is the throne room, which seems to serve a double purpose as a courtroom. High vaulted stone ceilings with supporting arches and large stained glass cathedral like windows line the room. The windows have rather gaudy depictions of the king and queen of hearts on them. Within the throne room the King and Queen sit at their throne. There is a rather large crowd consisting of a zoo of animals as well as the whole deck of card people sitting on rows of pews. Guard cards are spaced out between the individual arches of the throne room standing watch. The White Rabbit is stand near the King with a trumpet and scroll in his hands. The Knave was slumping in chains before the King and Queen with guards on either side of him. A table occupied the space between the Knave and throne with a large dish full of tarts upon it. Off to the side of the King was the juror stand occupied by twelve animals. 
 items: TART
-characters: queen king madHatter marchHare dormouse knave cook billLizard gryphon
+characters: queenHearts kingHearts madHatter marchHare dormouse knave cook billLizard gryphon
 pathNorth: royalGardens
 pathSouth: NULL
 pathEast: NULL

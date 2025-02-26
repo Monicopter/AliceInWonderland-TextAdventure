@@ -801,7 +801,11 @@ void Game::takeCommand(const std::string &input)
     {   
         if (itemCycle->getId() == inputString && itemCycle->getCanTake() == true)
         {
-            
+            if(itemCycle->getId() == "TINY_GOLD_KEY" && playerEffect == "SHRINK")
+            {
+                std::cout << "You're too small to reach the key on the table!" << std::endl;
+                return;
+            }
             inventory.addItem(*itemCycle);                 // Adds the item to the player's inventory - after dereferencing itemCycle to add the item
             std::cout << "You have taken: " << itemCycle->getName() << std::endl; // prints out the name of the item taken
             locationItems.erase(itemCycle);                // Removes the item from the location's item vector
@@ -864,6 +868,7 @@ void Game::useCommand(const std::string &input)
                 std::string usedItemName = itemCycle->getName();
                 inventoryItems.erase(itemCycle); 
                 std::cout << "You have used: " << usedItemName << std::endl;
+                addItemToLocation("TINY_GOLD_KEY");
                 handleUnlockEffect(itemCycle->getKeyLocationId());
                 
             }
