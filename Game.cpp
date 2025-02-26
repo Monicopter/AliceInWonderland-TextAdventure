@@ -54,7 +54,6 @@ void Game::loadGameData()
     loadItems();
     loadCharacters();
     loadLocations();
-    
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
@@ -921,6 +920,7 @@ void Game::useCommand(const std::string &input)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 void Game::consumeCommand(const std::string &input)
 {
     std::string inputString = input;
@@ -1003,6 +1003,7 @@ void Game::consumeCommand(const std::string &input)
     }
     std::cerr << "Item not found in the inventory." << std::endl;
 }
+
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
 void Game::talkCommand(const std::string &input) {
@@ -1144,6 +1145,7 @@ void Game::talkCommand(const std::string &input) {
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 void Game::inspectCommand(const std::string &input) 
 {
     std::string inputString = input;
@@ -1185,8 +1187,6 @@ void Game::inspectCommand(const std::string &input)
         std::cout << currentLocation->getWestDesc() << std::endl;
         return;
     } 
-
-
 
 
     // Check if the input refers to a character name
@@ -1264,6 +1264,7 @@ void Game::inspectCommand(const std::string &input)
 }
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
+
 // Used for debugging - can be called with display command from in game
 void Game::display()
 {
