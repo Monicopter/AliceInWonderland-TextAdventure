@@ -905,7 +905,7 @@ void Game::useCommand(const std::string &input)
             }
             else
             {   
-                //For items with a text output use effect
+                //For items with a text output use effect - like UGLY_BABY
                 inventoryItems.erase(itemCycle); 
                 std::cerr << "-" << effect << std::endl;
             }

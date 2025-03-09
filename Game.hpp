@@ -86,12 +86,12 @@ public:
     void inspectCommand(const std::string &input);          //handles player inspect command
 
     void display();                                         //displays current game state like location, items, etc.
-    void printTextFile(const std::string& filename) const;  //prints text file to console - for longer exposition/events
-    void handleUnlockEffect(const std::string& locationId);      //used to unlock direction pathways from USE command of key items
-    std::string removeAllWhitespace(const std::string& input);   //removes all whitespace from a string
-    void addInventoryItemById(const std::string& itemId);        //adds item to inventory from an input item ID
-    void addCharacterToLocation(const std::string& characterId); //adds a character to the current location cell
-    void addItemToLocation(const std::string& itemId);           //adds an item to the players current location
-    void setPlayerLocation(const std::string& locationId);       //forcefully changes the player's current location
-    void removeCharacterFromLocation(const std::string& characterId); //removes a character from the currentLocation using the character's ID
+    void printTextFile(const std::string &filename) const;  //prints text file to console - for longer exposition/events
+    void handleUnlockEffect(const std::string &locationId);      //used to unlock direction pathways from USE command of key items
+    std::string removeAllWhitespace(const std::string &input);   //removes all whitespace from a string
+    void addInventoryItemById(const std::string &itemId);        //adds item to inventory from an input item ID
+    void addCharacterToLocation(const std::string &characterId); //adds a character to the current location cell
+    void addItemToLocation(const std::string &itemId);           //adds an item to the players current location
+    void setPlayerLocation(const std::string &locationId);       //forcefully changes the player's current location
+    void removeCharacterFromLocation(const std::string &characterId); //removes a character from the currentLocation using the character's ID
 };
